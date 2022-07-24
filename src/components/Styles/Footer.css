@@ -1,0 +1,10 @@
+footer {
+  bottom: 0;
+  position: fixed;
+  width: 200px;
+}
+
+footer button {
+  height: 100px;
+  width: 100px;
+}
