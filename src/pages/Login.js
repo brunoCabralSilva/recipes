@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { SwiperSlide } from 'swiper/react';
+import SliderLogin from '../components/SliderLogin';
 
 export default function Login() {
   const history = useHistory();
@@ -26,11 +28,14 @@ export default function Login() {
   };
 
   return (
-    <main className="flex flex-row h-screen relative items-center justify-center">
-      <img src={require("../images/food.jpg")} alt="" className="h-full w-full object-cover absolute" />
-        <section className="py-4 flex flex-col items-center justify-center w-2/3 glassmorphism rounded-xl shadow-2xl z-20">
-          <img src={require('../images/garfo-faca.png')} alt="" className="w-1/2" />
-          <label htmlFor="input-email" className="flex flex-col justify-center items-center">
+    <main className="flex flex-row h-screen relative items-center justify-center sm:justify-between bg-none">
+      <div className="w-full sm:w-1/2 h-screen">
+        <SliderLogin className="h-screen" />
+      </div>
+      <section className="py-4 flex flex-col items-center justify-center rounded-2xl z-20 sm:m-10 sm:w-1/2 absolute sm:relative">
+        <div className="flex flex-col items-center justify-center w-4/5 sm:w-1/2 bg-white pt-10 sm:pt-0 pb-5 s,:pb-5 px-7 sm:px-0 glassmorphism">
+          <label htmlFor="input-email" className="flex flex-col justify-center items-center w-full">
+          <span className="w-full text-madeira text-left text-sm">Email</span>
           <input
             type="email"
             name="email"
@@ -38,21 +43,22 @@ export default function Login() {
             data-testid="email-input"
             onChange={ handleChange }
             id="input-email"
-            placeholder="Email"
             autocomplete="off"
-            className="text-center placeholder:text-madeira placeholder:text-sm text-madeira pt-2 mt-2 mb-1 w-9/12 bg-transp border-b border-madeira"
+            className="text-center placeholder:text-madeira placeholder:text-sm text-madeira mb-1 w-full bg-transp border-b border-madeira"
           />
           </label>
+          <label htmlFor="input-email" className="flex flex-col w-full justify-center items-center mt-6">
+          <span className="w-full text-madeira text-left text-sm">Senha</span>
           <input
             type="password"
             name="password"
             value={ user.password }
             data-testid="password-input"
             onChange={ handleChange }
-            placeholder="Password"
             autocomplete="off"
-            className="text-center placeholder:text-madeira placeholder:text-sm text-madeira pt-2 mb-1 w-9/12 bg-transp border-b border-madeira"
+            className="text-center placeholder:text-madeira placeholder:text-sm text-madeira mb-1 w-full bg-transp border-b border-madeira"
           />
+          </label>
           <button
             type="button"
             disabled={
@@ -61,11 +67,13 @@ export default function Login() {
             }
             data-testid="login-submit-btn"
             onClick={ handleClick }
-            className="text-center my-4 p-2 w-10/12 bg-madeira text-white font-bold hover:bg-dark transition duration-1000"
+            className="text-center my-4 p-2 w-full bg-madeira text-white font-bold hover:bg-dark transition duration-1000"
           >
             Enter
           </button>
-        </section>
+        </div>
+      </section>
+      
     </main>
   );
 }
