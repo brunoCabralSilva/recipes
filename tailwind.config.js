@@ -13,6 +13,7 @@ module.exports = {
         'madeira': 'rgb(104,75,57)',
         'bege': 'rgb(240, 230, 224)',
         'transp': 'rgb(240, 230, 224, 0)',
+        'dark':'rgb(60, 33, 17)',
       },
     },
   },

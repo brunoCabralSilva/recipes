@@ -17,7 +17,7 @@ function App() {
   return (
     <RecProvider>
       <Switch>
-        <Route exact path="/" component={ Login } />
+        <Route exact path="/trybe-20-recipes" component={ Login } />
         <Route exact path="/drinks" component={ Drinks } />
         <Route exact path="/foods/:id" component={ RecipeDetails } />
         <Route exact path="/drinks/:id" component={ DrinksId } />

@@ -6,10 +6,10 @@
     background: rgba(255,255,255,0.7);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    border: 3px solid rgb(236, 222, 214);
+    border: 3px solid rgb(104,75,57);;
 }
 
-input:focus {
+textarea:focus, input:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
 }

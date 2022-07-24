@@ -61,7 +61,7 @@ export default function Login() {
             }
             data-testid="login-submit-btn"
             onClick={ handleClick }
-            className="text-center my-4 p-2 w-10/12 bg-madeira text-white font-bold hover:bg-gray-800 transition duration-1000"
+            className="text-center my-4 p-2 w-10/12 bg-madeira text-white font-bold hover:bg-dark transition duration-1000"
           >
             Enter
           </button>
