@@ -119,11 +119,11 @@ export default function DrinksProgress(props) {
     const array = [];
     for (let i = 0; i < ingredients.length; i += 1) {
       array.push(
-        <span className="check" data-testid={ `${i}-ingredient-step` }>
+        <span className="check check flex w-4/5 mx-auto justify-start" data-testid={ `${i}-ingredient-step` }>
           <input
             type="checkbox"
             name={ ingredients[i][1] }
-            className="space"
+            className="space mr-3"
             onChange={ handleChange }
             checked={ handleCheck(ingredients[i][1]) }
             data-testid={ ingredients[i][1] }
@@ -205,33 +205,45 @@ export default function DrinksProgress(props) {
   return (
     <div>
       {drinksInProgress.map((drink) => (
-        <div key={ drink.idDrink }>
-          <img src={ drink.strDrinkThumb } alt="" data-testid="recipe-photo" />
-          <p data-testid="recipe-title">{drink.strDrink}</p>
-          <p data-testid="recipe-category">{drink.strCategory}</p>
-          <button
-            type="button"
-            data-testid="share-btn"
-            onClick={ clickLink }
-          >
-            <img src={ share } alt="Botão Compartilhar" />
-          </button>
-          {link && <p>{link}</p>}
-          <button
-            type="button"
-            data-testid="favorite-btn"
-            onClick={ favoriteRecipesFunc }
-            src={ retornaIcone() }
-          >
-            <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
-          </button>
-          <ul>{handleIng(drink)}</ul>
-          <p data-testid="instructions">{drink.strInstructions}</p>
+        <div key={ drink.idDrink } className="flex flex-col items-center">
+          <div className="flex flex-row w-full">
+          <img src={ drink.strDrinkThumb } alt="" data-testid="recipe-photo" clasName="w-43%" />
+          <div className="w-43% justify-center items-center flex flex-col">
+            <p data-testid="recipe-title" className="font-bold text-5x">
+              {drink.strDrink}
+              <span>{' - '}</span>
+              <span data-testid="recipe-category">{drink.strCategory}</span>
+            </p>
+            <p data-testid="instructions" className="text-center w-4/5 mx-auto py-4">{drink.strInstructions}</p>
+            <div className="flex my-4">
+              <button
+                type="button"
+                data-testid="favorite-btn"
+                onClick={ favoriteRecipesFunc }
+                src={ retornaIcone() }
+                className="mx-3"
+              >
+                <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
+              </button>
+              <button
+                type="button"
+                data-testid="share-btn"
+                onClick={ clickLink }
+                className="mx-3"
+              >
+                <img src={ share } alt="Botão Compartilhar" />
+              </button>
+            </div>
+            {link && <p>{link}</p>}
+            <ul>{handleIng(drink)}</ul>
+            </div>
+          </div>
           <button
             type="button"
             data-testid="finish-recipe-btn"
             onClick={ directClick }
             disabled={ returnDisabled() }
+            className="fixed bottom-0 right-0 m-4 bg-white px-3 py-4 border border-black hover:bg-madeira transition duration-1000 hover:text-white"
           >
             Finalizar
           </button>

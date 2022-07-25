@@ -21,7 +21,7 @@ export default function StartRecipe(props) {
         <button
           type="button"
           data-testid="start-recipe-btn"
-          className="btn-start-recipe"
+          className="fixed bottom-0 right-0 m-4 bg-white px-3 py-4 border border-black hover:bg-madeira transition duration-1000 hover:text-white"
           onClick={ redirect }
         >
           Start Recipe
@@ -32,7 +32,7 @@ export default function StartRecipe(props) {
         <button
           type="button"
           data-testid="start-recipe-btn"
-          className="btn-start-recipe"
+          className="fixed bottom-0 right-0 m-4 bg-white px-3 py-4 border border-black hover:bg-madeira transition duration-1000 hover:text-white"
           onClick={ redirect }
         >
           Continue Recipe

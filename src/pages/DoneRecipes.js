@@ -109,11 +109,12 @@ export default function DoneRecipes(props) {
   return (
     <div>
       <Header searchIcon="hidden" title="Done Recipes" history={ history } />
-      <div>
+      <div className="w-full">
         <button
           type="button"
           data-testid="filter-by-all-btn"
           onClick={ () => setOptions(storage) }
+          className="w-1/3"
         >
           All
         </button>
@@ -121,6 +122,7 @@ export default function DoneRecipes(props) {
           type="button"
           data-testid="filter-by-food-btn"
           onClick={ () => foodFilterBtn(storage) }
+          className="w-1/3"
         >
           Food
         </button>
@@ -128,11 +130,14 @@ export default function DoneRecipes(props) {
           type="button"
           data-testid="filter-by-drink-btn"
           onClick={ () => drinkFilterBtn(storage) }
+          className="w-1/3"
         >
           Drinks
         </button>
       </div>
-      {options ? storageReturn() : <p>No recipes yet</p>}
+      <div className="flex flex-row flex-wrap">
+      {options ? storageReturn() : <p className="w-full text-center text-5xl">No recipes yet</p>}
+      </div>
     </div>
   );
 }

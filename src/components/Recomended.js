@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function Recomended(props) {
   const { in12, type } = props;
@@ -8,7 +9,7 @@ export default function Recomended(props) {
   const retornaItems = (index, item) => {
     if (type === 'food') {
       return (
-        <div>
+        <div className="w-43%">
           <p data-testid={ `${index}-recomendation-title` }>{item.strMeal}</p>
           <img src={ item.strMealThumb } alt="" className="imageItem" />
         </div>
@@ -41,23 +42,21 @@ export default function Recomended(props) {
 
   return (
     <section>
-      <h2>Recomended</h2>
-      <div className="scroll-item">
-        <div className="div-button-right">
+      <h2 className="text-2xl font-bold pb-4 pt-5 px-4">Recomended</h2>
+      <div className="flex flex-row items-center">
           <button
             type="button"
-            className="btn-right"
+            className="absolute h-40 ml-5"
             onClick={ handleClickRight }
           >
-            Anterior
+            <IoIosArrowBack className="text-6xl" />
           </button>
-        </div>
-        <div className="scroll-footer">
+        <div className="flex flex-row">
           {in12.slice(0, +'6').map((item, index) => (
             <div
               data-testid={ `${index}-recomendation-card` }
               key={ index }
-              className={ `item-recomended  ${validateItemScroll(index)}` }
+              className={ `w-full m-3 ${validateItemScroll(index)}` }
             >
               {
                 retornaItems(index, item)
@@ -65,15 +64,13 @@ export default function Recomended(props) {
             </div>
           ))}
         </div>
-        <div className="div-button-left">
-          <button
-            type="button"
-            className="btn-left"
-            onClick={ handleClickLeft }
-          >
-            Próximo
-          </button>
-        </div>
+        <button
+          type="button"
+          className="absolute right-0 mr-3"
+          onClick={ handleClickLeft }
+        >
+          <IoIosArrowForward className="text-6xl" />
+        </button>
       </div>
     </section>);
 }

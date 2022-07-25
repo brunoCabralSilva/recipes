@@ -117,7 +117,7 @@ export default function RecipeInProgress(props) {
     const array = [];
     for (let i = 0; i < ingredients.length; i += 1) {
       array.push(
-        <span className="check" data-testid={ `${i}-ingredient-step` }>
+        <span className="check flex w-4/5 mx-auto justify-start" data-testid={ `${i}-ingredient-step` }>
           <input
             type="checkbox"
             name={ ingredients[i][1] }
@@ -205,33 +205,46 @@ export default function RecipeInProgress(props) {
   return (
     <div>
       {foodsInProgress.map((food) => (
-        <div key={ food.idMeal }>
-          <img src={ food.strMealThumb } alt="" data-testid="recipe-photo" />
-          <p data-testid="recipe-title">{food.strMeal}</p>
-          <p data-testid="recipe-category">{food.strCategory}</p>
-          <button
-            type="button"
-            data-testid="share-btn"
-            onClick={ clickLink }
-          >
-            <img src={ share } alt="Botão Compartilhar" />
-          </button>
+        <div key={ food.idMeal } className="flex flex-col items-center">
+          <div className="flex flex-row w-full">
+            <img src={ food.strMealThumb } alt="" data-testid="recipe-photo" clasName="w-43%" />
+            <div className="w-43% justify-center items-start flex flex-col">
+              <p data-testid="recipe-title" className="font-bold text-5x w-full text-center">
+                {food.strMeal}
+                <span>{' - '}</span>
+                <span data-testid="recipe-category">{food.strCategory}</span>
+              </p>
+              <p data-testid="instructions" className="text-center w-4/5 mx-auto py-4">
+                {food.strInstructions}
+              </p>
+            <div className="flex my-4 w-full justify-center">
+            <button
+              type="button"
+              data-testid="favorite-btn"
+              onClick={ favoriteRecipesFunc }
+              src={ retornaIcone() }
+              className="mx-3"
+            >
+              <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
+            </button>
+            <button
+              type="button"
+              data-testid="share-btn"
+              onClick={ clickLink }
+            >
+              <img src={ share } alt="Botão Compartilhar" />
+            </button>
+          </div>
           {link && <p>{link}</p>}
-          <button
-            type="button"
-            data-testid="favorite-btn"
-            onClick={ favoriteRecipesFunc }
-            src={ retornaIcone() }
-          >
-            <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
-          </button>
-          <ul>{handleIng(food)}</ul>
-          <p data-testid="instructions">{food.strInstructions}</p>
+          <ul className="w-full">{handleIng(food)}</ul>
+        </div>
+          </div>
           <button
             type="button"
             data-testid="finish-recipe-btn"
             onClick={ directClick }
             disabled={ returnDisabled() }
+            className="fixed bottom-0 right-0 m-4 bg-white px-3 py-4 border border-black hover:bg-madeira transition duration-1000 hover:text-white"
           >
             Finalizar
           </button>

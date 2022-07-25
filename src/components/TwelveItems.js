@@ -103,7 +103,7 @@ export default function TwelveItems(props) {
     const array = [];
     for (let i = 0; i < ingredients.length; i += 1) {
       array.push(
-        <li data-testid={ `${i}-ingredient-name-and-measure` }>
+        <li data-testid={ `${i}-ingredient-name-and-measure` } className="w-full text-center">
           <span>{ingredients[i][1]}</span>
           <span>
             {measure[i] && ` - ${measure[i][1]}`}
@@ -114,12 +114,50 @@ export default function TwelveItems(props) {
     return array;
   };
 
+  const buttons = () => {
+    return(
+      <div className="flex flex-col m-5">
+        <div className="flex flex-row">
+        <button
+          type="button"
+          data-testid="favorite-btn"
+          onClick={ favoriteRecipesFunc }
+          src={ retornaIcone() }
+          className="mx-3"
+        >
+          <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
+        </button>
+        <button
+          type="button"
+          data-testid="share-btn"
+          onClick={ clickLink }
+          className="mx-3"
+        >
+          <img src={ share } alt="Botão Compartilhar" />
+        </button>
+        </div>
+        {link && <p className="w-full text-center font-bold my-3">{link}</p>}
+      </div>
+    );
+  }
+
   const drinkFunc = () => drinkId.map((drink, index) => (
     <div key={ index }>
-      <img src={ drink.strDrinkThumb } alt="" data-testid="recipe-photo" />
-      <p data-testid="recipe-title">{drink.strDrink}</p>
-      <p data-testid="recipe-category">{drink.strAlcoholic}</p>
-      <ul>{handleIng(drink)}</ul>
+      <div className="flex flex-row">
+        <img src={ drink.strDrinkThumb } alt="" data-testid="recipe-photo" className="w-1/2 h-screen object-cover"/>
+        <div className="flex flex-col items-center justify-center w-1/2">
+          <p data-testid="recipe-title" className="text-2xl mb-10 w-full text-center">{drink.strDrink}</p>
+          <p
+            data-testid="recipe-category"
+            className="w-full text-center"
+          >
+            {drink.strAlcoholic}
+          </p>
+          <ul>{handleIng(drink)}</ul>
+          { buttons() }
+        </div>
+      </div>
+      <div className="flex flex-row m-4 items-center">
       <p data-testid="instructions">{drink.strInstructions}</p>
       <iframe
         data-testid="video"
@@ -132,27 +170,41 @@ export default function TwelveItems(props) {
         Vídeo
         {' '}
       </iframe>
+      </div>
     </div>
   ));
 
   const foodFunc = () => foodId.map((food, index) => (
-    <div key={ index }>
-      <img src={ food.strMealThumb } alt="" data-testid="recipe-photo" />
-      <p data-testid="recipe-title">{food.strMeal}</p>
-      <p data-testid="recipe-category">{food.strCategory}</p>
-      <ul>{handleIng(food)}</ul>
-      <p data-testid="instructions">{food.strInstructions}</p>
-      <iframe
-        data-testid="video"
-        title="vídeo"
-        width="420"
-        height="345"
-        src={ food.strYoutube }
-      >
-        {' '}
-        Vídeo
-        {' '}
-      </iframe>
+    <div key={ index } className="">
+      <div className="flex flex-row">
+        <img
+          src={ food.strMealThumb }
+          alt=""
+          data-testid="recipe-photo"
+          className="w-1/2 h-screen object-cover"
+        />
+        <div className="flex flex-col items-center justify-center w-1/2">
+          <p data-testid="recipe-title" className="text-2xl mb-10 w-full text-center">{food.strMeal}</p>
+          <p data-testid="recipe-category" className="w-full text-center">{food.strCategory}</p>
+          <ul>{handleIng(food)}</ul>
+          { buttons() }
+        </div>
+      </div>
+      <div className="flex flex-row m-4 items-center">
+        <p data-testid="instructions" className="w-1/2 pl-3 pr-4">{food.strInstructions}</p>
+        <iframe
+          data-testid="video"
+          title="vídeo"
+          width="420"
+          height="345"
+          src={ food.strYoutube }
+          className="w-1/2"
+        >
+          {' '}
+          Vídeo
+          {' '}
+        </iframe>
+      </div>
     </div>
   ));
 
@@ -161,22 +213,6 @@ export default function TwelveItems(props) {
       {type === 'food'
         ? foodFunc()
         : drinkFunc()}
-      <button
-        type="button"
-        data-testid="share-btn"
-        onClick={ clickLink }
-      >
-        <img src={ share } alt="Botão Compartilhar" />
-      </button>
-      {link && <p>{link}</p>}
-      <button
-        type="button"
-        data-testid="favorite-btn"
-        onClick={ favoriteRecipesFunc }
-        src={ retornaIcone() }
-      >
-        <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
-      </button>
     </div>
   );
 }

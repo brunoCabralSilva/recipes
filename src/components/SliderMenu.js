@@ -4,7 +4,7 @@ import { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-export default function SliderMenu({setFil, btnFoods, change}) {
+export default function SliderMenu({setFil, btn, change, type}) {
   const valor = window.innerWidth;
   console.log(valor);
   let slides = 0;
@@ -20,30 +20,43 @@ export default function SliderMenu({setFil, btnFoods, change}) {
     loop: true,
   }
 
+  const returnSwiperDrink = () => {
+    return null;
+  }
+
   return(
     <Swiper {...settings} modules={[Navigation]} className="h-36">
         <SwiperSlide
-          data-testid="All-category-filter"
-          onClick={ () => setFil() }
-          className="bg-madeira m-2 relative flex h-36"
-        >
-          <img src={require("../images/all.jpg")} alt="all foods" className="w-128 h-full object-cover" />
-          <div className="absolute bg-gradient-to-t from-black to-transp w-full h-full" />
-          <span className="w-full h-full flex items-end font-bold text-xl text-left pl-3 pb-4 absolute text-white">All</span>
-        </SwiperSlide>
-        {btnFoods.slice(0, +'5').map((button, index) => (
+        data-testid="All-category-filter"
+        onClick={ () => setFil() }
+        className="bg-madeira m-2 relative flex h-36"
+      >
+        <img src={require("../images/all.jpg")} alt="all foods" className="w-128 h-full object-cover" />
+        <div className="absolute bg-gradient-to-t from-black to-transp w-full h-full" />
+        <span className="w-full h-full flex items-end font-bold text-xl text-left pl-3 pb-4 absolute text-white">
+          All
+        </span>
+      </SwiperSlide>
+      {console.log(btn)}
+      {
+        btn.slice(0, +'5').map((button, index) => (
           <SwiperSlide
             key={ index }
             type="button"
-            data-testid={ `${button.strCategory}-category-filter` }
-            onClick={ () => change(button.strCategory) }
-            className="bg-madeira m-2 relative flex h-36"
-          >
-            <img src={require(`../images/${button.strCategory}.jpg`)} alt="all foods" className="w-128 h-full object-cover" />
-            <div className="absolute bg-gradient-to-t from-black to-transp w-full h-full" />
-            <span className="w-full h-full flex items-end font-bold text-xl text-left pl-3 pb-4 absolute text-white">{button.strCategory}</span>
+              data-testid={ `${button.strCategory}-category-filter` }
+              onClick={ () => change(button.strCategory) }
+              className="bg-madeira m-2 relative flex h-36"
+              >
+              <img src={require(`../images/${
+                button.strCategory === "Other/Unknown"
+                ? "Other-Unknown"
+              : button.strCategory
+              }.jpg`)} alt="all foods" className="w-128 h-full object-cover" />
+              <div className="absolute bg-gradient-to-t from-black to-transp w-full h-full" />
+              <span className="w-full h-full flex items-end font-bold text-xl text-left pl-3 pb-4 absolute text-white">{button.strCategory}</span>
           </SwiperSlide>
-        ))}
-      </Swiper>
+        ))
+      }
+    </Swiper>
   );
 }

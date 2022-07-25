@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import DrinksFoods from '../components/DrinksFoods';
 import contexto from '../context';
 
 export default function Drinks(props) {
@@ -34,67 +35,21 @@ export default function Drinks(props) {
     resetFilters();
   };
 
-  const handleCategoryFilter = (category) => category
-    .slice(0, +'12').map((item, index) => (
-      <Link
-        to={ `/drinks/${item.idDrink}` }
-        key={ item.idDrink }
-        data-testid={ `${index}-recipe-card` }
-      >
-        <div>
-          <p data-testid={ `${index}-card-name` }>{ item.strDrink }</p>
-          <img
-            src={ item.strDrinkThumb }
-            alt=""
-            className="imageItem"
-            data-testid={ `${index}-card-img` }
-          />
-        </div>
-      </Link>
-    ));
+  const setFilter = () => {
+    setFilterCategoryDrink([]);
+  }
 
   return (
     <div>
-      <Header searchIcon="visible" title="Drinks" history={ history } />
-      <button
-        type="button"
-        data-testid="All-category-filter"
-        onClick={ () => setFilterCategoryDrink([]) }
-      >
-        All
-      </button>
-      {btnDrinks.slice(0, +'5').map((button, index) => (
-        <span key={ index }>
-          <button
-            type="button"
-            data-testid={ `${button.strCategory}-category-filter` }
-            onClick={ () => changeToogle(button.strCategory) }
-          >
-            {button.strCategory}
-          </button>
-        </span>
-      ))}
-      {filterCategoryDrink.length
-        ? handleCategoryFilter(filterCategoryDrink)
-        : (drink.length ? drink : drinksIn12)
-          .slice(0, +'12')
-          .map((item, index) => (
-            <Link
-              to={ `/drinks/${item.idDrink}` }
-              key={ index }
-              data-testid={ `${index}-recipe-card` }
-            >
-              <div>
-                <p data-testid={ `${index}-card-name` }>{item.strDrink}</p>
-                <img
-                  data-testid={ `${index}-card-img` }
-                  src={ item.strDrinkThumb }
-                  alt=""
-                  className="imageItem"
-                />
-              </div>
-            </Link>
-          ))}
+       <DrinksFoods
+        type="drink"
+        btn={btnDrinks}
+        filterCategory={filterCategoryDrink}
+        item={drink}
+        in12={drinksIn12}
+        setFilter={setFilter}
+        changeToogle={changeToogle}
+     />
       <Footer history={ history } />
     </div>
   );
