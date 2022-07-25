@@ -1,14 +1,19 @@
 {
   "files": {
-    "main.css": "/trybe-20-recipes/static/css/main.20df7ae8.css",
-    "main.js": "/trybe-20-recipes/static/js/main.6fa30cb0.js",
+    "main.css": "/trybe-20-recipes/static/css/main.6f2bcff3.css",
+    "main.js": "/trybe-20-recipes/static/js/main.d00e3991.js",
+    "static/media/Cocktail.jpg": "/trybe-20-recipes/static/media/Cocktail.a1c1be9bc4111b6b4bb0.jpg",
+    "static/media/Other-Unknown.jpg": "/trybe-20-recipes/static/media/Other-Unknown.9779a8648289bd23195d.jpg",
+    "static/media/Cocoa.jpg": "/trybe-20-recipes/static/media/Cocoa.c890967e76773adff355.jpg",
     "static/media/Chicken.jpg": "/trybe-20-recipes/static/media/Chicken.0faa48a5d55d492cf305.jpg",
     "static/media/food.jpg": "/trybe-20-recipes/static/media/food.fb23ecb54cf79e323cba.jpg",
+    "static/media/Ordinary Drink.jpg": "/trybe-20-recipes/static/media/Ordinary Drink.c3d966107afa89ade0ba.jpg",
     "static/media/all.jpg": "/trybe-20-recipes/static/media/all.8cd90e84d3134b970e08.jpg",
     "static/media/Beef.jpg": "/trybe-20-recipes/static/media/Beef.9284b432b1b855223cd6.jpg",
     "static/media/Dessert.jpg": "/trybe-20-recipes/static/media/Dessert.4c0d461941916aa06103.jpg",
     "static/media/marmore.jpg": "/trybe-20-recipes/static/media/marmore.8461283f97cfa31c32f7.jpg",
     "static/media/food2.jpg": "/trybe-20-recipes/static/media/food2.2487bd33bd1116bd35a3.jpg",
+    "static/media/Shake.jpg": "/trybe-20-recipes/static/media/Shake.b32e8b9e5009a6161481.jpg",
     "static/media/drink2.jpg": "/trybe-20-recipes/static/media/drink2.585a02fb1584c4932399.jpg",
     "static/media/drink.jpg": "/trybe-20-recipes/static/media/drink.360c1fd02a5f5aa67285.jpg",
     "static/media/Breakfast.jpg": "/trybe-20-recipes/static/media/Breakfast.5f8720ccdcf7b118410c.jpg",
@@ -22,11 +27,11 @@
     "static/media/blackHeartIcon.svg": "/trybe-20-recipes/static/media/blackHeartIcon.083cb006913d197c95857ebfa2161db7.svg",
     "static/media/drinkIcon.svg": "/trybe-20-recipes/static/media/drinkIcon.efc0d3c156e5da73e44a826c8d67b142.svg",
     "index.html": "/trybe-20-recipes/index.html",
-    "main.20df7ae8.css.map": "/trybe-20-recipes/static/css/main.20df7ae8.css.map",
-    "main.6fa30cb0.js.map": "/trybe-20-recipes/static/js/main.6fa30cb0.js.map"
+    "main.6f2bcff3.css.map": "/trybe-20-recipes/static/css/main.6f2bcff3.css.map",
+    "main.d00e3991.js.map": "/trybe-20-recipes/static/js/main.d00e3991.js.map"
   },
   "entrypoints": [
-    "static/css/main.20df7ae8.css",
-    "static/js/main.6fa30cb0.js"
+    "static/css/main.6f2bcff3.css",
+    "static/js/main.d00e3991.js"
   ]
 }
