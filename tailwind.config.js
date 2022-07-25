@@ -14,7 +14,11 @@ module.exports = {
         'bege': 'rgb(240, 230, 224)',
         'transp': 'rgb(240, 230, 224, 0)',
         'dark':'rgb(60, 33, 17)',
+        'half-transp': 'rgb(0,0,0,0.8)',
       },
+      spacing: {
+        '128': '35rem',
+      }
     },
   },
   plugins: [],

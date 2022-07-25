@@ -70,41 +70,47 @@ export default function SearchBar(props) {
   };
 
   return (
-    <div>
-      <label htmlFor="ingredient">
-        Ingredient
-        <input
-          type="radio"
-          id="ingredient"
-          name="option"
-          data-testid="ingredient-search-radio"
-          onClick={ () => setEndPoint({ ingredient: 'filter.php?i=' }) }
-        />
-      </label>
-      <label htmlFor="name">
-        Name
-        <input
-          type="radio"
-          id="name"
-          name="option"
-          data-testid="name-search-radio"
-          onClick={ () => setEndPoint({ nameInput: 'search.php?s=' }) }
-        />
-      </label>
-      <label htmlFor="letter">
-        First letter
-        <input
-          type="radio"
-          id="letter"
-          name="option"
-          data-testid="first-letter-search-radio"
-          onClick={ () => setEndPoint({ firstLetter: 'search.php?f=' }) }
-        />
-      </label>
+    <div className="flex flex-col sm:flex-row w-2/3 items-center">
+      <div className="flex flex-row w-full justify-around">
+        <label htmlFor="ingredient" className="w-1/3">
+          <input
+            type="radio"
+            id="ingredient"
+            name="option"
+            data-testid="ingredient-search-radio"
+            onClick={ () => setEndPoint({ ingredient: 'filter.php?i=' }) }
+            className="m-2"
+          />
+          Ingredient
+        </label>
+        <label htmlFor="name" className="w-1/3 text-center">
+          <input
+            type="radio"
+            id="name"
+            name="option"
+            data-testid="name-search-radio"
+            onClick={ () => setEndPoint({ nameInput: 'search.php?s=' }) }
+            className="m-2"
+          />
+          Name
+        </label>
+        <label htmlFor="letter" className="w-1/3 text-center">
+          <input
+            type="radio"
+            id="letter"
+            name="option"
+            data-testid="first-letter-search-radio"
+            onClick={ () => setEndPoint({ firstLetter: 'search.php?f=' }) }
+            className="m-2"
+          />
+          First letter
+        </label>
+      </div>
       <button
         type="button"
         data-testid="exec-search-btn"
         onClick={ () => search() }
+        className="w-full my-2 py-2 bg-gray-400"
       >
         Buscar
       </button>
