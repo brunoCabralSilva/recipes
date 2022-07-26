@@ -10,11 +10,11 @@ export default function Recomended(props) {
     if (type === 'food') {
       return (
         <div className="relative flex">
-          <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-full
+          <div className="absolute bg-gradient-to-t from-transp to-min-transp w-full h-full
           z-20" />
           <p
             data-testid={ `${index}-recomendation-title` }
-            className="absolute flex items-end h-full w-full p-3 text-white font-bold text-xl z-30"
+            className="absolute flex h-full top-0 w-full p-3 text-white font-bold text-xl z-30"
           >
             {item.strMeal}
           </p>
@@ -27,7 +27,7 @@ export default function Recomended(props) {
           z-20" />
           <p
             data-testid={ `${index}-recomendation-title` }
-            className="absolute flex items-end h-full w-full p-3 text-white font-bold text-xl z-30"
+            className="absolute flex h-full w-full p-3 text-white top-0 font-bold text-xl z-30"
           >
             {item.strDrink}
           </p>

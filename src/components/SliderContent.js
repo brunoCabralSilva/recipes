@@ -47,7 +47,7 @@ export default function SliderContent({ filterCategory, food, foodsIn12, handleC
           data-testid={ `${index}-recipe-card` }
           className="snap-center m-3 w-11/12 sm:w-43% md:w-30% xl:w-22.5% hover:border hover:border-1 hover:border-black"
         >
-          <div className="relative flex h-60">
+          <div className="relative flex h-80">
             <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-full z-20" />
             <img
               data-testid={ `${index}-card-img` }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TwelveItems from '../components/TwelveItems';
 import Recomended from '../components/Recomended';
 import StartRecipe from '../components/StartRecipe';
+import { motion } from 'framer-motion';
 import contexto from '../context';
 
 export default function RecipeDetails(props) {
@@ -27,11 +28,19 @@ export default function RecipeDetails(props) {
   }, []);
 
   return (
-    <div className="">
+    <motion.div
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{
+      delay: 0.5,
+      duration: 1,
+    }}
+    exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+    >
       <TwelveItems foodId={ foodId } type="food" />
       <Recomended in12={ drinksIn12 } type="drink" />
       <StartRecipe type="food" id={ identificador } />
-    </div>
+    </motion.div>
   );
 }
 

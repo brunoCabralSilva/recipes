@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { motion } from 'framer-motion';
 
 export default function Profile() {
   const history = useHistory();
@@ -17,9 +18,16 @@ export default function Profile() {
 
   const email = JSON.parse(localStorage.getItem('user'));
   return (
-    <div>
-
-      <Header searchIcon="hidden" title="Profile" history={ history } />
+    <motion.div
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{
+      delay: 0.5,
+      duration: 1,
+    }}
+    exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+    >
+    <Header searchIcon="hidden" title="Profile" history={ history } />
       <div className="flex flex-col items-center justify-center h-80vh w-full">
         <p data-testid="profile-email" className="font-bold">{ email && email.email }</p>
         <div className="flex flex-row my-4">
@@ -50,6 +58,6 @@ export default function Profile() {
         </div>
       </div>
       <Footer history={ history } />
-    </div>
+    </motion.div>
   );
 }

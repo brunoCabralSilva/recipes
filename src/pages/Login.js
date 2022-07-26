@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { SwiperSlide } from 'swiper/react';
+import { motion } from 'framer-motion';
 import SliderLogin from '../components/SliderLogin';
 
 export default function Login() {
@@ -32,11 +32,27 @@ export default function Login() {
   };
 
   return (
-    <main className="flex flex-row h-screen relative items-center justify-center sm:justify-between bg-none">
+    <motion.main
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        delay: 0.5,
+        duration: 1,
+      }}
+      exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+      className="flex flex-row h-screen relative items-center justify-center sm:justify-between bg-none">
       <div className="w-full sm:w-1/2 h-screen">
         <SliderLogin className="h-screen" />
       </div>
-      <section className="py-4 flex flex-col items-center justify-center rounded-2xl z-20 sm:m-10 sm:w-1/2 absolute sm:relative">
+      <motion.section
+      initial={{ x: 20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{
+        delay: 0.7,
+        duration: 1,
+      }}
+      exit={{ x: -20, opacity: 0, transition: { duration: 0.3 } }}
+      className="py-4 flex flex-col items-center justify-center rounded-2xl z-20 sm:m-10 sm:w-1/2 absolute sm:relative">
         <div className="flex flex-col items-center justify-center w-4/5 sm:w-1/2 bg-white pt-10 sm:pt-0 pb-5 s,:pb-5 px-7 sm:px-0 glassmorphism">
           <label htmlFor="input-email" className="flex flex-col justify-center items-center w-full">
           <span className="w-full text-madeira text-left text-sm">Email</span>
@@ -76,8 +92,7 @@ export default function Login() {
             Enter
           </button>
         </div>
-      </section>
-      
-    </main>
+      </motion.section>
+    </motion.main>
   );
 }

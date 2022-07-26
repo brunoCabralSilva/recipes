@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import contexto from '../context';
+import { motion } from 'framer-motion';
 import share from '../images/shareIcon.svg';
 import vazio from '../images/whiteHeartIcon.svg';
 import preenchido from '../images/blackHeartIcon.svg';
@@ -197,14 +198,22 @@ export default function DrinksProgress(props) {
     }, +'2000');
     setLink('Link copied!');
     copy(
-      `http://localhost:3000/${pathname.split('/')[1]}/${
+      `https://brunocabralsilva.github.io//${pathname.split('/')[1]}/${
         pathname.split('/')[2]
       }`,
     );
   };
 
   return (
-    <div>
+    <motion.div
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{
+      delay: 0.5,
+      duration: 1,
+    }}
+    exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+    >
       {drinksInProgress.map((drink) => (
         <div key={ drink.idDrink } className="flex flex-col items-center">
           <div className="flex flex-col sm:flex-row w-full">
@@ -252,7 +261,7 @@ export default function DrinksProgress(props) {
           </button>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }
 DrinksProgress.propTypes = {

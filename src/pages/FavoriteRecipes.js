@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import iconeCompartilhar from '../images/shareIcon.svg';
 import vazio from '../images/whiteHeartIcon.svg';
-// import preenchido from '../images/blackHeartIcon.svg';
+import { motion } from 'framer-motion';
 
 const copy = require('clipboard-copy');
 
@@ -40,7 +40,7 @@ export default function FavoriteRecipes(props) {
     }, +'3000');
     setLink('Link copied!');
     copy(
-      `http://localhost:3000/${type}s/${id}`,
+      `https://brunocabralsilva.github.io//${type}s/${id}`,
     );
   };
 
@@ -122,7 +122,15 @@ export default function FavoriteRecipes(props) {
   };
 
   return (
-    <div>
+    <motion.div
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{
+      delay: 0.5,
+      duration: 1,
+    }}
+    exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+    >
       <Header searchIcon="hidden" title="Favorite Recipes" history={ history } />
       <div className="bg-medium-brown w-full text-white font-bold mt-1">
         <button
@@ -150,8 +158,8 @@ export default function FavoriteRecipes(props) {
           Drinks
         </button>
       </div>
-      {options ? storageReturn() : <p className="my-10 text-5xl font-bold">No recipes yet</p>}
-    </div>
+      {options ? <div clasName="flex flex-col sm:flex-row flex-wrap justify-center">{storageReturn()}</div> : <p className="my-10 text-5xl font-bold">No recipes yet</p>}
+    </motion.div>
   );
 }
 

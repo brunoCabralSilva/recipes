@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
@@ -45,7 +46,7 @@ export default function DoneRecipes(props) {
     }, +'3000');
     setLink('Link copied!');
     copy(
-      `http://localhost:3000/${type}s/${id}`,
+      `https://brunocabralsilva.github.io//${type}s/${id}`,
     );
   };
 
@@ -84,21 +85,23 @@ export default function DoneRecipes(props) {
               {item.doneDate}
             </p>
             <p data-testid={ `${index}-horizontal-done-date` }>{item.startTime}</p>
-            <button
-              type="button"
-              src={ iconeCompartilhar }
-              onClick={ () => clickLink(item.type, item.id) }
-              data-testid={ `${index}-horizontal-share-btn` }
-              className="absolute top-0 right-0 p-1 w-full z-40 flex justify-end"
-            >
-              <img
+            </Link>
+            <div className="absolute top-0 right-0 p-1 w-full z-40 flex items-end flex-col">
+              <button
+                type="button"
                 src={ iconeCompartilhar }
-                alt="compartilhar"
-                className="bg-light-transp p-3"
-                />
-            </button>
-            {link && <p>{link}</p>}
-          </Link>
+                onClick={ () => clickLink(item.type, item.id) }
+                data-testid={ `${index}-horizontal-share-btn` }
+                className="absolute top-0 right-0 p-1 w-full z-40 flex justify-end"
+              >
+                <img
+                  src={ iconeCompartilhar }
+                  alt="compartilhar"
+                  className="bg-light-transp p-3"
+                  />
+              </button>
+              {link && <p className="absolute font-bold z-40 top-16 text-black">{link}</p>}
+            </div>
         </div>
       ));
       return storageMap;
@@ -116,7 +119,15 @@ export default function DoneRecipes(props) {
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        delay: 0.5,
+        duration: 1,
+      }}
+      exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+    >
       <Header searchIcon="hidden" title="Done Recipes" history={ history } />
       <div className="bg-medium-brown w-full text-white font-bold mt-1">
         <button
@@ -144,10 +155,10 @@ export default function DoneRecipes(props) {
           Drinks
         </button>
       </div>
-      <div className="flex flex-row flex-wrap">
+      <div className="flex flex-row flex-wrap justify-center">
       {options ? storageReturn() : <p className="w-full text-center text-5xl">No recipes yet</p>}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

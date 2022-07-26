@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import SliderMenu from '../components/SliderMenu';
 import SliderContent from '../components/SliderContent';
+import { motion } from 'framer-motion';
 
 export default function DrinksFoods(props) {
   const {
@@ -73,13 +74,23 @@ export default function DrinksFoods(props) {
         <div className="flex flex-row justify-center">
           <SliderMenu setFil={setFilter} btn={btn} change={changeToogle} type={type} />
         </div>
-        <SliderContent
-          filterCategory={ filterCategory }
-          food={ item }
-          foodsIn12={ in12 }
-          handleCategoryFilter={ handleCategoryFilter }
-          type={ type }
-        />
+        <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          delay: 0.7,
+          duration: 1,
+        }}
+        exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+      >
+          <SliderContent
+            filterCategory={ filterCategory }
+            food={ item }
+            foodsIn12={ in12 }
+            handleCategoryFilter={ handleCategoryFilter }
+            type={ type }
+          />
+        </motion.div>.div
       </section>
     </div>
   );

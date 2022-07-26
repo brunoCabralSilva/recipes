@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import contexto from '../context';
+import { motion } from 'framer-motion';
 import Recomended from '../components/Recomended';
 import TwelveItems from '../components/TwelveItems';
 import StartRecipe from '../components/StartRecipe';
@@ -26,11 +27,19 @@ export default function DrinksId(props) {
     reqApiDrinksID(id);
   }, []);
   return (
-    <div className="">
+    <motion.div
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{
+      delay: 0.5,
+      duration: 1,
+    }}
+    exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+    >
       <TwelveItems drinkId={ drinkId } type="drink" />
       <Recomended in12={ foodsIn12 } type="food" />
       <StartRecipe type="drink" id={ identificador } />
-    </div>
+    </motion.div>
   );
 }
 

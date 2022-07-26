@@ -5,6 +5,7 @@ import contexto from '../context';
 import share from '../images/shareIcon.svg';
 import vazio from '../images/whiteHeartIcon.svg';
 import preenchido from '../images/blackHeartIcon.svg';
+import { motion } from 'framer-motion';
 
 const copy = require('clipboard-copy');
 
@@ -175,7 +176,7 @@ export default function RecipeInProgress(props) {
     }, +'3000');
     setLink('Link copied!');
     copy(
-      `http://localhost:3000/${pathname.split('/')[1]}/${
+      `https://brunocabralsilva.github.io//${pathname.split('/')[1]}/${
         pathname.split('/')[2]
       }`,
     );
@@ -204,7 +205,15 @@ export default function RecipeInProgress(props) {
   };
 
   return (
-    <div>
+    <motion.div
+    initial={{ y: 20, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{
+      delay: 0.5,
+      duration: 1,
+    }}
+    exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+    >
       {foodsInProgress.map((food) => (
         <div key={ food.idMeal } className="flex flex-col items-center">
           <div className="flex flex-col sm:flex-row w-full">
@@ -251,7 +260,7 @@ export default function RecipeInProgress(props) {
           </button>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 }
 RecipeInProgress.propTypes = {

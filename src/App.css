@@ -34,3 +34,8 @@ textarea:focus, input:focus {
 .swiper-button-prev::after, .swiper-button-next::after  {
     color: white;
 }
+
+.contorno {
+    -webkit-text-stroke-width: 1px; /* largura da borda */
+    -webkit-text-stroke-color: white; /* cor da borda */
+}
