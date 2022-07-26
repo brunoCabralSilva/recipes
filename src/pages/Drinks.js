@@ -19,6 +19,7 @@ export default function Drinks(props) {
     setFilterCategoryDrink, resetFilters } = context;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     reqApiDrinks();
   }, []);
 

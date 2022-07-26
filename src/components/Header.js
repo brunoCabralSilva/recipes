@@ -24,16 +24,14 @@ export default function Header(props) {
   const showSearchInput = () => {
     if (search) {
       return (
-        <div className="w-full">
-          <input
-            type="text"
-            data-testid="search-input"
-            value={ inputSearch }
-            onChange={ (e) => sendInputSearch(e.target.value) }
-            placeholder="Search"
-            className="text-center border border-madeira my-2 w-full p-1"
-          />
-        </div>
+        <input
+          type="text"
+          data-testid="search-input"
+          value={ inputSearch }
+          onChange={ (e) => sendInputSearch(e.target.value) }
+          placeholder="Search"
+          className="text-center border border-madeira mt-6 mb-2 w-full p-1"
+        />
       );
     } return null;
   };
@@ -46,19 +44,19 @@ export default function Header(props) {
       src={ searchImg }
       className="p-2"
     >
-      <img src={ searchImg } alt="icon-search" />
+      <i className="fa-solid fa-magnifying-glass text-white text-xl"></i>
     </button>
   );
 
   return (
     <header className="flex flex-col">
-      <div className="bg-madeira flex flex-row justify-between items-center p-2 w-full">
+      <div className="bg-dark-brown flex flex-row justify-between items-center p-2 w-full">
         {
           searchIcon === 'visible'
             ? showSearchButton()
             : null
         }
-        <h1 data-testid="page-title">
+        <h1 data-testid="page-title" className="text-white text-xl font-bold">
           { title }
         </h1>
         <button
@@ -68,12 +66,12 @@ export default function Header(props) {
           src={ profileImg }
           className="p-2"
         >
-          <img src={ profileImg } alt="icon-profile" />
+          <i className="fa-solid fa-user text-xl text-white"></i>
         </button>
       </div>
       <div className="flex items-center justify-center">
-        <div className="flex flex-col sm:flex-row items-center w-full mt-6 items-center justify-center">
-          <div className="w-1/3">
+        <div className="flex flex-col items-center w-11/12 sm:w-3/5 md:w-2/5 items-center justify-center">
+          <div className="w-full">
             {
               showSearchInput()
             }

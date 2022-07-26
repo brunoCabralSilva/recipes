@@ -9,16 +9,30 @@ export default function Recomended(props) {
   const retornaItems = (index, item) => {
     if (type === 'food') {
       return (
-        <div className="w-43%">
-          <p data-testid={ `${index}-recomendation-title` }>{item.strMeal}</p>
-          <img src={ item.strMealThumb } alt="" className="imageItem" />
+        <div className="relative flex">
+          <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-full
+          z-20" />
+          <p
+            data-testid={ `${index}-recomendation-title` }
+            className="absolute flex items-end h-full w-full p-3 text-white font-bold text-xl z-30"
+          >
+            {item.strMeal}
+          </p>
+          <img src={ item.strMealThumb } alt="" className="h-full w-full object-cover" />
         </div>
       );
     } return (
-      <div>
-        <p data-testid={ `${index}-recomendation-title` }>{item.strDrink}</p>
-        <img src={ item.strDrinkThumb } alt="" className="imageItem" />
-      </div>
+      <div className="relative flex">
+          <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-full
+          z-20" />
+          <p
+            data-testid={ `${index}-recomendation-title` }
+            className="absolute flex items-end h-full w-full p-3 text-white font-bold text-xl z-30"
+          >
+            {item.strDrink}
+          </p>
+        <img src={ item.strDrinkThumb } alt="" className="h-full w-full object-cover" />
+        </div>
     );
   };
 
@@ -41,12 +55,12 @@ export default function Recomended(props) {
   };
 
   return (
-    <section>
+    <section className="">
       <h2 className="text-2xl font-bold pb-4 pt-5 px-4">Recomended</h2>
       <div className="flex flex-row items-center">
           <button
             type="button"
-            className="absolute h-40 ml-5"
+            className="absolute h-40 ml-5 z-40"
             onClick={ handleClickRight }
           >
             <IoIosArrowBack className="text-6xl" />
@@ -66,7 +80,7 @@ export default function Recomended(props) {
         </div>
         <button
           type="button"
-          className="absolute right-0 mr-3"
+          className="absolute right-0 mr-3 z-40"
           onClick={ handleClickLeft }
         >
           <IoIosArrowForward className="text-6xl" />

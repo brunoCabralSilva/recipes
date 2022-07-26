@@ -24,6 +24,7 @@ export default function Recipes(props) {
   } = context;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     reqApiFoods();
   }, []);
 

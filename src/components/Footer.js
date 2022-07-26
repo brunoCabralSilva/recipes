@@ -19,7 +19,7 @@ function Footer(props) {
       <button
         type="button"
         aria-label="drinks"
-        className="mx-4 bg-white w-16 h-16 flex items-center justify-center border border-2 border-black"
+        className="mx-4 bg-light-brown w-16 h-16 flex items-center justify-center border border-2 border-black"
         data-testid="drinks-bottom-btn"
         src="../images/drinkIcon.svg"
         onClick={ drinkRedirect }
@@ -29,7 +29,7 @@ function Footer(props) {
       <button
         type="button"
         aria-label="foods"
-        className="m-4 bg-white w-16 h-16 flex items-center justify-center border border-2 border-black"
+        className="m-4 bg-light-brown w-16 h-16 flex items-center justify-center border border-2 border-black"
         src="../images/mealIcon.svg"
         data-testid="food-bottom-btn"
         onClick={ foodRedirect }

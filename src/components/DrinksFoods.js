@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
@@ -24,7 +24,7 @@ export default function DrinksFoods(props) {
           to={ `/foods/${item.idMeal}` }
           key={ item.idMeal }
           data-testid={ `${index}-recipe-card` }
-          className="snap-center m-3 w-11/12 sm:w-43% md:w-30% xl:w-23%"
+          className="snap-center m-3 w-11/12 sm:w-43% md:w-30% xl:w-23% hover:border hover:border-1 hover:border-black"
         >
           <div className="relative flex h-80">
             <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-full z-20" />
@@ -45,7 +45,7 @@ export default function DrinksFoods(props) {
           to={ `/drinks/${item.idDrink}` }
           key={ item.idDrink }
           data-testid={ `${index}-recipe-card` }
-          className="snap-center m-3 w-11/12 sm:w-43% md:w-30% xl:w-23%"
+          className="snap-center m-3 w-11/12 sm:w-43% md:w-30% xl:w-23% hover:border hover:border-1 hover:border-black"
         >
           <div className="relative flex h-80">
             <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-full z-20" />
@@ -64,7 +64,7 @@ export default function DrinksFoods(props) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-light-brown">
       {type === 'food'
       ? <Header searchIcon="visible" title="Foods" />
       : <Header searchIcon="visible" title="Drinks" />

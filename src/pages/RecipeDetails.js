@@ -12,6 +12,7 @@ export default function RecipeDetails(props) {
   const { reqApiFoodsID, foodId, reqApiDrinks, drinksIn12 } = context;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     reqApiDrinks();
   }, []);
 
@@ -26,7 +27,7 @@ export default function RecipeDetails(props) {
   }, []);
 
   return (
-    <div>
+    <div className="">
       <TwelveItems foodId={ foodId } type="food" />
       <Recomended in12={ drinksIn12 } type="drink" />
       <StartRecipe type="food" id={ identificador } />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { SwiperSlide } from 'swiper/react';
 import SliderLogin from '../components/SliderLogin';
@@ -11,6 +11,10 @@ export default function Login() {
   });
   const validateEmail = /\S+@\S+\.\S+/;
   const MIN_LENGTH_PASSWORD = 7;
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[]);
 
   const handleChange = ({ target }) => {
     const { value, name } = target;

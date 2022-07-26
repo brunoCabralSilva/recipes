@@ -5,23 +5,21 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 export default function SliderMenu({setFil, btn, change, type}) {
-  const valor = window.innerWidth;
-  console.log(valor);
+  
   let slides = 0;
-  if( valor < 768) { 
-    slides = 4;
-  }
-  else { 
-    slides=3; 
-  }
+  setInterval(() => {
+    const valor = window.innerWidth;
+    if( valor < 768) { 
+      slides = 4;
+    } else { 
+      slides = 3; 
+    }
+  }, 1000);
+  
   const settings = {
     navigation: true,
-    slidesPerView: slides,
+    slidesPerView: 2,
     loop: true,
-  }
-
-  const returnSwiperDrink = () => {
-    return null;
   }
 
   return(
@@ -31,7 +29,7 @@ export default function SliderMenu({setFil, btn, change, type}) {
         onClick={ () => setFil() }
         className="bg-madeira m-2 relative flex h-36"
       >
-        <img src={require("../images/all.jpg")} alt="all foods" className="w-128 h-full object-cover" />
+        <img src={require("../images/all.jpg")} alt="all foods" className="w-full h-full object-cover" />
         <div className="absolute bg-gradient-to-t from-black to-transp w-full h-full" />
         <span className="w-full h-full flex items-end font-bold text-xl text-left pl-3 pb-4 absolute text-white">
           All
@@ -51,9 +49,11 @@ export default function SliderMenu({setFil, btn, change, type}) {
                 button.strCategory === "Other/Unknown"
                 ? "Other-Unknown"
               : button.strCategory
-              }.jpg`)} alt="all foods" className="w-128 h-full object-cover" />
+              }.jpg`)} alt="all foods" className="w-full h-full object-cover" />
               <div className="absolute bg-gradient-to-t from-black to-transp w-full h-full" />
-              <span className="w-full h-full flex items-end font-bold text-xl text-left pl-3 pb-4 absolute text-white">{button.strCategory}</span>
+              <span className="w-full h-full flex items-end font-bold sm:text-xl text-left pl-3 pb-4 absolute text-white">
+                {button.strCategory === "Other/Unknown" ? "Other" : button.strCategory }
+              </span>
           </SwiperSlide>
         ))
       }

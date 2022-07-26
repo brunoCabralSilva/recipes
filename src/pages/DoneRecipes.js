@@ -13,6 +13,7 @@ export default function DoneRecipes(props) {
   const [link, setLink] = useState('');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const storageRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
     setStorage(storageRecipes);
     setOptions(storageRecipes);
@@ -20,10 +21,10 @@ export default function DoneRecipes(props) {
   }, []);
 
   const foodItemReturn = (item, index) => (
-    <div>
-      <p data-testid={ `${index}-horizontal-top-text` }>
+    <span>
+      <span data-testid={ `${index}-horizontal-top-text` }>
         { `${item.nationality} - ${item.category}`}
-      </p>
+      </span>
       { item.tags.map((tag, i) => (
         <span
           data-testid={ `${index}-${tag}-horizontal-tag` }
@@ -31,13 +32,11 @@ export default function DoneRecipes(props) {
         >
           { tag }
         </span>))}
-    </div>
+    </span>
   );
 
   const drinkItemReturn = (item, index) => (
-    <div>
-      <p data-testid={ `${index}-horizontal-top-text` }>{item.alcoholicOrNot}</p>
-    </div>
+      <span data-testid={ `${index}-horizontal-top-text` }>{item.alcoholicOrNot}</span>
   );
 
   const clickLink = (type, id) => {
@@ -51,10 +50,15 @@ export default function DoneRecipes(props) {
   };
 
   const storageReturn = () => {
-    console.log('storageReturn', options);
     if (options.length > 0) {
       const storageMap = options.map((item, index) => (
-        <div key={ index }>
+        <div key={ index } className="m-3 w-full sm:w-43% md:w-30% xl:w-23% flex h-80 relative">
+          <Link
+            to={ `/${item.type}s/${item.id}` }
+          >
+          <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-80
+          z-20" />
+          </Link>
           <Link
             to={ `/${item.type}s/${item.id}` }
           >
@@ -62,34 +66,39 @@ export default function DoneRecipes(props) {
               data-testid={ `${index}-horizontal-image` }
               src={ item.image }
               alt="imagem"
-              className="imageItem"
+              className="h-full w-full object-cover"
             />
           </Link>
           <Link
-            to={ `/${item.type}s/${item.id}` }
-          >
-            <p data-testid={ `${index}-horizontal-name` }>{item.name}</p>
-          </Link>
-          <p data-testid={ `${index}-horizontal-done-date` }>
-            {item.doneDate}
-          </p>
-          { item.type === 'food'
-            ? foodItemReturn(item, index)
-            : drinkItemReturn(item, index)}
-          <p data-testid={ `${index}-horizontal-done-date` }>{item.startTime}</p>
-          <button
-            type="button"
-            src={ iconeCompartilhar }
-            onClick={ () => clickLink(item.type, item.id) }
-            data-testid={ `${index}-horizontal-share-btn` }
-          >
-            <img
+              to={ `/${item.type}s/${item.id}`}
+              className="absolute z-30 flex flex-col justify-end h-full w-full font-bold text-white text-xl p-3"
+            >
+              <p data-testid={ `${index}-horizontal-name` }>
+                {item.name}
+                {' - '}
+                { item.type === 'food'
+                  ? foodItemReturn(item, index)
+                  : drinkItemReturn(item, index)}
+              </p>
+            <p data-testid={ `${index}-horizontal-done-date` }>
+              {item.doneDate}
+            </p>
+            <p data-testid={ `${index}-horizontal-done-date` }>{item.startTime}</p>
+            <button
+              type="button"
               src={ iconeCompartilhar }
-              alt="compartilhar"
-              className="imageItem"
-            />
-          </button>
-          {link && <p>{link}</p>}
+              onClick={ () => clickLink(item.type, item.id) }
+              data-testid={ `${index}-horizontal-share-btn` }
+              className="absolute top-0 right-0 p-1 w-full z-40 flex justify-end"
+            >
+              <img
+                src={ iconeCompartilhar }
+                alt="compartilhar"
+                className="bg-light-transp p-3"
+                />
+            </button>
+            {link && <p>{link}</p>}
+          </Link>
         </div>
       ));
       return storageMap;
@@ -109,12 +118,12 @@ export default function DoneRecipes(props) {
   return (
     <div>
       <Header searchIcon="hidden" title="Done Recipes" history={ history } />
-      <div className="w-full">
+      <div className="bg-medium-brown w-full text-white font-bold mt-1">
         <button
           type="button"
           data-testid="filter-by-all-btn"
           onClick={ () => setOptions(storage) }
-          className="w-1/3"
+          className="w-1/3 border border-white hover:bg-dark-brown transition duration-1000 py-2"
         >
           All
         </button>
@@ -122,7 +131,7 @@ export default function DoneRecipes(props) {
           type="button"
           data-testid="filter-by-food-btn"
           onClick={ () => foodFilterBtn(storage) }
-          className="w-1/3"
+          className="w-1/3 border border-white hover:bg-dark-brown transition duration-1000 py-2"
         >
           Food
         </button>
@@ -130,7 +139,7 @@ export default function DoneRecipes(props) {
           type="button"
           data-testid="filter-by-drink-btn"
           onClick={ () => drinkFilterBtn(storage) }
-          className="w-1/3"
+          className="w-1/3 border border-white hover:bg-dark-brown transition duration-1000 py-2"
         >
           Drinks
         </button>

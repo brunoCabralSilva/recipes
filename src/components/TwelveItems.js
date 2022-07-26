@@ -116,7 +116,7 @@ export default function TwelveItems(props) {
 
   const buttons = () => {
     return(
-      <div className="flex flex-col m-5">
+      <div className="flex flex-col m-5 mt-10 sm-mt-0">
         <div className="flex flex-row">
         <button
           type="button"
@@ -143,10 +143,14 @@ export default function TwelveItems(props) {
 
   const drinkFunc = () => drinkId.map((drink, index) => (
     <div key={ index }>
-      <div className="flex flex-row">
-        <img src={ drink.strDrinkThumb } alt="" data-testid="recipe-photo" className="w-1/2 h-screen object-cover"/>
-        <div className="flex flex-col items-center justify-center w-1/2">
-          <p data-testid="recipe-title" className="text-2xl mb-10 w-full text-center">{drink.strDrink}</p>
+      <div className="flex flex-col sm:flex-row">
+        <img
+          src={ drink.strDrinkThumb }
+          alt=""
+          data-testid="recipe-photo"
+          className="w-full sm:w-1/2 h-50vh sm:h-screen object-cover"/>
+        <div className="flex flex-col items-center justify-center w-full sm:w-1/2">
+          <p data-testid="recipe-title" className="text-4xl mt-4 sm:mt-0 mb-10 w-full text-center">{drink.strDrink}</p>
           <p
             data-testid="recipe-category"
             className="w-full text-center"
@@ -157,48 +161,37 @@ export default function TwelveItems(props) {
           { buttons() }
         </div>
       </div>
-      <div className="flex flex-row m-4 items-center">
-      <p data-testid="instructions">{drink.strInstructions}</p>
-      <iframe
-        data-testid="video"
-        title="vídeo"
-        width="420"
-        height="345"
-        src={ drink.strYoutube }
-      >
-        {' '}
-        Vídeo
-        {' '}
-      </iframe>
+      <div className="flex flex-col-reverse sm:flex-row m-4 items-center">
+      <p data-testid="instructions" className="my-8 text-center w-full pl-3 pr-4">{drink.strInstructions}</p>
       </div>
     </div>
   ));
 
-  const foodFunc = () => foodId.map((food, index) => (
+    const foodFunc = () => foodId.map((food, index) => (
     <div key={ index } className="">
-      <div className="flex flex-row">
+      <div className="flex flex-col sm:flex-row">
         <img
           src={ food.strMealThumb }
           alt=""
           data-testid="recipe-photo"
-          className="w-1/2 h-screen object-cover"
+          className="w-full sm:w-1/2 h-50vh sm:h-screen object-cover"
         />
-        <div className="flex flex-col items-center justify-center w-1/2">
-          <p data-testid="recipe-title" className="text-2xl mb-10 w-full text-center">{food.strMeal}</p>
+        <div className="flex flex-col items-center justify-center w-full sm:w-1/2">
+          <p data-testid="recipe-title" className="text-4xl mt-4 sm:mt-0 mb-10 w-full text-center">{food.strMeal}</p>
           <p data-testid="recipe-category" className="w-full text-center">{food.strCategory}</p>
           <ul>{handleIng(food)}</ul>
           { buttons() }
         </div>
       </div>
-      <div className="flex flex-row m-4 items-center">
-        <p data-testid="instructions" className="w-1/2 pl-3 pr-4">{food.strInstructions}</p>
+      <div className="flex flex-col-reverse sm:flex-row m-4 items-center">
+        <p data-testid="instructions" className="my-8 text-center sm:text-left w-full sm:w-1/2 pl-3 pr-4">{food.strInstructions}</p>
         <iframe
           data-testid="video"
           title="vídeo"
           width="420"
           height="345"
           src={ food.strYoutube }
-          className="w-1/2"
+          className="w-full sm:w-1/2"
         >
           {' '}
           Vídeo
@@ -209,7 +202,7 @@ export default function TwelveItems(props) {
   ));
 
   return (
-    <div>
+    <div className="">
       {type === 'food'
         ? foodFunc()
         : drinkFunc()}

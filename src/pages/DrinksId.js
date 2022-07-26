@@ -12,6 +12,7 @@ export default function DrinksId(props) {
   const { reqApiDrinksID, drinkId, reqApiFoods, foodsIn12 } = context;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     reqApiFoods();
   }, []);
 
@@ -25,7 +26,7 @@ export default function DrinksId(props) {
     reqApiDrinksID(id);
   }, []);
   return (
-    <div>
+    <div className="">
       <TwelveItems drinkId={ drinkId } type="drink" />
       <Recomended in12={ foodsIn12 } type="food" />
       <StartRecipe type="drink" id={ identificador } />

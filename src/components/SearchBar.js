@@ -70,9 +70,9 @@ export default function SearchBar(props) {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row w-2/3 items-center">
-      <div className="flex flex-row w-full justify-around">
-        <label htmlFor="ingredient" className="w-1/3">
+    <div className="flex flex-col w-full items-center">
+      <div className="flex flex-col sm:flex-row w-full justify-center items-center sm:justify-around">
+        <label htmlFor="ingredient" className="w-full sm:w-1/3 text-center my-2 sm:my-0">
           <input
             type="radio"
             id="ingredient"
@@ -83,7 +83,7 @@ export default function SearchBar(props) {
           />
           Ingredient
         </label>
-        <label htmlFor="name" className="w-1/3 text-center">
+        <label htmlFor="name" className="w-full sm:w-1/3 text-center my-2 sm:my-0">
           <input
             type="radio"
             id="name"
@@ -94,7 +94,7 @@ export default function SearchBar(props) {
           />
           Name
         </label>
-        <label htmlFor="letter" className="w-1/3 text-center">
+        <label htmlFor="letter" className="w-full sm:w-1/3 text-center my-2 sm:my-0">
           <input
             type="radio"
             id="letter"
@@ -110,7 +110,7 @@ export default function SearchBar(props) {
         type="button"
         data-testid="exec-search-btn"
         onClick={ () => search() }
-        className="w-full my-2 py-2 bg-gray-400"
+        className="w-full my-2 py-2 bg-dark-brown text-white font-bold hover:bg-medium-brown transition duration-1000"
       >
         Buscar
       </button>

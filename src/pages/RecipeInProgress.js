@@ -22,6 +22,7 @@ export default function RecipeInProgress(props) {
   const { reqApiProgressFoods, foodsInProgress } = context;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const getItens = JSON.parse(localStorage.getItem('inProgressRecipes'));
     const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (getItens === null) {
@@ -117,11 +118,11 @@ export default function RecipeInProgress(props) {
     const array = [];
     for (let i = 0; i < ingredients.length; i += 1) {
       array.push(
-        <span className="check flex w-4/5 mx-auto justify-start" data-testid={ `${i}-ingredient-step` }>
+        <span className="check flex w-4/5 mx-auto justify-start py-1" data-testid={ `${i}-ingredient-step` }>
           <input
             type="checkbox"
             name={ ingredients[i][1] }
-            className="space"
+            className="mr-2"
             onChange={ handleChange }
             checked={ handleCheck(ingredients[i][1]) }
             data-testid={ ingredients[i][1] }
@@ -206,10 +207,10 @@ export default function RecipeInProgress(props) {
     <div>
       {foodsInProgress.map((food) => (
         <div key={ food.idMeal } className="flex flex-col items-center">
-          <div className="flex flex-row w-full">
-            <img src={ food.strMealThumb } alt="" data-testid="recipe-photo" clasName="w-43%" />
-            <div className="w-43% justify-center items-start flex flex-col">
-              <p data-testid="recipe-title" className="font-bold text-5x w-full text-center">
+          <div className="flex flex-col sm:flex-row w-full">
+            <img src={ food.strMealThumb } alt="" data-testid="recipe-photo" className="object-cover w-full sm:w-50%" />
+            <div className="w-full sm:w-50% justify-center items-start flex flex-col">
+              <p data-testid="recipe-title" className="mt-10 mb-5 text-4xl font-bold w-full text-center">
                 {food.strMeal}
                 <span>{' - '}</span>
                 <span data-testid="recipe-category">{food.strCategory}</span>
@@ -235,8 +236,8 @@ export default function RecipeInProgress(props) {
               <img src={ share } alt="Botão Compartilhar" />
             </button>
           </div>
-          {link && <p>{link}</p>}
-          <ul className="w-full">{handleIng(food)}</ul>
+          {link && <p className="w-full text-center py-5 font-bold">{link}</p>}
+          <ul className="w-full my-5">{handleIng(food)}</ul>
         </div>
           </div>
           <button

@@ -15,6 +15,7 @@ export default function FavoriteRecipes(props) {
   const [link, setLink] = useState('');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const storageRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     setStorage(storageRecipes);
     setOptions(storageRecipes);
@@ -24,17 +25,13 @@ export default function FavoriteRecipes(props) {
   const retornaIcone = () => vazio;
 
   const foodItemReturn = (item, index) => (
-    <div>
-      <p data-testid={ `${index}-horizontal-top-text` }>
+      <span data-testid={ `${index}-horizontal-top-text` }>
         { `${item.nationality} - ${item.category}`}
-      </p>
-    </div>
+      </span>
   );
 
   const drinkItemReturn = (item, index) => (
-    <div>
-      <p data-testid={ `${index}-horizontal-top-text` }>{item.alcoholicOrNot}</p>
-    </div>
+      <span data-testid={ `${index}-horizontal-top-text` }>{item.alcoholicOrNot}</span>
   );
 
   const clickLink = (type, id) => {
@@ -48,10 +45,15 @@ export default function FavoriteRecipes(props) {
   };
 
   const storageReturn = () => {
-    console.log('storageReturn', options);
     if (options.length > 0) {
       const storageMap = options.map((item, index) => (
-        <div key={ index }>
+        <div key={ index } className="m-3 w-full sm:w-43% md:w-30% xl:w-23% flex h-80 relative">
+          <Link
+            to={ `/${item.type}s/${item.id}` }
+          >
+            <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-80
+            z-20" />
+          </Link>
           <Link
             to={ `/${item.type}s/${item.id}` }
           >
@@ -59,41 +61,53 @@ export default function FavoriteRecipes(props) {
               data-testid={ `${index}-horizontal-image` }
               src={ item.image }
               alt="imagem"
-              className="imageItem"
+              className="h-full w-full object-cover"
             />
           </Link>
           <Link
             to={ `/${item.type}s/${item.id}` }
+            className="absolute z-30 flex flex-col justify-end h-full w-full font-bold text-white text-xl p-3"
           >
-            <p data-testid={ `${index}-horizontal-name` }>{item.name}</p>
+            <p data-testid={ `${index}-horizontal-name` }>
+              {item.name}
+              {' - '}
+              { item.type === 'food'
+              ? foodItemReturn(item, index)
+              : drinkItemReturn(item, index)}
+              </p>
           </Link>
-          { item.type === 'food'
-            ? foodItemReturn(item, index)
-            : drinkItemReturn(item, index)}
           <p data-testid={ `${index}-horizontal-done-date` }>{item.startTime}</p>
+          <div className="absolute top-0 right-0 p-1 w-full z-40 flex flex-col-reverse items-end">
           <button
             type="button"
             src={ iconeCompartilhar }
             onClick={ () => clickLink(item.type, item.id) }
             data-testid={ `${index}-horizontal-share-btn` }
+            className="p-1 z-40"
           >
             <img
               src={ iconeCompartilhar }
               alt="compartilhar"
-              className="imageItem"
+              className="bg-light-transp p-3"
             />
           </button>
           <button
             type="button"
             src={ retornaIcone() }
             data-testid={ `${index}-horizontal-favorite-btn` }
+            className="p-1 z-40"
           >
-            <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
+            <img
+              src={ retornaIcone() }
+              alt="botão favoritar/desfavoritar"
+              className="bg-light-transp p-3"
+            />
           </button>
-          {link && <p>{link}</p>}
+          {link && <p className="font-bold h-ful w-full absolute flex items-center justify-center text-white text-xl">{link}</p>}
         </div>
+          </div>
       ));
-      return storageMap;
+      return (<div className="flex flex-row flex-wrap">{storageMap}</div>);
     }
   };
 
@@ -110,11 +124,12 @@ export default function FavoriteRecipes(props) {
   return (
     <div>
       <Header searchIcon="hidden" title="Favorite Recipes" history={ history } />
-      <div>
+      <div className="bg-medium-brown w-full text-white font-bold mt-1">
         <button
           type="button"
           data-testid="filter-by-all-btn"
           onClick={ () => setOptions(storage) }
+          className="w-1/3 border border-white hover:bg-dark-brown transition duration-1000 py-2"
         >
           All
         </button>
@@ -122,6 +137,7 @@ export default function FavoriteRecipes(props) {
           type="button"
           data-testid="filter-by-food-btn"
           onClick={ () => foodFilterBtn(storage) }
+          className="w-1/3 border border-white hover:bg-dark-brown transition duration-1000 py-2"
         >
           Food
         </button>
@@ -129,11 +145,12 @@ export default function FavoriteRecipes(props) {
           type="button"
           data-testid="filter-by-drink-btn"
           onClick={ () => drinkFilterBtn(storage) }
+          className="w-1/3 border border-white hover:bg-dark-brown transition duration-1000 py-2"
         >
           Drinks
         </button>
       </div>
-      {options ? storageReturn() : <p>No recipes yet</p>}
+      {options ? storageReturn() : <p className="my-10 text-5xl font-bold">No recipes yet</p>}
     </div>
   );
 }
