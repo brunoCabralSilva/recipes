@@ -62,6 +62,7 @@ export default function DoneRecipes(props) {
           </Link>
           <Link
             to={ `/${item.type}s/${item.id}` }
+            className="w-full"
           >
             <img
               data-testid={ `${index}-horizontal-image` }
@@ -120,13 +121,13 @@ export default function DoneRecipes(props) {
 
   return (
     <motion.div
-      initial={{ y: 20, opacity: 0 }}
+      initial={{ y: 20, opacity: 0.5 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{
         delay: 0.5,
         duration: 1,
       }}
-      exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+      exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
     >
       <Header searchIcon="hidden" title="Done Recipes" history={ history } />
       <div className="bg-medium-brown w-full text-white font-bold mt-1">
@@ -156,7 +157,7 @@ export default function DoneRecipes(props) {
         </button>
       </div>
       <div className="flex flex-row flex-wrap justify-center">
-      {options ? storageReturn() : <p className="w-full text-center text-5xl">No recipes yet</p>}
+      {options ? storageReturn() : <p className="w-full text-center text-5xl mt-20">No recipes yet</p>}
       </div>
     </motion.div>
   );

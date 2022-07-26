@@ -33,13 +33,13 @@ export default function Login() {
 
   return (
     <motion.main
-      initial={{ y: 20, opacity: 0 }}
+      initial={{ y: 20, opacity: 0.5 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{
         delay: 0.5,
         duration: 1,
       }}
-      exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+      exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
       className="flex flex-row h-screen relative items-center justify-center sm:justify-between bg-none">
       <div className="w-full sm:w-1/2 h-screen">
         <SliderLogin className="h-screen" />

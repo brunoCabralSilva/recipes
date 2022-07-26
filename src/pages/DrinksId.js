@@ -28,13 +28,13 @@ export default function DrinksId(props) {
   }, []);
   return (
     <motion.div
-    initial={{ y: 20, opacity: 0 }}
+    initial={{ y: 20, opacity: 0.5 }}
     animate={{ y: 0, opacity: 1 }}
     transition={{
       delay: 0.5,
       duration: 1,
     }}
-    exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+    exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
     >
       <TwelveItems drinkId={ drinkId } type="drink" />
       <Recomended in12={ foodsIn12 } type="food" />

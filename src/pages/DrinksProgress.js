@@ -206,20 +206,20 @@ export default function DrinksProgress(props) {
 
   return (
     <motion.div
-    initial={{ y: 20, opacity: 0 }}
+    initial={{ y: 20, opacity: 0.5 }}
     animate={{ y: 0, opacity: 1 }}
     transition={{
       delay: 0.5,
       duration: 1,
     }}
-    exit={{ y: -20, opacity: 0, transition: { duration: 0.3 } }}
+    exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
     >
       {drinksInProgress.map((drink) => (
         <div key={ drink.idDrink } className="flex flex-col items-center">
           <div className="flex flex-col sm:flex-row w-full">
           <img src={ drink.strDrinkThumb } alt="" data-testid="recipe-photo" clasName="object-cover w-full sm:w-50%" />
           <div className="w-full sm:w-43% justify-center items-start flex flex-col">
-            <p data-testid="recipe-title" className="mt-10 mb-5 text-4xl font-bold w-full text-center">
+            <p data-testid="recipe-title" className="mt-10 mb-5 text-3xl font-bold w-11/12 mx-auto text-center">
               {drink.strDrink}
               <span>{' - '}</span>
               <span data-testid="recipe-category">{drink.strCategory}</span>

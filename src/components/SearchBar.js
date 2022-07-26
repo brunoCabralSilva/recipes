@@ -71,8 +71,8 @@ export default function SearchBar(props) {
 
   return (
     <div className="flex flex-col w-full items-center">
-      <div className="flex flex-col sm:flex-row w-full justify-center items-center sm:justify-around">
-        <label htmlFor="ingredient" className="w-full sm:w-1/3 text-center my-2 sm:my-0">
+      <div className="flex flex-row w-full justify-center items-center sm:justify-around">
+        <label htmlFor="ingredient" className="w-1/3 text-center my-2 sm:my-0">
           <input
             type="radio"
             id="ingredient"
@@ -83,7 +83,7 @@ export default function SearchBar(props) {
           />
           Ingredient
         </label>
-        <label htmlFor="name" className="w-full sm:w-1/3 text-center my-2 sm:my-0">
+        <label htmlFor="name" className="w-1/3 text-center my-2 sm:my-0">
           <input
             type="radio"
             id="name"
@@ -94,7 +94,7 @@ export default function SearchBar(props) {
           />
           Name
         </label>
-        <label htmlFor="letter" className="w-full sm:w-1/3 text-center my-2 sm:my-0">
+        <label htmlFor="letter" className="w-1/3 text-center my-2 sm:my-0">
           <input
             type="radio"
             id="letter"

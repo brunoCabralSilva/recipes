@@ -63,7 +63,7 @@ export default function Recomended(props) {
             className="absolute h-40 ml-5 z-40"
             onClick={ handleClickRight }
           >
-            <IoIosArrowBack className="text-6xl" />
+            <IoIosArrowBack className="text-6xl text-white" />
           </button>
         <div className="flex flex-row">
           {in12.slice(0, +'6').map((item, index) => (
@@ -83,7 +83,7 @@ export default function Recomended(props) {
           className="absolute right-0 mr-3 z-40"
           onClick={ handleClickLeft }
         >
-          <IoIosArrowForward className="text-6xl" />
+          <IoIosArrowForward className="text-6xl text-white" />
         </button>
       </div>
     </section>);

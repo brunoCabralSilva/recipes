@@ -150,7 +150,7 @@ export default function TwelveItems(props) {
           data-testid="recipe-photo"
           className="w-full sm:w-1/2 h-50vh sm:h-screen object-cover"/>
         <div className="flex flex-col items-center justify-center w-full sm:w-1/2">
-          <p data-testid="recipe-title" className="text-4xl mt-4 sm:mt-0 mb-10 w-full text-center">{drink.strDrink}</p>
+          <p data-testid="recipe-title" className="text-4xl mt-4 sm:mt-0 mb-10 w-11/12 text-center">{drink.strDrink}</p>
           <p
             data-testid="recipe-category"
             className="w-full text-center"
@@ -177,7 +177,7 @@ export default function TwelveItems(props) {
           className="w-full sm:w-1/2 h-50vh sm:h-screen object-cover"
         />
         <div className="flex flex-col items-center justify-center w-full sm:w-1/2">
-          <p data-testid="recipe-title" className="text-4xl mt-4 sm:mt-0 mb-10 w-full text-center">{food.strMeal}</p>
+          <p data-testid="recipe-title" className="text-4xl mt-4 sm:mt-0 mb-10 w-11/12 text-center">{food.strMeal}</p>
           <p data-testid="recipe-category" className="w-full text-center">{food.strCategory}</p>
           <ul>{handleIng(food)}</ul>
           { buttons() }

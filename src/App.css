@@ -39,3 +39,7 @@ textarea:focus, input:focus {
     -webkit-text-stroke-width: 1px; /* largura da borda */
     -webkit-text-stroke-color: white; /* cor da borda */
 }
+
+body {
+    background-color: rgb(236, 228, 222);
+}

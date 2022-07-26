@@ -90,7 +90,7 @@ export default function DrinksFoods(props) {
             handleCategoryFilter={ handleCategoryFilter }
             type={ type }
           />
-        </motion.div>.div
+        </motion.div>
       </section>
     </div>
   );
