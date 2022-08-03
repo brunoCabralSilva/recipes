@@ -56,6 +56,7 @@ export default function FavoriteRecipes(props) {
           </Link>
           <Link
             to={ `/${item.type}s/${item.id}` }
+            className="w-full"
           >
             <img
               data-testid={ `${index}-horizontal-image` }

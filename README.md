@@ -1,70 +1,147 @@
-# Getting Started with Create React App
+<h1 align="center">Recipess</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
+</p>
 
-## Available Scripts
+<h3 align="center">https://brunocabralsilva.github.io/trybe-20-recipes/</h3>
 
-In the project directory, you can run:
+![Tela Inicial da Aplicação](src/images/Login.png)
 
-### `npm start`
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h2> Índice</h2>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* [Introdução](#intro)
+* [Descrição do Projeto](#descrição-do-projeto)
+* [Mapeamento do Site](#mapeamento)
+* [Tecnologias utilizadas](#tecnologias-utilizadas)
+* [Desenvolvedores e demais contribuidores](#pessoas-envolvidas)
+* [Conclusão](#conclusão)
 
-### `npm test`
+<h2 id="intro">Introdução</h2>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<ul>
+Visando a evolução e aprendizado dentro dá área de front end, a trybe nos direcionou a criar uma aplicação onde fosse possível:
+  <li>Utilizar Redux para gerenciar estado;</li>
+  <li>Utilizar a biblioteca React-Redux;</li>
+  <li>Utilizar a Context API do React para gerenciar estado;</li>
+  <li>Utilizar o React Hook useState;</li>
+  <li>Utilizar o React Hook useContext;</li>
+  <li>Utilizar o React Hook useEffect;</li>
+  <li>Criar Hooks customizados;</li>
+</ul>
 
-### `npm run build`
+<h2 id="descrição-do-projeto">Descrição do Projeto</h2>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p>
+  A aplicação em questão permite que o usuário possa ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas e drinks, sendo assistido por uma interface agradável e que contribui para a experiência do usuário.
+</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h2 id="mapeamento">Mapeamento do site </h2>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<ol>
+<li><h4>Login</h4></li> 
 
-### `npm run eject`
+<p>
+  Para ter acesso às ferramentas do site, o usuário deve digitar um e-mail válido, bem como uma senha de seis dígitos. Este e-mail fica salvo no local storage e pode ser visualizado na área de perfil.
+</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<p> </p>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<li><h4>Receitas (Food) e Receitas (Drinks)</h4></li> 
+<p>
+  Após digitar realizar o login de forma efetiva, o usuário tem acesso a duas páginas de funções semelhantes, sendo uma para bebidas e outra para comidas. Esta última é a primeira a ser carregada na tela por padrão, mas o usuário pode alterar para a outra clicando no botão fixo na parte inferior direita.
+</p>
+<p>
+  Cada página possui seis filtros localizados na área superior logo abaixo do cabeçalho e cada um deles traz 12 opções a serem visualizadas e escolhidas pelo usuário. São elas:
+</p>
+  <ul>Para Comidas:</ul>
+    <li>All</li>
+    <li>Beef</li>
+    <li>BreakFast</li>
+    <li>Chicken</li>
+    <li>Dessert</li>
+    <li>Goat</li>
+  </ul>
+  <ul>Para Bebidas:</ul>
+    <li>All</li>
+    <li>Ordinary Drink</li>
+    <li>Cocktail</li>
+    <li>Shake</li>
+    <li>Others</li>
+    <li>Cocoa</li>
+  </ul>
+<p>
+  No cabeçalho, há duas outras opções disponíveis: O ícone de perfil redireciona o usuário para a área de perfil e o ícone de pesquisa permite que o usuário busque receitas ou bebidas, seja pelo ingrediente, nome ou primeira letra.
+</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<br>
+<p>Ao clicar uma vez, o item da lista selecionado é adicionado e pode ser visualizado em um pop-up no canto superior direito da tela. Ele pode ser removido clicando novamente no ícone ou desmarcando o checkbox referente ao mesmo no pop-up.</p>
+<p>Ao clicar em buscar, a aplicação retorna uma lista com todos os dons que se adequam aos filtros selecionados.</p>
 
-## Learn More
+a seu perfil, onde poderá ver informações como e-mail cadastrado, receitas prontas e favoritas, assim como fazer logout. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<li><h4>Rituais</h4></li>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<p> Área do site ainda em processo de construção.</p>
 
-### Code Splitting
+<li><h4>Fetiches</h4></li>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<p> Área do site ainda em processo de construção.</p>
 
-### Analyzing the Bundle Size
+<li><h4>Parceiros</h4></li>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<p>Nesta página é disponibilizada uma lista de todos os parceiros dos grupos ao qual os desenvolvedores pertencem ou possuem uma grande proximidade. É possível encontrar todos os links de contato com estes parceiros, além de uma breve descrição dos mesmos e uma imagem da logo que os representa.</p>
 
-### Making a Progressive Web App
+<li><h4>Garou Nordeste</h4></li>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<p> Área do site ainda em processo de construção.</p>
 
-### Advanced Configuration
+<li><h4>Matilha da Kombi</h4></li>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<p> Área do site ainda em processo de construção.</p>
 
-### Deployment
+<li><h4>Tribos</h4></li>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<p> Área do site onde são disponibilizadas as dezessete tribos para consulta. Em uma lista no formato carrossel, o usuário poderá navegar entre as imagens de cada tribo, além de, no futuro, ter acesso a informações sobre a tribo ao clicar em uma delas.</p>
 
-### `npm run build` fails to minify
+<li><h4>Augúrios</h4></li>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p> Área do site onde são disponibilizados os cinco Augúrios para consulta. Em uma lista no formato carrossel, o usuário poderá navegar entre as imagens de cada augúrio, além de, no futuro, ter acesso a informações ao clicar em uma delas.</p>
+
+<li><h4>Raças</h4></li>
+
+<p> Área do site onde são disponibilizadas as três raças para consulta. Em uma lista no formato carrossel, o usuário poderá navegar entre as imagens de cada raça, além de, no futuro, ter acesso a informações e pontos de vista dos autores ao clicar em um deles.</p>
+
+<li><h4>Quem Somos</h4></li>
+
+<p> Lugar reservado para falarmos um pouco a respeito de quem somos, quem são nossos grupos e como tudo começou, além de serem compartilhados todos os nossos links de contato.</p>
+
+</ol>
+
+<h2 id="tecnologias-utilizadas">Tecnologias utilizadas</h2>
+
+* `HTML5`
+* `CSS3`
+* `Javascript (ECMAScript 2018)`
+* `React`
+* `React Icons`
+* `React Router Dom`
+* `React Context`
+* `Framer Motion`
+* `Tailwind CSS`
+
+<h2 id="pessoas-envolvidas">Desenvolvedores e demais contribuidores</h2>
+
+* <strong>Bruno Gabryell Cabral da Silva</strong> - Desenvolvedor Web - React e Tailwind CSS;
+* <strong>Bruno Gabryell Cabral da Silva</strong> - Desenvolvedor Web - React;
+* <strong>Bruno Gabryell Cabral da Silva</strong> - Desenvolvedor Web - React;
+* <strong>Bruno Gabryell Cabral da Silva</strong> - Desenvolvedor Web - React;
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>Programar é um eterno aprendizado. Quanto mais se pratica, mais se melhora. Praticar conceitos de programação com coisas que se é apaixonado apimenta ainda mais a relação! Muitos aprendizados novos são adicionados a cada dia, fazendo com que este projeto já tenha valido a pena antes mesmo de ser concluído!</p>

@@ -40,7 +40,7 @@ export default function Login() {
         duration: 1,
       }}
       exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
-      className="flex flex-row h-screen relative items-center justify-center sm:justify-between bg-none">
+      className="flex flex-row h-screen relative items-center justify-center sm:justify-between bg-white">
       <div className="w-full sm:w-1/2 h-screen">
         <SliderLogin className="h-screen" />
       </div>
