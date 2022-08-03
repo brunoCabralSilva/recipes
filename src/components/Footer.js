@@ -14,22 +14,23 @@ function Footer(props) {
     history.push('/foods');
   };
 
+
   return (
-    <footer className="bottom-0 right-0 fixed z-40 flex flex-col items-end justify-end">
+    <footer className="bottom-0 sm:right-0 fixed z-40 flex flex-row sm:flex-col sm:items-end w-full sm:justify-end">
       <button
         type="button"
         aria-label="drinks"
-        className="mx-4 bg-light-brown w-16 h-16 flex items-center justify-center border border-2 border-black"
+        className="sm:mx-4 bg-white w-1/2 sm:w-16 h-12 sm:h-16 flex items-center justify-center border border-black"
         data-testid="drinks-bottom-btn"
         src="../images/drinkIcon.svg"
         onClick={ drinkRedirect }
       >
-        <img src={ drinkIcon } alt="dreakIcon" className="w-22" />
+        <img src={ drinkIcon } alt="dreakIcon" className="w-8 sm:w-22" />
       </button>
       <button
         type="button"
         aria-label="foods"
-        className="m-4 bg-light-brown w-16 h-16 flex items-center justify-center border border-2 border-black"
+        className="sm:m-4 bg-white w-1/2 sm:w-16 h-12 sm:h-16 flex items-center justify-center border border-black"
         src="../images/mealIcon.svg"
         data-testid="food-bottom-btn"
         onClick={ foodRedirect }
@@ -37,6 +38,7 @@ function Footer(props) {
         <img
           src={ mealIcon }
           alt="mealIcon"
+          className="w-8 sm:w-22"
         />
       </button>
     </footer>

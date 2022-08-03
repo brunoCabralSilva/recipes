@@ -40,6 +40,8 @@ textarea:focus, input:focus {
     -webkit-text-stroke-color: white; /* cor da borda */
 }
 
-body {
-    background-color: rgb(236, 228, 222);
+@media (max-width: 540px) {
+    .swiper-button-prev::after, .swiper-button-next::after  {
+        display: none;
+    }
 }

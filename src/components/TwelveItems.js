@@ -143,7 +143,7 @@ export default function TwelveItems(props) {
 
   const drinkFunc = () => drinkId.map((drink, index) => (
     <div key={ index }>
-      <div className="flex flex-col sm:flex-row">
+      <div className="flex flex-col sm:flex-row w-1/2">
         <img
           src={ drink.strDrinkThumb }
           alt=""
@@ -168,7 +168,7 @@ export default function TwelveItems(props) {
   ));
 
     const foodFunc = () => foodId.map((food, index) => (
-    <div key={ index } className="">
+    <div key={ index } className="w-1/2">
       <div className="flex flex-col sm:flex-row">
         <img
           src={ food.strMealThumb }

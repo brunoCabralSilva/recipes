@@ -82,7 +82,6 @@ Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossist
 <p>
   Por fim, caso o usuário clique em uma das bebidas ou comidas disponibilizadas, ele é redirecionado para a página de detalhes.
 </p>
-<br>
 
 <li><h4>Detalhes</h4></li>
 <p>

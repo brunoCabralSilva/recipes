@@ -25,15 +25,15 @@ export default function DrinksFoods(props) {
           to={ `/foods/${item.idMeal}` }
           key={ item.idMeal }
           data-testid={ `${index}-recipe-card` }
-          className="snap-center m-3 w-11/12 sm:w-43% md:w-30% xl:w-23% hover:border hover:border-1 hover:border-black"
+          className="w-1/2 sm:w-43% md:w-30% xl:w-23% hover:border hover:border-1 hover:border-black"
         >
-          <div className="relative flex h-80">
-            <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-full z-20" />
+          <div className="w-1/2 relative flex h-40">
+            <div className="absolute bg-gradient-to-t from-min-transp to-transp w-1/2 h-full z-20" />
             <img
               src={ item.strMealThumb }
               alt=""
               data-testid={ `${index}-card-img` }
-              className="object-cover h-full w-full absolute"
+              className="object-cover h-full w-1/2 absolute"
             />
             <p data-testid={ `${index}-card-name` } className="flex items-end z-30 text-white p-2 font-bold text-xl">{ item.strMeal }</p>
           </div>
@@ -46,9 +46,9 @@ export default function DrinksFoods(props) {
           to={ `/drinks/${item.idDrink}` }
           key={ item.idDrink }
           data-testid={ `${index}-recipe-card` }
-          className="snap-center m-3 w-11/12 sm:w-43% md:w-30% xl:w-23% hover:border hover:border-1 hover:border-black"
+          className="w-1/2 sm:w-43% md:w-30% xl:w-23% hover:border hover:border-1 hover:border-black"
         >
-          <div className="relative flex h-80">
+          <div className="w-1/2 relative flex h-40">
             <div className="absolute bg-gradient-to-t from-min-transp to-transp w-full h-full z-20" />
             <img
               src={ item.strDrinkThumb }
@@ -65,7 +65,7 @@ export default function DrinksFoods(props) {
   }
 
   return (
-    <div className="flex flex-col bg-light-brown">
+    <div className="flex flex-col">
       {type === 'food'
       ? <Header searchIcon="visible" title="Foods" />
       : <Header searchIcon="visible" title="Drinks" />

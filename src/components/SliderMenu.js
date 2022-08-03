@@ -23,11 +23,11 @@ export default function SliderMenu({setFil, btn, change, type}) {
   }
 
   return(
-    <Swiper {...settings} modules={[Navigation]} className="h-36">
+    <Swiper {...settings} modules={[Navigation]} className="h-16">
         <SwiperSlide
         data-testid="All-category-filter"
         onClick={ () => setFil() }
-        className="bg-madeira m-2 relative flex h-36"
+        className="bg-madeira m-2 relative flex h-16"
       >
         <img src={require("../images/all.jpg")} alt="all foods" className="w-full h-full object-cover" />
         <div className="absolute bg-gradient-to-t from-black to-transp w-full h-full" />
@@ -35,7 +35,6 @@ export default function SliderMenu({setFil, btn, change, type}) {
           All
         </span>
       </SwiperSlide>
-      {console.log(btn)}
       {
         btn.slice(0, +'5').map((button, index) => (
           <SwiperSlide
@@ -43,7 +42,7 @@ export default function SliderMenu({setFil, btn, change, type}) {
             type="button"
               data-testid={ `${button.strCategory}-category-filter` }
               onClick={ () => change(button.strCategory) }
-              className="bg-madeira m-2 relative flex h-36"
+              className="bg-madeira m-2 relative flex h-16"
               >
               <img src={require(`../images/${
                 button.strCategory === "Other/Unknown"
