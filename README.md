@@ -91,7 +91,11 @@ Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossist
 a seu perfil, onde poderá ver informações como e-mail cadastrado, receitas prontas e favoritas, assim como fazer logout. 
 
 <li><h4>Detalhes de Receitas</h4></li>
-
+<p>
+  Ao clicar em uma comida ou bebida disponibilizada pela aplicação, o usuário é redirecionado para uma página com detalhes sobre a mesma. Aém de uma imagem ampliada do item e seu nome, o usuário pode ver a receita e, segundo sua vontade, favoritar ou compartilhar a receita.
+<p>
+<p>
+  Caso queira realizar a receita com a ajuda da aplicação, ele pode clicar em Continue/Start Recipe.
 <p>
 
 </p>
@@ -137,9 +141,10 @@ a seu perfil, onde poderá ver informações como e-mail cadastrado, receitas pr
 <h2 id="pessoas-envolvidas">Desenvolvedores e demais contribuidores</h2>
 
 * <strong>Bruno Gabryell Cabral da Silva</strong> - Desenvolvedor Web - React e Tailwind CSS;
-* <strong>Bruno Gabryell Cabral da Silva</strong> - Desenvolvedor Web - React;
-* <strong>Bruno Gabryell Cabral da Silva</strong> - Desenvolvedor Web - React;
-* <strong>Bruno Gabryell Cabral da Silva</strong> - Desenvolvedor Web - React;
+* <strong>Thiago Gasparini</strong> - Desenvolvedor Web - React;
+* <strong>Roiney Beal</strong> - Desenvolvedor Web - React;
+* <strong>Thiago Flexa</strong> - Desenvolvedor Web - React;
+* <strong>Thiago Carvalho</strong> - Desenvolvedor Web - React;
 
 <h2 id="conclusão">Conclusão</h2>
 
