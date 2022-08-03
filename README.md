@@ -70,7 +70,6 @@ Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossist
   </ul>
   <br>
   <p>Para Bebidas:</p>
-  <br>
   <ul>
     <li>All</li>
     <li>Ordinary Drink</li>
@@ -85,49 +84,41 @@ Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossist
 <p>
   Por fim, caso o usuário clique em uma das bebidas ou comidas disponibilizadas, ele é redirecionado para a página de detalhes.
 </p>
-
-
 <br>
 <p>Ao clicar uma vez, o item da lista selecionado é adicionado e pode ser visualizado em um pop-up no canto superior direito da tela. Ele pode ser removido clicando novamente no ícone ou desmarcando o checkbox referente ao mesmo no pop-up.</p>
 <p>Ao clicar em buscar, a aplicação retorna uma lista com todos os dons que se adequam aos filtros selecionados.</p>
 
 a seu perfil, onde poderá ver informações como e-mail cadastrado, receitas prontas e favoritas, assim como fazer logout. 
 
-<li><h4>Rituais</h4></li>
+<li><h4>Detalhes de Receitas</h4></li>
 
-<p> Área do site ainda em processo de construção.</p>
+<p>
 
-<li><h4>Fetiches</h4></li>
+</p>
 
-<p> Área do site ainda em processo de construção.</p>
+<li><h4>Receitas em Progresso</h4></li>
 
-<li><h4>Parceiros</h4></li>
+<p>
 
-<p>Nesta página é disponibilizada uma lista de todos os parceiros dos grupos ao qual os desenvolvedores pertencem ou possuem uma grande proximidade. É possível encontrar todos os links de contato com estes parceiros, além de uma breve descrição dos mesmos e uma imagem da logo que os representa.</p>
+</p>
 
-<li><h4>Garou Nordeste</h4></li>
+<li><h4>Receitas concluídas</h4></li>
 
-<p> Área do site ainda em processo de construção.</p>
+<p>
 
-<li><h4>Matilha da Kombi</h4></li>
+</p>
 
-<p> Área do site ainda em processo de construção.</p>
+<li><h4>Receitas Favoritadas</h4></li>
 
-<li><h4>Tribos</h4></li>
+<p>
 
-<p> Área do site onde são disponibilizadas as dezessete tribos para consulta. Em uma lista no formato carrossel, o usuário poderá navegar entre as imagens de cada tribo, além de, no futuro, ter acesso a informações sobre a tribo ao clicar em uma delas.</p>
+</p>
 
-<li><h4>Augúrios</h4></li>
+<li><h4>Perfil</h4></li>
 
-<p> Área do site onde são disponibilizados os cinco Augúrios para consulta. Em uma lista no formato carrossel, o usuário poderá navegar entre as imagens de cada augúrio, além de, no futuro, ter acesso a informações ao clicar em uma delas.</p>
+<p>
 
-<li><h4>Raças</h4></li>
-
-<p> Área do site onde são disponibilizadas as três raças para consulta. Em uma lista no formato carrossel, o usuário poderá navegar entre as imagens de cada raça, além de, no futuro, ter acesso a informações e pontos de vista dos autores ao clicar em um deles.</p>
-
-<li><h4>Quem Somos</h4></li>
-
-<p> Lugar reservado para falarmos um pouco a respeito de quem somos, quem são nossos grupos e como tudo começou, além de serem compartilhados todos os nossos links de contato.</p>
+</p>
 
 </ol>
 
