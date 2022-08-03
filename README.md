@@ -58,7 +58,9 @@ Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossist
 <p>
   Cada página possui seis filtros localizados na área superior logo abaixo do cabeçalho e cada um deles traz 12 opções a serem visualizadas e escolhidas pelo usuário. São elas:
 </p>
-  <ul>Para Comidas:
+  <br>
+  <p>Para Comidas:</p>
+  <ul>
     <li>All</li>
     <li>Beef</li>
     <li>BreakFast</li>
@@ -66,7 +68,10 @@ Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossist
     <li>Dessert</li>
     <li>Goat</li>
   </ul>
-  <ul>Para Bebidas:
+  <br>
+  <p>Para Bebidas:</p>
+  <br>
+  <ul>
     <li>All</li>
     <li>Ordinary Drink</li>
     <li>Cocktail</li>
