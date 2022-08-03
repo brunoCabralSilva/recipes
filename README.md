@@ -1,4 +1,4 @@
-<h1 align="center">Recipess</h1>
+<h1 align="center">Recipes</h1>
 
 <p align="center">
 Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
@@ -23,8 +23,8 @@ Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossist
 
 <h2 id="intro">Introdução</h2>
 
+<p>Visando a evolução e aprendizado dentro dá área de front end, a trybe nos direcionou a criar uma aplicação onde fosse possível:</p>
 <ul>
-Visando a evolução e aprendizado dentro dá área de front end, a trybe nos direcionou a criar uma aplicação onde fosse possível:
   <li>Utilizar Redux para gerenciar estado;</li>
   <li>Utilizar a biblioteca React-Redux;</li>
   <li>Utilizar a Context API do React para gerenciar estado;</li>
@@ -58,7 +58,7 @@ Visando a evolução e aprendizado dentro dá área de front end, a trybe nos di
 <p>
   Cada página possui seis filtros localizados na área superior logo abaixo do cabeçalho e cada um deles traz 12 opções a serem visualizadas e escolhidas pelo usuário. São elas:
 </p>
-  <ul>Para Comidas:</ul>
+  <ul>Para Comidas:
     <li>All</li>
     <li>Beef</li>
     <li>BreakFast</li>
@@ -66,7 +66,7 @@ Visando a evolução e aprendizado dentro dá área de front end, a trybe nos di
     <li>Dessert</li>
     <li>Goat</li>
   </ul>
-  <ul>Para Bebidas:</ul>
+  <ul>Para Bebidas:
     <li>All</li>
     <li>Ordinary Drink</li>
     <li>Cocktail</li>
@@ -76,6 +76,9 @@ Visando a evolução e aprendizado dentro dá área de front end, a trybe nos di
   </ul>
 <p>
   No cabeçalho, há duas outras opções disponíveis: O ícone de perfil redireciona o usuário para a área de perfil e o ícone de pesquisa permite que o usuário busque receitas ou bebidas, seja pelo ingrediente, nome ou primeira letra.
+</p>
+<p>
+  Por fim, caso o usuário clique em uma das bebidas ou comidas disponibilizadas, ele é redirecionado para a página de detalhes.
 </p>
 
 
