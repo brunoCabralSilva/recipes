@@ -1,58 +1,61 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import contexto from '../context';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-export default function SliderMenu({setFil, btn, change, type}) {
+export default function SliderMenu() {
+  const cont = useContext(contexto);
+  const { context } = cont;
+  const { type, buttons, reqApiCategory, clearFilterCat, btnFoodFixedList, btnDrinkFixedList } = context;
+  let btnList = [];
+  let btn = [];
   
-  let slides = 0;
-  setInterval(() => {
-    const valor = window.innerWidth;
-    if( valor < 768) { 
-      slides = 4;
-    } else { 
-      slides = 3; 
-    }
-  }, 1000);
-  
-  const settings = {
-    navigation: true,
-    slidesPerView: 2,
-    loop: true,
+  if (type === 'foods') {
+    btnList = btnFoodFixedList;
+  } else btnList = btnDrinkFixedList;
+
+  if(buttons.length > 0) {
+    btn = buttons
+  } else {
+    btn = btnList;
   }
 
   return(
-    <Swiper {...settings} modules={[Navigation]} className="h-16">
-        <SwiperSlide
+    <Swiper
+      slidesPerView="5"
+      loop={true}
+      className="w-9/12"
+    >
+      <SwiperSlide
         data-testid="All-category-filter"
-        onClick={ () => setFil() }
-        className="bg-madeira m-2 relative flex h-16"
-      >
-        <img src={require("../images/all.jpg")} alt="all foods" className="w-full h-full object-cover" />
-        <div className="absolute bg-gradient-to-t from-black to-transp w-full h-full" />
-        <span className="w-full h-full flex items-end font-bold text-xl text-left pl-3 pb-4 absolute text-white">
-          All
-        </span>
+        onClick={ () => clearFilterCat() }
+        className="border border-dark-brown bg-white transition duration-500 hover:text-dark-brown text-dark-brown mx-1 flex items-center justify-center rounded text-sm p-2 cursor-pointer flex">
+          <img
+                src={require('../images/all.jpg')}
+                alt=""
+                className="rounded-full w-14 h-14 object-cover"
+              />
+          <span className="w-full font-bold sm:text-base text-center">
+            All
+          </span>
       </SwiperSlide>
       {
-        btn.slice(0, +'5').map((button, index) => (
+        btn.length > 0 && btn.slice(0, +'5').map((button, index) => (
           <SwiperSlide
             key={ index }
             type="button"
-              data-testid={ `${button.strCategory}-category-filter` }
-              onClick={ () => change(button.strCategory) }
-              className="bg-madeira m-2 relative flex h-16"
-              >
-              <img src={require(`../images/${
-                button.strCategory === "Other/Unknown"
-                ? "Other-Unknown"
-              : button.strCategory
-              }.jpg`)} alt="all foods" className="w-full h-full object-cover" />
-              <div className="absolute bg-gradient-to-t from-black to-transp w-full h-full" />
-              <span className="w-full h-full flex items-end font-bold sm:text-xl text-left pl-3 pb-4 absolute text-white">
-                {button.strCategory === "Other/Unknown" ? "Other" : button.strCategory }
-              </span>
+            data-testid={ `${button.strCategory}-category-filter` }
+            onClick={ () => reqApiCategory(button.strCategory) }
+            className="border border-dark-brown bg-white transition duration-500 hover:text-dark-brown text-dark-brown mx-1 flex items-center justify-center rounded text-sm p-2 cursor-pointer flex">
+              <img
+                src={require(`../images/${button.strCategory === "Other/Unknown" ? "Other-Unknown" : button.strCategory }.jpg`)}
+                alt=""
+                className="rounded-full w-14 h-14"
+              />
+              <span className="w-full font-bold sm:text-base text-center">
+              {button.strCategory === "Other/Unknown" ? "Other" : button.strCategory }
+            </span>
           </SwiperSlide>
         ))
       }

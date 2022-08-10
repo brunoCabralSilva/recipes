@@ -9,7 +9,7 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipeInProgress from './pages/RecipeInProgress';
 import Drinks from './pages/Drinks';
-import Recipes from './pages/Recipes';
+import Foods from './pages/Foods';
 import DrinksId from './pages/DrinksId';
 import RecipeDetails from './pages/RecipeDetails';
 import DrinksProgress from './pages/DrinksProgress';
@@ -22,6 +22,7 @@ function App() {
         <AnimatePresence>
           <Switch location={location} key={location.key}>
             <Route exact path="/trybe-20-recipes" component={ Login } />
+            <Route exact path="/foods" component={ Foods } />
             <Route exact path="/drinks" component={ Drinks } />
             <Route exact path="/foods/:id" component={ RecipeDetails } />
             <Route exact path="/drinks/:id" component={ DrinksId } />
@@ -30,7 +31,6 @@ function App() {
             <Route exact path="/profile" component={ Profile } />
             <Route exact path="/done-recipes" component={ DoneRecipes } />
             <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
-            <Route path="/foods" component={ Recipes } />
           </Switch>
         </AnimatePresence>
       </AnimateSharedLayout>

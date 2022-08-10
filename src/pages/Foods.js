@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ListItems from '../components/ListItems';
 
 
-export default function Drinks(props) {
+export default function Foods(props) {
   const { history } = props;
  
   useEffect(() => {
@@ -10,6 +10,8 @@ export default function Drinks(props) {
   }, []);
 
   return (
-    <ListItems history = {history} />
+    <div>
+      <ListItems history = {history} />
+    </div>
   );
 }

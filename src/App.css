@@ -8,6 +8,12 @@
     backdrop-filter: blur(10px);
 }
 
+.no-glassmorphism {
+    background: rgba(0,0,0,0);
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(rounded-full glassmorphismpx);
+}
+
 textarea:focus, input:focus {
     box-shadow: 0 0 0 0;
     outline: 0;

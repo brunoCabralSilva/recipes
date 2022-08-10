@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SliderLogin from '../components/SliderLogin';
+import contexto from '../context';
 
 export default function Login() {
+  const validateEmail = /\S+@\S+\.\S+/;
+  const MIN_LENGTH_PASSWORD = 7;
   const history = useHistory();
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
-  const validateEmail = /\S+@\S+\.\S+/;
-  const MIN_LENGTH_PASSWORD = 7;
 
   useEffect(()=>{
     window.scrollTo(0, 0);
@@ -23,13 +24,20 @@ export default function Login() {
       [name]: value,
     });
   };
-  // https://pt.stackoverflow.com/questions/399129/localstorage-salvar-alguns-campos
+
   const handleClick = () => {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
     localStorage.setItem('user', JSON.stringify({ email: user.email }));
     history.push('/foods');
   };
+
+  const disabledReturn = () => {
+    if (user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email)) {
+      return true;
+    } 
+    return false;
+  }
 
   return (
     <motion.main
@@ -53,9 +61,21 @@ export default function Login() {
       }}
       exit={{ x: -20, opacity: 0, transition: { duration: 0.3 } }}
       className="py-4 flex flex-col items-center justify-center rounded-2xl z-20 sm:m-10 sm:w-1/2 absolute sm:relative">
-        <div className="flex flex-col items-center justify-center w-4/5 sm:w-1/2 bg-white pt-10 sm:pt-0 pb-5 s,:pb-5 px-7 sm:px-0 glassmorphism">
-          <label htmlFor="input-email" className="flex flex-col justify-center items-center w-full">
-          <span className="w-full text-madeira text-left text-sm">Email</span>
+        <div className={`shadow-2xl flex flex-col items-center justify-center w-4/5 sm:w-1/2 pt-5 sm:pt-10 pb-5 sm:pb-5 px-7 glassmorphism
+        ${(user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email))
+        ? 'border border-white'
+        : 'border border-madeira'}`}>
+          <div className={
+            `rounded-full h-20 w-20 mb-6 sm:mb-0 flex items-center justify-center text-white
+            ${(user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email))
+              ? 'bg-gray-800'
+              : 'bg-madeira'
+            }`}
+          >
+            <i className="fa-solid fa-user text-white text-5xl"></i>
+          </div>
+          <label htmlFor="input-email" className="text-sm flex flex-col justify-center items-center w-11/12 sm:mt-10">
+            <span className="w-full text-madeira text-left pb-4 font-bold">Email</span>
           <input
             type="email"
             name="email"
@@ -67,8 +87,8 @@ export default function Login() {
             className="text-center placeholder:text-madeira placeholder:text-sm text-madeira mb-1 w-full bg-transp border-b border-madeira"
           />
           </label>
-          <label htmlFor="input-email" className="flex flex-col w-full justify-center items-center mt-6">
-          <span className="w-full text-madeira text-left text-sm">Senha</span>
+          <label htmlFor="input-email" className="text-sm flex flex-col justify-center items-center w-11/12  mt-5">
+          <span className="w-full text-madeira text-left pb-2 font-bold">Senha</span>
           <input
             type="password"
             name="password"
@@ -81,13 +101,16 @@ export default function Login() {
           </label>
           <button
             type="button"
-            disabled={
-              user.password.length < MIN_LENGTH_PASSWORD
-              || !validateEmail.test(user.email)
-            }
+            disabled={disabledReturn()}
             data-testid="login-submit-btn"
             onClick={ handleClick }
-            className="text-center my-4 p-2 w-full bg-madeira text-white font-bold hover:bg-dark transition duration-1000"
+            className={
+              `text-center my-4 p-2 w-full font-bold transition duration-1000
+              ${(user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email))
+              ? 'bg-gray-800 text-white hover:bg-gray-800'
+              : 'bg-madeira text-white hover:bg-dark-brown'
+              }`
+            }
           >
             Enter
           </button>

@@ -1,149 +1,172 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import contexto from './index';
-
-// const { cockTailDb } = data;
+import fetchs from '../fetchs';
+const {
+  fetchFoods,
+  fetchBtnFoods,
+  fetchDrinks,
+  fetchBtnDrinks,
+  reqCategoryDrink,
+  reqCategoryFood,
+} = fetchs;
 
 export default function RecProvider({ children }) {
-  // const [login, setLogin] = useState('');
-  const [search, setSearch] = useState('');
-  const [inputSearch, setInputSearch] = useState('');
-  const [food, setFood] = useState([]);
-  const [drink, setDrink] = useState([]);
-  const [foodsIn12, setFoodsIn12] = useState([]);
-  const [drinksIn12, setDrinksIn12] = useState([]);
-  const [btnFoods, setBtnFoods] = useState([]);
-  const [btnDrinks, setBtnDrinks] = useState([]);
-  const [filterCategory, setFilterCategory] = useState([]);
-  const [filterCategoryDrink, setFilterCategoryDrink] = useState([]);
-  const [foodId, setFoodID] = useState([]);
-  const [drinkId, setDrinkID] = useState([]);
-  const [foodsInProgress, setFoodsInProgress] = useState([]);
-  const [drinksInProgress, setDrinksInProgress] = useState([]);
+  const [mealFixedList, setMealFixedList] = useState([]);
+  const [drinkFixedList, setDrinkFixedList] = useState([]);
+  const [btnFoodFixedList, setBtnFoodFixedList] = useState([]);
+  const [btnDrinkFixedList, setBtnDrinkFixedList] = useState([]);
+  const [buttons, setButtons] = useState([]);
+  const [listApi, setListApi] = useState([]);
+  const [filterCat, setFilterCat] = useState([]);
+  const [type, setType] = useState('foods');
+  const [searchArea, setSearchArea] = useState(false);
 
-  const reqApiProgressDrinks = async (id) => {
-    const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
-    const result = await fetch(url);
-    const data = await result.json();
-    setDrinksInProgress(data.drinks);
-  };
+  const initialRequest = async () => {
+    const food = await fetchFoods();
+    setMealFixedList(food.meals);
+    const btnApiFood = await fetchBtnFoods();
+    setBtnFoodFixedList(btnApiFood.meals);
+    
+    const drink = await fetchDrinks();
+    setDrinkFixedList(drink.drinks);
+    const btnApiDrink = await fetchBtnDrinks();
+    setBtnDrinkFixedList(btnApiDrink.drinks);
+  }
 
-  const reqApiProgressFoods = async (id) => {
-    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-    const result = await fetch(url);
-    const data = await result.json();
-    setFoodsInProgress(data.meals);
-  };
-
-  const reqApiCategoryDrink = async (category) => {
-    const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`;
-    const result = await fetch(url);
-    const data = await result.json();
-    setFilterCategoryDrink(data.drinks);
-  };
+  const requisitonApiItem = async (type) => {
+    if (type === 'drinks') {
+      setButtons(btnDrinkFixedList);
+      setListApi(drinkFixedList);
+    } else {
+      setButtons(btnFoodFixedList);
+      setListApi(mealFixedList);
+    }
+  }
 
   const reqApiCategory = async (category) => {
-    const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
-    const result = await fetch(url);
-    const data = await result.json();
-    setFilterCategory(data.meals);
-  };
-
-  const resetFilters = () => {
-    setFilterCategory([]);
-    setFilterCategoryDrink([]);
-  };
-
-  const resetFiltersDrink = () => {
-    setFilterCategoryDrink([]);
-  };
-
-  const reqApiFoodsID = async (id) => {
-    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-    const result = await fetch(url);
-    const data = await result.json();
-    setFoodID(data.meals);
-  };
-
-  const reqApiDrinksID = async (id) => {
-    const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
-    const result = await fetch(url);
-    const data = await result.json();
-    setDrinkID(data.drinks);
-  };
-
-  const reqApiFoods = async () => {
-    const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-    const result = await fetch(url);
-    const data = await result.json();
-    setFoodsIn12(data.meals);
-  };
-
-  const reqApiDrinks = async () => {
-    const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-    const result = await fetch(url);
-    const data = await result.json();
-    setDrinksIn12(data.drinks);
-  };
-
-  const reqApiBtnFoods = async () => {
-    const url = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
-    const result = await fetch(url);
-    const data = await result.json();
-    setBtnFoods(data.meals);
-  };
-
-  const reqApiBtnDrinks = async () => {
-    const url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-    const result = await fetch(url);
-    const data = await result.json();
-    setBtnDrinks(data.drinks);
-  };
-
-  const setFetch = (apiReq) => {
-    if (Object.keys(apiReq).includes('drinks')) {
-      setDrink(apiReq.drinks);
-    } else if (Object.keys(apiReq).includes('meals')) {
-      setFood(apiReq.meals);
+    if(type === 'drinks') {
+      const req = await reqCategoryDrink(category);
+        const searchItem = await fetch(`www.thecocktaildb.com/api/json/v1/1/lookup.php?i=52917`);
+        console.log(searchItem);
+      setFilterCat(req.drinks);
+    } else {
+      const req = await reqCategoryFood(category);
+        const searchItem = await fetch(`www.themealdb.com/api/json/v1/1/lookup.php?i=52917`);
+      console.log(searchItem);
+      setFilterCat(req.meals);
     }
-  };
+  }
 
-  const sendInputSearch = (e) => {
-    setInputSearch(e);
-  };
+  const alterType = (type) => {
+    setType(type);
+  }
+
+  const clearFilterCat = () => {
+    setFilterCat([]);
+  }
+
+  const setSearchBar = () => {
+    setSearchArea(!searchArea);
+  }
+
+  const setInListApi = (list) => {
+    setListApi(list);
+  }
+
+  const setSearchItem = (items) => {
+    if(type === 'drinks') {
+      setFilterCat(items.drinks);
+    } else setFilterCat(items.meals);
+  }
+
+  // const reqApiProgressDrinks = async (id) => {
+  //   const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  //   const result = await fetch(url);
+  //   const data = await result.json();
+  //   setDrinksInProgress(data.drinks);
+  // };
+
+  // const reqApiProgressFoods = async (id) => {
+  //   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  //   const result = await fetch(url);
+  //   const data = await result.json();
+  //   setFoodsInProgress(data.meals);
+  // };
+
+  // const reqApiFoodsID = async (id) => {
+  //   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  //   const result = await fetch(url);
+  //   const data = await result.json();
+  //   setFoodID(data.meals);
+  // };
+
+  // const reqApiDrinksID = async (id) => {
+  //   const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  //   const result = await fetch(url);
+  //   const data = await result.json();
+  //   setDrinkID(data.drinks);
+  // };
+
+  //  const setFetch = (apiReq) => {
+  //   if (Object.keys(apiReq).includes('drinks')) {
+  //     setDrink(apiReq.drinks);
+  //   } else if (Object.keys(apiReq).includes('meals')) {
+  //     setFood(apiReq.meals);
+  //   }
+  // };
+
+  // const sendInputSearch = (e) => {
+  //   setInputSearch(e);
+  // };
 
   const context = {
-    food,
-    drink,
-    search,
-    setSearch,
-    inputSearch,
-    setFetch,
-    sendInputSearch,
-    reqApiFoods,
-    foodsIn12,
-    drinksIn12,
-    reqApiDrinks,
-    btnFoods,
-    reqApiBtnFoods,
-    btnDrinks,
-    reqApiBtnDrinks,
-    filterCategory,
+    buttons,
+    listApi,
+    type,
+    searchArea,
+    filterCat,
+    btnFoodFixedList,
+    btnDrinkFixedList,
+    mealFixedList,
+    drinkFixedList,
+    setInListApi,
+    alterType,
+    requisitonApiItem,
+    setSearchBar,
     reqApiCategory,
-    filterCategoryDrink,
-    reqApiCategoryDrink,
-    setFilterCategoryDrink,
-    setFilterCategory,
-    resetFilters,
-    resetFiltersDrink,
-    foodId,
-    reqApiFoodsID,
-    reqApiDrinksID,
-    drinkId,
-    reqApiProgressFoods,
-    foodsInProgress,
-    drinksInProgress,
-    reqApiProgressDrinks,
+    clearFilterCat,
+    setSearchItem,
+    initialRequest,
+    // food,
+    // drink,
+    // search,
+    // setSearch,
+    // inputSearch,
+    // setFetch,
+    // sendInputSearch,
+    // foodsIn12,
+    // drinksIn12,
+    // btnFoods,
+    // btnDrinks,
+    // filterCategory,
+    // reqApiCategory,
+    // filterCategoryDrink,
+    // reqApiCategoryDrink,
+    // setFilterCategoryDrink,
+    // setFilterCategory,
+    // resetFilters,
+    // resetFiltersDrink,
+    // foodId,
+    // reqApiFoodsID,
+    // reqApiDrinksID,
+    // drinkId,
+    // reqApiProgressFoods,
+    // foodsInProgress,
+    // drinksInProgress,
+    // reqApiProgressDrinks,
+    // searchArea,
+    // setSearchBar,
   };
 
   return (

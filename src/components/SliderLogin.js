@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, Autoplay } from 'swiper';
+import { Autoplay } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -10,8 +10,7 @@ export default function SliderLogin() {
  
   return(
     <Swiper 
-        modules={[Navigation, Pagination, Autoplay]} 
-        pagination= {{ clickable: true }}
+        modules={[Autoplay]}
         loop={true}
         autoplay={{delay: 5000 }}
         className=""
