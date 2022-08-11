@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/trybe-20-recipes/static/css/main.9bf90fa4.css",
-    "main.js": "/trybe-20-recipes/static/js/main.256abe6e.js",
+    "main.css": "/trybe-20-recipes/static/css/main.44c059af.css",
+    "main.js": "/trybe-20-recipes/static/js/main.cd0bd76d.js",
     "static/media/foodwallpaper.jpg": "/trybe-20-recipes/static/media/foodwallpaper.c77ff65cbaaee50d8270.jpg",
     "static/media/Cocktail.jpg": "/trybe-20-recipes/static/media/Cocktail.a1c1be9bc4111b6b4bb0.jpg",
     "static/media/imgfood.jpg": "/trybe-20-recipes/static/media/imgfood.a00a57e5e9c46a06b15a.jpg",
@@ -38,11 +38,11 @@
     "static/media/blackHeartIcon.svg": "/trybe-20-recipes/static/media/blackHeartIcon.083cb006913d197c95857ebfa2161db7.svg",
     "static/media/rockGlass.svg": "/trybe-20-recipes/static/media/rockGlass.5664c67efadc4f525eae.svg",
     "index.html": "/trybe-20-recipes/index.html",
-    "main.9bf90fa4.css.map": "/trybe-20-recipes/static/css/main.9bf90fa4.css.map",
-    "main.256abe6e.js.map": "/trybe-20-recipes/static/js/main.256abe6e.js.map"
+    "main.44c059af.css.map": "/trybe-20-recipes/static/css/main.44c059af.css.map",
+    "main.cd0bd76d.js.map": "/trybe-20-recipes/static/js/main.cd0bd76d.js.map"
   },
   "entrypoints": [
-    "static/css/main.9bf90fa4.css",
-    "static/js/main.256abe6e.js"
+    "static/css/main.44c059af.css",
+    "static/js/main.cd0bd76d.js"
   ]
 }
