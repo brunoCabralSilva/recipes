@@ -79,10 +79,10 @@ export default function SearchBar() {
           value={ inputSearch }
           onChange={ (e) => setInputSearch(e.target.value) }
           placeholder="Search"
-          className="rounded-full text-center mt-6 mb-2 w-full my-4 p-2 glassmorphism"
+          className="rounded-full text-center mt-6 mb-2 w-full my-4 p-2 glassmorphism border border-madeira"
         />
       <div className="flex flex-col rounded-full justify-center items-center sm:justify-around w-full md:w-full my-1">
-        <label htmlFor="ingredient" className="w-full text-center my-2 p-1 bg-white flex justify-center rounded-full">
+        <label htmlFor="ingredient" className="w-full text-center my-2 p-1 bg-white flex border border-madeira justify-center rounded-full">
           <input
             type="radio"
             id="ingredient"
@@ -93,7 +93,7 @@ export default function SearchBar() {
           />
           Ingredient
         </label>
-        <label htmlFor="name" className="w-full text-center p-1 bg-white flex justify-center rounded-full">
+        <label htmlFor="name" className="w-full text-center p-1 bg-white flex justify-center rounded-full border border-madeira">
           <input
             type="radio"
             id="name"
@@ -104,7 +104,7 @@ export default function SearchBar() {
           />
           Name
         </label>
-        <label htmlFor="letter" className="py-2 w-full text-center my-2 p-1 bg-white flex justify-center rounded-full">
+        <label htmlFor="letter" className="py-2 w-full text-center my-2 p-1 bg-white flex justify-center border border-madeira rounded-full">
           <input
             type="radio"
             id="letter"

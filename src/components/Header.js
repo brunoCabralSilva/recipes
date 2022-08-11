@@ -31,9 +31,12 @@ export default function Header(props) {
   return (
     <header className="flex flex-col glassmorphism">
       <div className="flex flex-row justify-between items-center p-2 w-full">
-        <h1 data-testid="page-title" className="text-dark-brown text-xl font-bold">
-          { title }
-        </h1>
+        <div className="flex items-center">
+          <img src={require(`../images/${title === "Foods" ? "icon_food.jpg" : "img-drinks.png"}`)} className="h-10" alt="icon food" />
+          <h1 data-testid="page-title" className="ml-5 text-dark-brown text-xl font-bold">
+            { title }
+          </h1>
+        </div>
         <div>
           {
             searchIcon === 'visible'

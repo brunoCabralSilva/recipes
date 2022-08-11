@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import drinkIcon from '../images/drinkIcon.svg';
-import mealIcon from '../images/mealIcon.svg';
+import drinkIcon from '../images/drinkIcon.jpg';
+import mealIcon from '../images/mealllicon.jpg';
 import contexto from '../context';
 
 function Footer(props) {
@@ -27,21 +27,21 @@ function Footer(props) {
 
 
   return (
-    <footer className="bottom-0 sm:right-0 fixed z-40 flex flex-row sm:flex-col sm:items-end w-full sm:justify-end">
+    <footer className="bottom-14 sm:bottom-10 sm:right-0 fixed z-40 flex flex-col items-end w-full justify-end">
       <button
         type="button"
         aria-label="drinks"
-        className="sm:mx-4 bg-white rounded-full w-12 h-12 flex items-center justify-center border border-black"
+        className="mx-2 sm:mx-4 bg-white rounded-full w-12 sm:w-16 h-12 sm:h-16 flex items-center justify-center border border-black"
         data-testid="drinks-bottom-btn"
         src="../images/drinkIcon.svg"
         onClick={ drinkRedirect }
       >
-        <img src={ drinkIcon } alt="dreakIcon" className="w-8 sm:w-22" />
+        <img src={ drinkIcon } alt="dreakIcon" className="w-full h-full rounded-full border-2 border-white sm:w-22" />
       </button>
       <button
         type="button"
         aria-label="foods"
-        className="sm:m-4 bg-white w-12 rounded-full h-12 flex items-center justify-center border border-black"
+        className="mx-2 sm:mx-4 my-3 bg-white rounded-full w-12 sm:w-16 h-12 sm:h-16 flex items-center justify-center"
         src="../images/mealIcon.svg"
         data-testid="food-bottom-btn"
         onClick={ foodRedirect }
@@ -49,7 +49,7 @@ function Footer(props) {
         <img
           src={ mealIcon }
           alt="mealIcon"
-          className="w-8 sm:w-22"
+          className="w-full h-full rounded-full border border-white sm:w-22"
         />
       </button>
     </footer>

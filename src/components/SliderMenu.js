@@ -23,9 +23,9 @@ export default function SliderMenu() {
 
   return(
     <Swiper
-      slidesPerView="5"
+      slidesPerView="6"
       loop={true}
-      className="w-9/12"
+      className="w-full sm:w-11/12 mt-10"
     >
       <SwiperSlide
         data-testid="All-category-filter"

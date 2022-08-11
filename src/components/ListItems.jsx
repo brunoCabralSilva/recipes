@@ -3,12 +3,57 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import SliderMenu from '../components/SliderMenu';
 import SliderContent from '../components/SliderContent';
+import SliderHeader from '../components/SliderHeader';
 import SearchBar from '../components/SearchBar';
 import Footer from '../components/Footer';
 import contexto from '../context';
 import { motion } from 'framer-motion';
 
 export default function ListItems(props) {
+  const imageFoods = [
+    {
+      image: 'pizza.jpg',
+      text1: 'Make delicious food',
+      text2:'without difficulty.'
+    },
+    {
+      image: 'imgfood.jpg',
+      text1: 'Here you will find the beauty ',
+      text2:'in the art of Cook.'
+    },
+    {
+      image: 'foodwallpaper.jpg',
+      text1: 'Discover the',
+      text2:'pleasure of cooking!'
+    },
+    {
+      image: 'taco.webp',
+      text1: 'Find recipes',
+      text2:'easily and be happy!'
+    },
+  ];
+  const imageDrinks = [
+    {
+      image: 'pizza.jpg',
+      text1: 'Make delicious food',
+      text2:'without difficulty.'
+    },
+    {
+      image: 'imgfood.jpg',
+      text1: 'Here you will find the beauty ',
+      text2:'in the art of Cook.'
+    },
+    {
+      image: 'foodwallpaper.jpg',
+      text1: 'Discover the',
+      text2:'pleasure of cooking!'
+    },
+    {
+      image: 'taco.webp',
+      text1: 'Find recipes',
+      text2:'easily and be happy!'
+    },
+  ];
   const { history } = props;
   const cont = useContext(contexto);
   const { context } = cont;
@@ -42,8 +87,8 @@ export default function ListItems(props) {
       </div>
       <div className="relative flex items-start justify-end">
         {type === 'drinks'
-          ? <img src={require('../images/drinkwallpaper.jpg')} alt="" className="relative w-full h-screen object-cover" />
-          : <img src={require('../images/pizza.jpg')} alt="" className="relative w-full h-screen object-cover" />
+          ? <SliderHeader list={imageDrinks} />
+          : <SliderHeader list={imageFoods} />
       }
       <div className="right-0 top-0 fixed z-40 w-1/4">{searchArea && <SearchBar />}</div>
       </div>
@@ -51,7 +96,7 @@ export default function ListItems(props) {
         <div className="flex flex-row justify-center my-2">
           <SliderMenu />
         </div>
-        <p className="mt-16 mb-5 text-4xl w-full text-center mx-auto" id="text">Welcome! The best recipes for your day are here!</p>
+        <p className="mt-5 sm:mt-16 mb-0 sm:mb-5 p-4 sm:p-0 text-4xl w-full text-center mx-auto" id="text">Welcome! The best recipes for your day are here!</p>
         <div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

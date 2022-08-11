@@ -32,9 +32,9 @@ export default function Item({ link, image, text, name, tags, index }) {
       to={ type === 'foods' ? `/foods/${link}` : `/drinks/${link}` }
       key={ index }
         data-testid={ `${index}-recipe-card` }
-        className="bg-white rounded-xl my-5 transition duration-1000"
+        className="bg-white rounded-xl sm:my-4 transition duration-1000 w-11/12 sm:w-1/3 mx-auto"
       >
-        <div className="flex items-center justify-center hover:shadow-2xl p-4 mx-14 w-20*">
+        <div className="flex items-center justify-start hover:shadow-2xl sm:p-4 sm:mx-14">
           <img
             data-testid={ `${index}-card-img` }
             src={ image }
