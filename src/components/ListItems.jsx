@@ -5,7 +5,6 @@ import SliderMenu from '../components/SliderMenu';
 import SliderContent from '../components/SliderContent';
 import SliderHeader from '../components/SliderHeader';
 import SearchBar from '../components/SearchBar';
-import Footer from '../components/Footer';
 import contexto from '../context';
 import { motion } from 'framer-motion';
 
@@ -54,7 +53,6 @@ export default function ListItems(props) {
       text2:'easily and be happy!'
     },
   ];
-  const { history } = props;
   const cont = useContext(contexto);
   const { context } = cont;
   const {
@@ -109,7 +107,6 @@ export default function ListItems(props) {
         <SliderContent />
         </div>
      </section>
-      <Footer history={ history } />
     </div>
   );
 }

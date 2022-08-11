@@ -23,7 +23,22 @@ export default function SliderMenu() {
 
   return(
     <Swiper
-      slidesPerView="6"
+      breakpoints={{
+        // when window width is >= 320px
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 2
+        },
+        // when window width is >= 480px
+        480: {
+          slidesPerView: 3,
+          spaceBetween: 3
+        },
+        // when window width is >= 640px
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 4,
+        }}}
       loop={true}
       className="w-full sm:w-11/12 mt-10"
     >

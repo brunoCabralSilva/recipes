@@ -5,21 +5,18 @@ module.exports = {
   ],
   theme: {
     extend: {
+      rotate: {
+        '_45deg': '-45deg',
+      },
       backgroundImage: {
         'marmore': "url('../src/images/marmore.jpg')",
         'textura': "url('../src/images/textura-marrom.png')",
       },
       colors: {
-        'madeira': 'rgb(104,75,57)',
-        'bege': 'rgb(240, 230, 224)',
         'transp': 'rgb(240, 230, 224, 0)',
-        'dark':'rgb(60, 33, 17)',
         'half-transp': 'rgb(0,0,0,0.8)',
         'min-transp': 'rgb(0,0,0,0.6)',
         'light-transp': 'rgb(255,255,255,0.7)',
-        'dark-brown': 'rgb(38, 23, 14)',
-        'light-brown': 'rgb(231, 215, 206)',
-        'medium-brown': 'rgb(82, 58, 43)',
       },
       spacing: {
         '128': '35rem',

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import searchImg from '../images/searchIcon.svg';
 import profileImg from '../images/profileIcon.svg';
+import SearchBar from '../components/SearchBar';
 import contexto from '../context/index';
 
 export default function Header(props) {
@@ -24,22 +25,23 @@ export default function Header(props) {
       src={ searchImg }
       className="p-2"
     >
-      <i className="fa-solid fa-magnifying-glass text-dark-brown text-xl"></i>
+      <i className="fa-solid fa-magnifying-glass text-black text-xl"></i>
     </button>
   );
 
   return (
-    <header className="flex flex-col w-full">
+    <header className="fixed top-0 bg-white flex flex-col w-full z-30">
       <div className="flex flex-row justify-between items-center p-2 w-full">
         <div className="flex items-center">
           {
             icon === false ? <div /> : <img src={require(`../images/${title === "Foods" ? "icon_food.jpg" : "img-drinks.png"}`)} className="h-10" alt="icon food" /> 
           }
-          <h1 data-testid="page-title" className="ml-5 text-dark-brown text-xl font-bold">
+          <h1 data-testid="page-title" className="ml-5 text-black text-xl font-bold">
             { title }
           </h1>
         </div>
-        <div>
+        <SearchBar />
+        {/* <div>
           {
             searchIcon === 'visible'
               ? showSearchButton()
@@ -52,9 +54,9 @@ export default function Header(props) {
             src={ profileImg }
             className="p-2 ml-0 sm:mx-3"
           >
-            <i className="fa-solid fa-user text-xl text-dark-brown"></i>
+            <i className="fa-solid fa-user text-xl text-black"></i>
           </button>
-        </div>
+        </div> */}
       </div>
       <div className="flex items-center justify-center">
         <div className="flex flex-col items-center w-11/12 sm:w-3/5 md:w-2/5 items-center justify-center">

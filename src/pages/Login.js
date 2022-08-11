@@ -64,18 +64,18 @@ export default function Login() {
         <div className={`shadow-2xl flex flex-col items-center justify-center w-4/5 sm:w-1/2 pt-5 sm:pt-10 pb-5 sm:pb-5 px-7 glassmorphism
         ${(user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email))
         ? 'border border-white'
-        : 'border border-madeira'}`}>
+        : 'border border-black'}`}>
           <div className={
             `rounded-full h-20 w-20 mb-6 sm:mb-0 flex items-center justify-center text-white
             ${(user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email))
               ? 'bg-gray-800'
-              : 'bg-madeira'
+              : 'bg-black'
             }`}
           >
             <i className="fa-solid fa-user text-white text-5xl"></i>
           </div>
           <label htmlFor="input-email" className="text-sm flex flex-col justify-center items-center w-11/12 sm:mt-10">
-            <span className="w-full text-madeira text-left pb-4 font-bold">Email</span>
+            <span className="w-full text-black text-left pb-4 font-bold">Email</span>
           <input
             type="email"
             name="email"
@@ -84,11 +84,11 @@ export default function Login() {
             onChange={ handleChange }
             id="input-email"
             autocomplete="off"
-            className="text-center placeholder:text-madeira placeholder:text-sm text-madeira mb-1 w-full bg-transp border-b border-madeira"
+            className="text-center placeholder:text-black placeholder:text-sm mb-1 w-full bg-transp border-b border-madeira"
           />
           </label>
           <label htmlFor="input-email" className="text-sm flex flex-col justify-center items-center w-11/12  mt-5">
-          <span className="w-full text-madeira text-left pb-2 font-bold">Senha</span>
+          <span className="w-full text-black text-left pb-2 font-bold">Senha</span>
           <input
             type="password"
             name="password"
@@ -96,7 +96,7 @@ export default function Login() {
             data-testid="password-input"
             onChange={ handleChange }
             autocomplete="off"
-            className="text-center placeholder:text-madeira placeholder:text-sm text-madeira mb-1 w-full bg-transp border-b border-madeira"
+            className="text-center placeholder:text-black placeholder:text-sm mb-1 w-full bg-transp border-b border-madeira"
           />
           </label>
           <button
@@ -108,7 +108,7 @@ export default function Login() {
               `text-center my-4 p-2 w-full font-bold transition duration-1000
               ${(user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email))
               ? 'bg-gray-800 text-white hover:bg-gray-800'
-              : 'bg-madeira text-white hover:bg-dark-brown'
+              : 'bg-black text-white text-base hover:text-lg transition duration-500'
               }`
             }
           >

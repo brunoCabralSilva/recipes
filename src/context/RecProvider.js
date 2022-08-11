@@ -27,15 +27,11 @@ export default function RecProvider({ children }) {
     setMealFixedList(food.meals);
     const btnApiFood = await fetchBtnFoods();
     setBtnFoodFixedList(btnApiFood.meals);
-    
     const drink = await fetchDrinks();
     setDrinkFixedList(drink.drinks);
     const btnApiDrink = await fetchBtnDrinks();
     setBtnDrinkFixedList(btnApiDrink.drinks);
-  }
-
-  const requisitonApiItem = async (type) => {
-    if (type === 'drinks') {
+      if (type === 'drinks') {
       setButtons(btnDrinkFixedList);
       setListApi(drinkFixedList);
     } else {
@@ -132,7 +128,6 @@ export default function RecProvider({ children }) {
     drinkFixedList,
     setInListApi,
     alterType,
-    requisitonApiItem,
     setSearchBar,
     reqApiCategory,
     clearFilterCat,

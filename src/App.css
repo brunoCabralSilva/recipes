@@ -45,9 +45,3 @@ textarea:focus, input:focus {
     -webkit-text-stroke-width: 1px; /* largura da borda */
     -webkit-text-stroke-color: white; /* cor da borda */
 }
-
-@media (max-width: 540px) {
-    .swiper-button-prev::after, .swiper-button-next::after  {
-        display: none;
-    }
-}

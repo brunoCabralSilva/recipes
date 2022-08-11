@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
 
 export default function Profile() {
@@ -57,7 +56,6 @@ export default function Profile() {
           </button>
         </div>
       </div>
-      <Footer history={ history } />
     </motion.div>
   );
 }

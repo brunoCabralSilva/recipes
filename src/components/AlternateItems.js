@@ -1,17 +1,18 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import drinkIcon from '../images/drinkIcon.jpg';
 import mealIcon from '../images/mealllicon.jpg';
 import contexto from '../context';
 
-function Footer(props) {
+export default function AlternateItems(props) {
   const cont = useContext(contexto);
   const { context } = cont;
   const {
     alterType, clearFilterCat, setSearchBar
   } = context
 
-  const { history } = props;
+  const history = useHistory();
 
   const drinkRedirect = () => {
     clearFilterCat();
@@ -29,7 +30,7 @@ function Footer(props) {
 
 
   return (
-    <footer className="bottom-14 sm:bottom-10 sm:right-0 fixed z-40 flex flex-col items-end w-full justify-end">
+    <footer className="flex flex-row items-end w-full justify-center pb-10">
       <button
         type="button"
         aria-label="drinks"
@@ -43,7 +44,7 @@ function Footer(props) {
       <button
         type="button"
         aria-label="foods"
-        className="mx-2 sm:mx-4 my-3 bg-white rounded-full w-12 sm:w-16 h-12 sm:h-16 flex items-center justify-center"
+        className="mx-2 sm:mx-4 bg-white rounded-full w-12 sm:w-16 h-12 sm:h-16 flex items-center justify-center"
         src="../images/mealIcon.svg"
         data-testid="food-bottom-btn"
         onClick={ foodRedirect }
@@ -58,10 +59,8 @@ function Footer(props) {
   );
 }
 
-Footer.propTypes = {
+AlternateItems.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
 };
-
-export default Footer;
