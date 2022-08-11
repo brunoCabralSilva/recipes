@@ -4,6 +4,14 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    screens: {     
+      'mm': '615px',
+      'sm':	'640px',
+      'md':	'768px',
+      'lg':	'1024px',
+      'xl':	'1280px',
+      '2xl':	'1536px',
+    },
     extend: {
       rotate: {
         '_45deg': '-45deg',

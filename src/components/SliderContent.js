@@ -11,14 +11,6 @@ export default function SliderContent() {
       setInListApi(mealFixedList);
   }, []);
 
-  const returnList = () => {
-    if(type === 'foods'){
-      handleCategoryFilter(mealFixedList);
-    } else {
-      handleCategoryFilter(drinkFixedList);
-    }
-  }
-
   const handleCategoryFilter = (list) => {
     if(type==="foods") {
       const cat = list.slice(0, +'18').map((item, index) => (
