@@ -157,8 +157,6 @@ export default function RecipeInProgress(props) {
       setFav([itemAdd]);
     } else {
       const ids = fav.map((f) => f.id);
-      console.log('ids', ids);
-      console.log('item', itemFD);
       if (ids.includes(itemFD)) {
         const filtro = fav.filter((fil) => fil.id !== itemFD);
         localStorage.setItem('favoriteRecipes', JSON.stringify(filtro));
@@ -184,7 +182,6 @@ export default function RecipeInProgress(props) {
 
   const directClick = () => {
     history.push('/done-recipes');
-    console.log(foodsInProgress[0].strTags);
     const itemAdd = {
       id: foodsInProgress[0].idMeal,
       type: 'food',

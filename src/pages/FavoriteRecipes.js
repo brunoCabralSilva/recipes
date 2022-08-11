@@ -19,7 +19,6 @@ export default function FavoriteRecipes(props) {
     const storageRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     setStorage(storageRecipes);
     setOptions(storageRecipes);
-    console.log(storageRecipes);
   }, []);
 
   const retornaIcone = () => vazio;

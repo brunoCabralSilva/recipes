@@ -18,7 +18,6 @@ export default function DoneRecipes(props) {
     const storageRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
     setStorage(storageRecipes);
     setOptions(storageRecipes);
-    console.log(storageRecipes);
   }, []);
 
   const foodItemReturn = (item, index) => (

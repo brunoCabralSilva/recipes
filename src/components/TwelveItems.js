@@ -63,7 +63,6 @@ export default function TwelveItems(props) {
         image: drinkId[0].strDrinkThumb,
       };
     } else {
-      console.log(foodId);
       itemAdd = {
         id: foodId[0].idMeal,
         type: 'food',

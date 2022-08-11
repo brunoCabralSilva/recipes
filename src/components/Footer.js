@@ -8,7 +8,7 @@ function Footer(props) {
   const cont = useContext(contexto);
   const { context } = cont;
   const {
-    alterType, clearFilterCat 
+    alterType, clearFilterCat, setSearchBar
   } = context
 
   const { history } = props;
@@ -17,12 +17,14 @@ function Footer(props) {
     clearFilterCat();
     history.push('/drinks');
     alterType('drinks');
+    setSearchBar(false);
   };
 
   const foodRedirect = () => {
     clearFilterCat();
     history.push('/foods');
     alterType('foods');
+    setSearchBar(false);
   };
 
 

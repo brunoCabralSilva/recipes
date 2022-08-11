@@ -12,8 +12,8 @@ export default function SliderHeader(props) {
     >
       {
         list.map((image) => (
-          <SwiperSlide className="relative flex items-center sm:items-end ">
-            <p className="absolute z-40 text-white text-5xl sm:text-6xl font-bold p-3 sm:p-7 mb-5">{ image.text1 }<br />{ image.text2 }</p>
+          <SwiperSlide className="relative flex items-end">
+            <p className="w-2/3 sm:w-full absolute z-40 text-white text-5xl sm:text-6xl font-bold p-3 sm:p-7 sm:mb-5 mb-12">{ image.text1 }<br />{ image.text2 }</p>
             <div  className="absolute bg-min-transp h-full w-full z-30" />
             <img src={require(`../images/${image.image}`)} alt="" className="relative w-full h-80vh object-cover" />
           </SwiperSlide>

@@ -40,12 +40,12 @@ export default function ListItems(props) {
     },
     {
       image: 'imgfood.jpg',
-      text1: 'Here you will find the beauty ',
+      text1: "It's time to find the beauty ",
       text2:'in the art of Cook.'
     },
     {
       image: 'foodwallpaper.jpg',
-      text1: 'Discover the',
+      text1: 'Discover with us the',
       text2:'pleasure of cooking!'
     },
     {
@@ -90,7 +90,7 @@ export default function ListItems(props) {
           ? <SliderHeader list={imageDrinks} />
           : <SliderHeader list={imageFoods} />
       }
-      <div className="right-0 top-0 fixed z-40 w-1/4">{searchArea && <SearchBar />}</div>
+      {searchArea && <SearchBar />}
       </div>
       <section>
         <div className="flex flex-row justify-center my-2">

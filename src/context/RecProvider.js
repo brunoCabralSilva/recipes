@@ -48,12 +48,10 @@ export default function RecProvider({ children }) {
     if(type === 'drinks') {
       const req = await reqCategoryDrink(category);
         const searchItem = await fetch(`www.thecocktaildb.com/api/json/v1/1/lookup.php?i=52917`);
-        console.log(searchItem);
       setFilterCat(req.drinks);
     } else {
       const req = await reqCategoryFood(category);
         const searchItem = await fetch(`www.themealdb.com/api/json/v1/1/lookup.php?i=52917`);
-      console.log(searchItem);
       setFilterCat(req.meals);
     }
   }
@@ -66,8 +64,10 @@ export default function RecProvider({ children }) {
     setFilterCat([]);
   }
 
-  const setSearchBar = () => {
+  const setSearchBar = (bool) => {
+    if(bool === undefined) {
     setSearchArea(!searchArea);
+    } else setSearchArea(bool);
   }
 
   const setInListApi = (list) => {

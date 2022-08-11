@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import contexto from '../context';
 
 export default function Item({ link, image, text, name, tags, index }) {
-  console.log(name);
   const cont = useContext(contexto);
   const { context } = cont;
   const { type } = context;
