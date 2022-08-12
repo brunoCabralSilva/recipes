@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import contexto from '../context';
 import { useHistory } from 'react-router-dom';
 
-export default function StartRecipe(props) {
-  const { type, id } = props;
+export default function StartRecipe() {
+  const cont = useContext(contexto);
+  const { context } = cont;
+  const { type, drinkId, foodId } = context;
   const history = useHistory();
 
   const redirect = () => {
-    if (type === 'drink') {
-      history.push(`/drinks/${id}/in-progress`);
-    } else {
-      history.push(`/foods/${id}/in-progress`);
+    if (type === 'foods' && foodId.meals) {
+      history.push(`/foods/${foodId.meals[0].idMeal}/in-progress`);
+    } else if ( (type === 'drinks' && drinkId.drinks)){
+      history.push(`/drinks/${drinkId.drinks[0].idDrink}/in-progress`);
     }
   };
 

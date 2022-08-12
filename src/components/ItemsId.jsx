@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Recomended from './Recomended';
@@ -25,16 +25,24 @@ export default function ItemsId(props) {
     object
   } = props;
 
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (favorites !== null) {
+      setFav(favorites);
+    }
+  }, []);
+
+
   const favoriteRecipesFunc = () => {
     let itemAdd = {
-      name,
-      image,
-      category,
-      instructions,
-      youtube,
-      id,
-      nationality,
-      alcoholicOrNot,
+      name: name,
+      image: image,
+      category: category,
+      instructions: instructions,
+      youtube: youtube,
+      id: id,
+      nationality: nationality,
+      alcoholicOrNot: alcoholicOrNot,
     };
 
     const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -137,9 +145,6 @@ export default function ItemsId(props) {
       }}
       exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
       >
-        {
-          console.log(name, image, category, instructions, youtube)
-        }
         <div className="w-full">
         <div className="flex flex-col sm:flex-row">
           <img
@@ -174,7 +179,7 @@ export default function ItemsId(props) {
         </div>
       </div>
           <Recomended />
-          <StartRecipe type="drink" id={ "" } /> 
+          <StartRecipe /> 
     </motion.div>
   );
 }
