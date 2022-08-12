@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import contexto from '../context';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function Recomended(props) {
-  const { in12, type } = props;
+  const { type } = props;
   const [direcao, setDirecao] = useState(0);
+  const cont = useContext(contexto);
+  const { context } = cont;
+  const { drinkFixedList, btnFoodFixedList } = context;
 
   const retornaItems = (index, item) => {
     if (type === 'food') {
@@ -66,7 +70,7 @@ export default function Recomended(props) {
             <IoIosArrowBack className="text-6xl text-white" />
           </button>
         <div className="flex flex-row">
-          {in12.slice(0, +'6').map((item, index) => (
+          {btnFoodFixedList.slice(0, +'6').map((item, index) => (
             <div
               data-testid={ `${index}-recomendation-card` }
               key={ index }

@@ -34,12 +34,28 @@
       return data;
     }
 
+    const reqApiFoodsID = async (id) => {
+      const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+      const result = await fetch(url);
+      const data = await result.json();
+      return data;
+    };
+  
+    const reqApiDrinksID = async (id) => {
+      const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+      const result = await fetch(url);
+      const data = await result.json();
+      return data;
+    };
+
     const fetchs = { 
       fetchFoods,
       fetchBtnFoods,
       fetchDrinks,
       fetchBtnDrinks,
       reqCategoryDrink,
-      reqCategoryFood
+      reqCategoryFood,
+      reqApiFoodsID,
+      reqApiDrinksID,
     };
     export default fetchs;

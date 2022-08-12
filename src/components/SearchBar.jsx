@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import contexto from '../context';
-import Header from '../components/Header';
-import AlternateItems from '../components/AlternateItems';
+import Header from './Header';
+import AlternateItems from './AlternateItems';
 
 export default function SearchBar() {
   const cont = useContext(contexto);

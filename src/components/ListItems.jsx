@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import SliderMenu from '../components/SliderMenu';
+import SliderMenu from './SliderMenu';
 import SliderContent from '../components/SliderContent';
 import SliderHeader from '../components/SliderHeader';
 import SearchBar from '../components/SearchBar';
