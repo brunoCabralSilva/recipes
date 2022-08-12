@@ -1,25 +1,50 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import contexto from '../context';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import fetchs from '../fetchs';
+const { fetchFoods, fetchDrinks } = fetchs;
 
 export default function Recomended() {
   const [direcao, setDirecao] = useState(0);
   const cont = useContext(contexto);
-  const [list, setList] = useState([]);
+  const [item, setItem] = useState('');
   const { context } = cont;
-  const { drinkFixedList, mealFixedList, type } = context;
+  const { type } = context;
 
-  useState(() => {
-    if (type === 'foods') {
-      setList(drinkFixedList);
-    } else setList(mealFixedList);
+  useEffect(() => {
+    const fetchFunction = async () => {
+      const foodsList = await fetchFoods();
+      const drinksList = await fetchDrinks();
+      let list = [];
+      if (type === 'foods') {
+        list = drinksList.drinks;
+      } else {
+        list = foodsList.meals;
+      }
+      if (list.length > 0) {
+      const lista = list.slice(0, +'6').map((item, index) => (
+        <div
+          data-testid={ `${index}-recomendation-card` }
+          key={ index }
+          className={ `w-full m-3 ${validateItemScroll(index)}` }
+        >
+          {
+            retornaItems(index, item)
+          }
+        </div>
+      ));
+      setItem(lista);
+      }
+    }
+    fetchFunction();
   }, []);
 
   const retornaItems = (index, item) => {
     if (type === 'drinks') {
       return (
         <div className="relative flex">
+          {console.log('pei')}
           <div className="absolute bg-gradient-to-t from-transp to-min-transp w-full h-full
           z-20" />
           <p
@@ -76,17 +101,7 @@ export default function Recomended() {
             <IoIosArrowBack className="text-6xl text-white" />
           </button>
         <div className="flex flex-row">
-          {list.length > 1 && list.slice(0, +'6').map((item, index) => (
-            <div
-              data-testid={ `${index}-recomendation-card` }
-              key={ index }
-              className={ `w-full m-3 ${validateItemScroll(index)}` }
-            >
-              {
-                retornaItems(index, item)
-              }
-            </div>
-          ))}
+          {item}
         </div>
         <button
           type="button"
@@ -98,8 +113,3 @@ export default function Recomended() {
       </div>
     </section>);
 }
-
-Recomended.propTypes = {
-  in12: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-};

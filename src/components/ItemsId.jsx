@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import contexto from '../context';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Recomended from './Recomended';
@@ -13,6 +14,9 @@ export default function ItemsId(props) {
   const [link, setLink] = useState('');
   const [fav, setFav] = useState([]);
   const { pathname } = useLocation();
+  const cont = useContext(contexto);
+  const { context } = cont;
+  const { drinkFixedList, initialRequest } = context;
   const {
     name,
     image,
