@@ -8,7 +8,7 @@ const { fetchFoods, fetchDrinks } = fetchs;
 export default function Recomended() {
   const [direcao, setDirecao] = useState(0);
   const cont = useContext(contexto);
-  const [item, setItem] = useState('');
+  const [list, setList] = useState('');
   const { context } = cont;
   const { type } = context;
 
@@ -16,25 +16,10 @@ export default function Recomended() {
     const fetchFunction = async () => {
       const foodsList = await fetchFoods();
       const drinksList = await fetchDrinks();
-      let list = [];
       if (type === 'foods') {
-        list = drinksList.drinks;
+        setList(drinksList.drinks);
       } else {
-        list = foodsList.meals;
-      }
-      if (list.length > 0) {
-      const lista = list.slice(0, +'6').map((item, index) => (
-        <div
-          data-testid={ `${index}-recomendation-card` }
-          key={ index }
-          className={ `w-full m-3 ${validateItemScroll(index)}` }
-        >
-          {
-            retornaItems(index, item)
-          }
-        </div>
-      ));
-      setItem(lista);
+        setList(foodsList.meals);
       }
     }
     fetchFunction();
@@ -44,7 +29,6 @@ export default function Recomended() {
     if (type === 'drinks') {
       return (
         <div className="relative flex">
-          {console.log('pei')}
           <div className="absolute bg-gradient-to-t from-transp to-min-transp w-full h-full
           z-20" />
           <p
@@ -101,7 +85,15 @@ export default function Recomended() {
             <IoIosArrowBack className="text-6xl text-white" />
           </button>
         <div className="flex flex-row">
-          {item}
+          { list.length > 0 && list.slice(0, +'6').map((item, index) => (
+            <div
+              data-testid={ `${index}-recomendation-card` }
+              key={ index }
+              className={ `w-full m-3 ${validateItemScroll(index)}` }
+            >
+              { retornaItems(index, item) }
+            </div>
+          ))}
         </div>
         <button
           type="button"
