@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/trybe-20-recipes/static/css/main.eb4c6bed.css",
-    "main.js": "/trybe-20-recipes/static/js/main.eeb20d3f.js",
+    "main.css": "/trybe-20-recipes/static/css/main.553292ca.css",
+    "main.js": "/trybe-20-recipes/static/js/main.a3097037.js",
     "static/media/foodwallpaper.jpg": "/trybe-20-recipes/static/media/foodwallpaper.c77ff65cbaaee50d8270.jpg",
     "static/media/Cocktail.jpg": "/trybe-20-recipes/static/media/Cocktail.a1c1be9bc4111b6b4bb0.jpg",
     "static/media/imgfood.jpg": "/trybe-20-recipes/static/media/imgfood.a00a57e5e9c46a06b15a.jpg",
@@ -31,18 +31,18 @@
     "static/media/textura-marrom.png": "/trybe-20-recipes/static/media/textura-marrom.3238846d975f407793bc.png",
     "static/media/mealllicon.jpg": "/trybe-20-recipes/static/media/mealllicon.46cc52b70f2cc515d434.jpg",
     "static/media/shareIcon.svg": "/trybe-20-recipes/static/media/shareIcon.87def1bd1dff9af9263f046c3b9bd31a.svg",
-    "static/media/profileIcon.svg": "/trybe-20-recipes/static/media/profileIcon.44eb3608f431845fe2fc2d2a23d758ae.svg",
+    "static/media/profileIcon.svg": "/trybe-20-recipes/static/media/profileIcon.44eb3608f431845fe2fc.svg",
     "static/media/whiteHeartIcon.svg": "/trybe-20-recipes/static/media/whiteHeartIcon.2b822118952dc5140129c6349fcd0472.svg",
-    "static/media/searchIcon.svg": "/trybe-20-recipes/static/media/searchIcon.7353564d025de989f86f66ecb0202a04.svg",
+    "static/media/searchIcon.svg": "/trybe-20-recipes/static/media/searchIcon.7353564d025de989f86f.svg",
     "static/media/garfo.jpg": "/trybe-20-recipes/static/media/garfo.0e473a7129a2a9f7ae3e.jpg",
     "static/media/blackHeartIcon.svg": "/trybe-20-recipes/static/media/blackHeartIcon.083cb006913d197c95857ebfa2161db7.svg",
     "static/media/rockGlass.svg": "/trybe-20-recipes/static/media/rockGlass.5664c67efadc4f525eae.svg",
     "index.html": "/trybe-20-recipes/index.html",
-    "main.eb4c6bed.css.map": "/trybe-20-recipes/static/css/main.eb4c6bed.css.map",
-    "main.eeb20d3f.js.map": "/trybe-20-recipes/static/js/main.eeb20d3f.js.map"
+    "main.553292ca.css.map": "/trybe-20-recipes/static/css/main.553292ca.css.map",
+    "main.a3097037.js.map": "/trybe-20-recipes/static/js/main.a3097037.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb4c6bed.css",
-    "static/js/main.eeb20d3f.js"
+    "static/css/main.553292ca.css",
+    "static/js/main.a3097037.js"
   ]
 }
