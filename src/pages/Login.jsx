@@ -1,8 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SliderLogin from '../components/SliderLogin';
-import contexto from '../context';
 
 export default function Login() {
   const validateEmail = /\S+@\S+\.\S+/;
@@ -64,12 +63,12 @@ export default function Login() {
         <div className={`shadow-2xl flex flex-col items-center justify-center w-4/5 sm:w-1/2 pt-5 sm:pt-10 pb-5 sm:pb-5 px-7 glassmorphism
         ${(user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email))
         ? 'border border-white'
-        : 'border border-black'}`}>
+        : 'border border-white'}`}>
           <div className={
             `rounded-full h-20 w-20 mb-6 sm:mb-0 flex items-center justify-center text-white
             ${(user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email))
-              ? 'bg-gray-800'
-              : 'bg-black'
+              ? 'bg-red-700 opacity-60'
+              : 'bg-red-700 opacity-100'
             }`}
           >
             <i className="fa-solid fa-user text-white text-5xl"></i>
@@ -107,8 +106,8 @@ export default function Login() {
             className={
               `text-center my-4 p-2 w-full font-bold transition duration-1000
               ${(user.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(user.email))
-              ? 'bg-gray-800 text-white hover:bg-gray-800'
-              : 'bg-black text-white text-base hover:text-lg transition duration-500'
+              ? 'bg-red-700 text-white hover:bg-red-800 opacity-70'
+              : 'bg-red-700 text-white hover:bg-red-800 opacity-100 transition duration-500'
               }`
             }
           >

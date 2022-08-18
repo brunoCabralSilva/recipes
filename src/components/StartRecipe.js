@@ -24,7 +24,7 @@ export default function StartRecipe() {
         <button
           type="button"
           data-testid="start-recipe-btn"
-          className="fixed bottom-0 right-0 m-4 bg-white px-3 py-4 border border-black hover:bg-madeira transition duration-1000 hover:text-white z-40"
+          className="px-3 text-xl py-4 border border-black hover:bg-black transition duration-1000 hover:text-white z-40"
           onClick={ redirect }
         >
           Start Recipe
@@ -35,7 +35,7 @@ export default function StartRecipe() {
         <button
           type="button"
           data-testid="start-recipe-btn"
-          className="fixed bottom-0 right-0 m-4 bg-white px-3 py-4 border border-black hover:bg-madeira transition duration-1000 hover:text-white z-40"
+          className=" m-4 px-3 py-4 border border-white hover:bg-red-700 transition duration-1000 hover:text-white z-40"
           onClick={ redirect }
         >
           Continue Recipe

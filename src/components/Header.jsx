@@ -1,33 +1,10 @@
-import React, {useContext} from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
-import searchImg from '../images/searchIcon.svg';
-import profileImg from '../images/profileIcon.svg';
 import SearchBar from './SearchBar';
-import contexto from '../context/index';
 
 export default function Header(props) {
-  const history = useHistory();
-  const cont = useContext(contexto);
-  const { context } = cont;
-  const { setSearchBar } = context;
-  const { title, searchIcon, icon } = props;
+  const { title, icon } = props;
 
-  const ProfileRedirect = () => {
-    history.push('/profile');
-  };
-
-  const showSearchButton = () => (
-    <button
-      type="button"
-      data-testid="search-top-btn"
-      onClick={ () => setSearchBar() }
-      src={ searchImg }
-      className="p-2"
-    >
-      <i className="fa-solid fa-magnifying-glass text-black text-xl"></i>
-    </button>
-  );
 
   return (
     <header className="fixed top-0 bg-white flex flex-col w-full z-30">
