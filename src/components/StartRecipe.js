@@ -10,8 +10,10 @@ export default function StartRecipe() {
 
   const redirect = () => {
     if (type === 'foods' && foodId.meals) {
+      console.log(`/foods/${foodId.meals[0].idMeal}/in-progress`);
       history.push(`/foods/${foodId.meals[0].idMeal}/in-progress`);
     } else if ( (type === 'drinks' && drinkId.drinks)){
+      console.log(`/drinks/${drinkId.drinks[0].idDrink}/in-progress`);
       history.push(`/drinks/${drinkId.drinks[0].idDrink}/in-progress`);
     }
   };

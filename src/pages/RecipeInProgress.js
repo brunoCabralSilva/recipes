@@ -20,7 +20,19 @@ export default function RecipeInProgress(props) {
   const cont = useContext(contexto);
   const { context } = cont;
 
-  const { reqApiProgressFoods, foodsInProgress } = context;
+  const {
+    type,
+    reqApiFId,
+    reqApiDId,
+    foodId,
+    DrinkId
+  } = context;
+
+  const {
+    match: {
+      params: { id },
+    },
+  } = props;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,13 +43,12 @@ export default function RecipeInProgress(props) {
     } else {
       setSave(getItens);
     }
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
 
-    reqApiProgressFoods(id);
+    if (type === "drinks") {
+      reqApiDId(id);
+    } else {
+    reqApiFId(id);
+    }
 
     if (favorites !== null) {
       setFav(favorites);
@@ -47,8 +58,8 @@ export default function RecipeInProgress(props) {
   }, []);
 
   const returnDisabled = () => {
-    if (foodsInProgress[0]) {
-      const obj = Object.entries(foodsInProgress[0]);
+    if (foodId[0]) {
+      const obj = Object.entries(foodId[0]);
       const ingredients = obj
         .filter((name) => name[0].includes('strIngredient'))
         .filter((item) => item[1] !== '' && item[1] !== null);
@@ -142,13 +153,13 @@ export default function RecipeInProgress(props) {
 
   const favoriteRecipesFunc = () => {
     const itemAdd = {
-      id: foodsInProgress[0].idMeal,
+      id: foodId.meals[0].idMeal,
       type: 'food',
-      nationality: foodsInProgress[0].strArea,
-      category: foodsInProgress[0].strCategory,
+      nationality: foodId.meals[0].strArea,
+      category: foodId.meals[0].strCategory,
       alcoholicOrNot: '',
-      name: foodsInProgress[0].strMeal,
-      image: foodsInProgress[0].strMealThumb,
+      name: foodId.meals[0].strMeal,
+      image: foodId.meals[0].strMealThumb,
     };
 
     const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -183,15 +194,15 @@ export default function RecipeInProgress(props) {
   const directClick = () => {
     history.push('/done-recipes');
     const itemAdd = {
-      id: foodsInProgress[0].idMeal,
+      id: foodId.meals[0].idMeal,
       type: 'food',
-      nationality: foodsInProgress[0].strArea,
-      category: foodsInProgress[0].strCategory,
+      nationality: foodId.meals[0].strArea,
+      category: foodId.meals[0].strCategory,
       alcoholicOrNot: '',
-      name: foodsInProgress[0].strMeal,
-      image: foodsInProgress[0].strMealThumb,
+      name: foodId.meals[0].strMeal,
+      image: foodId.meals[0].strMealThumb,
       doneDate: new Date(),
-      tags: foodsInProgress[0].strTags.split(','),
+      tags: foodId.meals[0].strTags.split(','),
     };
     const localFood = JSON.parse(localStorage.getItem('doneRecipes'));
     if (localFood === null) {
@@ -211,52 +222,51 @@ export default function RecipeInProgress(props) {
     }}
     exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
     >
-      {foodsInProgress.map((food) => (
-        <div key={ food.idMeal } className="flex flex-col items-center">
-          <div className="flex flex-col sm:flex-row w-full">
-            <img src={ food.strMealThumb } alt="" data-testid="recipe-photo" className="object-cover w-full sm:w-50%" />
-            <div className="w-full sm:w-50% justify-center items-start flex flex-col">
-              <p data-testid="recipe-title" className="mt-10 mb-5 text-4xl font-bold w-full text-center">
-                {food.strMeal}
-                <span>{' - '}</span>
-                <span data-testid="recipe-category">{food.strCategory}</span>
-              </p>
-              <p data-testid="instructions" className="text-center w-4/5 mx-auto py-4">
-                {food.strInstructions}
-              </p>
-            <div className="flex my-4 w-full justify-center">
-            <button
-              type="button"
-              data-testid="favorite-btn"
-              onClick={ favoriteRecipesFunc }
-              src={ retornaIcone() }
-              className="mx-3"
-            >
-              <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
-            </button>
-            <button
-              type="button"
-              data-testid="share-btn"
-              onClick={ clickLink }
-            >
-              <img src={ share } alt="Botão Compartilhar" />
-            </button>
-          </div>
-          {link && <p className="w-full text-center py-5 font-bold">{link}</p>}
-          <ul className="w-full my-5">{handleIng(food)}</ul>
-        </div>
-          </div>
+      {console.log(foodId.meals[0])}
+      <div className="flex flex-col items-center">
+        <div className="flex flex-col sm:flex-row w-full">
+          <img src={ foodId.meals[0].strMealThumb } alt="" data-testid="recipe-photo" className="object-cover w-full sm:w-50%" />
+          <div className="w-full sm:w-50% justify-center items-start flex flex-col">
+            <p data-testid="recipe-title" className="mt-10 mb-5 text-4xl font-bold w-full text-center">
+              {foodId.meals[0].strMeal}
+              <span>{' - '}</span>
+              <span data-testid="recipe-category">{foodId.meals[0].strCategory}</span>
+            </p>
+            <p data-testid="instructions" className="text-center w-4/5 mx-auto py-4">
+              {foodId.meals[0].strInstructions}
+            </p>
+          <div className="flex my-4 w-full justify-center">
           <button
             type="button"
-            data-testid="finish-recipe-btn"
-            onClick={ directClick }
-            disabled={ returnDisabled() }
-            className="fixed bottom-0 right-0 m-4 bg-white px-3 py-4 border border-black hover:bg-madeira transition duration-1000 hover:text-white"
+            data-testid="favorite-btn"
+            onClick={ favoriteRecipesFunc }
+            src={ retornaIcone() }
+            className="mx-3"
           >
-            Finalizar
+            <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
+          </button>
+          <button
+            type="button"
+            data-testid="share-btn"
+            onClick={ clickLink }
+          >
+            <img src={ share } alt="Botão Compartilhar" />
           </button>
         </div>
-      ))}
+        {link && <p className="w-full text-center py-5 font-bold">{link}</p>}
+        <ul className="w-full my-5">{handleIng(foodId.meals[0])}</ul>
+      </div>
+        </div>
+        <button
+          type="button"
+          data-testid="finish-recipe-btn"
+          onClick={ directClick }
+          disabled={ returnDisabled() }
+          className="fixed bottom-0 right-0 m-4 bg-white px-3 py-4 border border-black hover:bg-madeira transition duration-1000 hover:text-white"
+        >
+          Finalizar
+        </button>
+      </div>
     </motion.div>
   );
 }

@@ -107,29 +107,25 @@ export default function ItemsId(props) {
 
   const buttons = () => {
     return(
-      <div className="flex w-full">
-        <div className="flex w-full">
-          <div>
-        <button
-          type="button"
-          data-testid="favorite-btn"
-          onClick={ favoriteRecipesFunc }
-          src={ retornaIcone() }
-          className="mx-3"
-        >
-          <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
-        </button>
-        <button
-          type="button"
-          data-testid="share-btn"
-          onClick={ clickLink }
-          className="mx-3"
-        >
-          <img src={ share } alt="Botão Compartilhar" />
-        </button>
-        </div>
+      <div className="flex">
+          <button
+            type="button"
+            data-testid="favorite-btn"
+            onClick={ favoriteRecipesFunc }
+            src={ retornaIcone() }
+            className="mx-3"
+          >
+            <img src={ retornaIcone() } alt="botão favoritar/desfavoritar" />
+          </button>
+          <button
+            type="button"
+            data-testid="share-btn"
+            onClick={ clickLink }
+            className="mx-3"
+          >
+            <img src={ share } alt="Botão Compartilhar" />
+          </button>
         {link && <p className="w-full text-base sm:text-2xl text-center font-bold my-3">{link}</p>}
-        </div>
       </div>
     );
   }
@@ -146,8 +142,8 @@ export default function ItemsId(props) {
       >
         <div className="flex flex-col justify-center items-center w-full mt-4 sm:mt-0 mb-10 w-full text-left flex items-center z-40">
           <div className="w-full flex justify-center flex-col sm:flex-row items-center my-10">
-            <p data-testid="recipe-title" className="text-4xl mb-10 sm:mb-0 sm:text-6xl">{name}</p>
-            <div className="mx-10">{ buttons() }</div>
+            <p data-testid="recipe-title" className="text-center text-4xl mb-10 sm:mb-0 sm:text-6xl">{name}</p>
+            <div className="mx-10 flex justify-start">{ buttons() }</div>
           </div>
         <div
           className="w-full flex flex-col sm:flex-row"
