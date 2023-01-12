@@ -140,7 +140,7 @@ export default function ItemsId(props) {
       }}
       exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
       >
-        <div className="flex flex-col justify-center items-center w-full mt-4 sm:mt-0 mb-10 w-full text-left flex items-center z-40">
+        <div className="flex-col justify-center items-center w-full mt-4 sm:mt-0 mb-10 text-left flex z-40">
           <div className="w-full flex justify-center flex-col sm:flex-row items-center my-10">
             <p data-testid="recipe-title" className="text-center text-4xl mb-10 sm:mb-0 sm:text-6xl">{name}</p>
             <div className="mx-10 flex justify-start">{ buttons() }</div>
@@ -152,7 +152,7 @@ export default function ItemsId(props) {
             src={ image }
             alt=""
             data-testid="recipe-photo"
-            className="w-full object-cover w-full sm:w-1/2 sm:ml-16"
+            className="object-cover w-full sm:w-1/2 sm:ml-16"
           />
           <div className="flex justify-center w-full sm:w-1/2">
             <div className="w-full h-full text-center text-black z-40 flex flex-col items-center justify-center pb-10">

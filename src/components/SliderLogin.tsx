@@ -16,7 +16,7 @@ export default function SliderLogin() {
         className=""
     >
       <SwiperSlide className="h-screen w-full sm:w-1/2 ">
-        <img src={require("../images/food.jpg")} alt="" className="h-screen w-full object-cover " />
+        <img src={require("../images/8.jpg")} alt="" className="h-screen w-full object-cover " />
       </SwiperSlide>
       <SwiperSlide className="h-screen w-1/2">
         <img src={require("../images/drink.jpg")} alt="" className="h-screen w-full object-cover " />

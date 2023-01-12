@@ -1,51 +1,44 @@
 import React, { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import contexto from '../context';
-import Header from './Header';
+import { useHistory } from 'react-router-dom';
+import contextRecipes from '../contextRecipes/context';
 import AlternateItems from './AlternateItems';
 
 export default function SearchBar() {
-  const cont = useContext(contexto);
+  const context = useContext(contextRecipes);
   const history = useHistory();
-  const { context } = cont;
-  const { type, setSearchItem, setSearchBar } = context;
-  const [endPoint, setEndPoint] = useState('');
+  const { type, setFilterCat} = context;
+  const [endPoint, setEndPoint] = useState({});
   const [inputSearch, setInputSearch] = useState('');
   const meal = 'www.themealdb';
   const cock = 'www.thecocktaildb';
 
   const [ showMenu, setShowMenu] = useState(false);
 
-  const drinksFetch = (call) => {
+  const drinksFetch = (call: any) => {
     const { drinks } = call;
     if (Object.values(call).includes(null)) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     } else if (drinks.length === 1) {
-      setSearchItem(call);
-      setSearchBar();
+      setFilterCat(call.drinks);
       history.push(`/drinks/${drinks[0].idDrink}`);
     } else {
-      setSearchItem(call);
-      setSearchBar();
+      setFilterCat(call.drinks);
     }
   };
 
-  const foodsFetch = (call) => {
+  const foodsFetch = (call: any) => {
     const { meals } = call;
     if (Object.values(call).includes(null)) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     } else if (meals.length === 1) {
-      setSearchItem(call);
-      setSearchBar();
+      setFilterCat(call.drinks);
       history.push(`/foods/${meals[0].idMeal}`);
     } else {
-      setSearchItem(call);
-      setSearchBar();
+      setFilterCat(call.drinks);
     }
   };
 
-  const fetchApiFunc = async (end) => {
+  const fetchApiFunc = async (end: any) => {
     const fetchApi = await fetch(`https://${type === 'drinks' ? cock : meal}.com/api/json/v1/1/${end}${inputSearch}`);
     const fetchJson = await fetchApi.json();
     return fetchJson;
@@ -73,6 +66,7 @@ export default function SearchBar() {
       }
     }
     setInputSearch('');
+    setShowMenu(!showMenu);
   };
 
   const menu = () => {
@@ -111,19 +105,13 @@ export default function SearchBar() {
 
     return (
       <nav className="w-full font-andika text-base absolute 2xl:text-xl leading-6 z-50">
-        <div className={`fixed right-0 top-0 z-40 mr-4 mt-4 flex flex-col ${returnItemsMenu()}`}>
+        <div className={`fixed top-0 right-0 z-50 mr-4 mt-4 flex flex-col ${returnItemsMenu()}`}>
             <div onClick={menu} className="z-50">
-              <div className={`h-1 w-8 mb-1 z-40 ${showMenu ? 'bg-white' : 'bg-black'} ${barra1()}`}> </div>
-              <div className={`h-1 w-8 mb-1 z-40 ${showMenu ? 'bg-white' : 'bg-black'} ${barra2()}`}> </div>
-              <div className={`h-1 w-8 z-40 ${showMenu ? 'bg-white' : 'bg-black'} ${barra3()}`}> </div>
+              <div className={`h-1 w-8 mb-1 z-50 ${showMenu ? 'bg-white' : 'bg-black'} ${barra1()}`}> </div>
+              <div className={`h-1 w-8 mb-1 z-50 ${showMenu ? 'bg-white' : 'bg-black'} ${barra2()}`}> </div>
+              <div className={`h-1 w-8 z-50 ${showMenu ? 'bg-white' : 'bg-black'} ${barra3()}`}> </div>
             </div>
-          <ul
-            className={`${returnItemMenu()}`}
-            initial={{ x: 30, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            exit={{ y: -30, opacity: 0, transition: { duration: 0.5 } }}
-          >
+          <ul className={`${returnItemMenu()}`}>
             <div className="flex flex-col w-10/12 mx-auto items-center h-screen">
            <input
             type="text"
@@ -170,7 +158,10 @@ export default function SearchBar() {
             </label>
           </div>
         </div>
-        <a href={inputSearch !== '' && "#text"} className="w-full">
+        <a
+          href={inputSearch !== '' ? "#text": ''}
+          className="w-full"
+        >
           <button
             type="button"
             onClick={ search }
@@ -183,16 +174,12 @@ export default function SearchBar() {
           <div className="py-7 flex justify-center w-full">
             <hr className="bg-crepusculo w-1/2" />
           </div>
-          <AlternateItems />
+          <AlternateItems
+            setShowMenu={setShowMenu}
+            showMenu={showMenu}
+          />
         </ul>
       </div>
     </nav> 
   );
 }
-
-SearchBar.propTypes = {
-  title: PropTypes.string.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
-};
