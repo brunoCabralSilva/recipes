@@ -1,9 +1,7 @@
 import { createContext } from 'react';
-import { mealFixedListTypes, buttonsNavigationTypes, drinkFixedListTypes } from '../interfaces';
+import { buttonsNavigationTypes } from '../interfaces';
 
 interface RecipesContext {
-  user: string,
-  setUser: (newState: any) => void,
   fixedList: any[],
   setFixedList: (newState: any) => void,
   buttonsNavigation: any | buttonsNavigationTypes[],
@@ -22,17 +20,28 @@ interface RecipesContext {
   setObjItem: (newState: any) => void,
   type: string,
   setType: (newState: string) => void,
+  fav: any[],
+  setFav: (newState: any) => void,
+  link: string,
+  setLink: (newState: any) => void,
   reqApiCategory: (category: string, type: string) => void,
   reqApiFId: (newState: any) => any,
   reqApiDId: (newState: any) => any,
   initialRequest: () => void,
   listAllDrinks: () => void,
   listAllFoods: () => void,
+  isFav: (id: string) => boolean,
+  addFavorites: (item: any) => void, 
+  clickLink: (item: any) => void,
+  getFavorites: () => void,
+  createElement: (numState: any) => void,
+  objIngrMeas: any,
+  setObjIngrMeas: (numState: any) => void,
+  objGeneralist: any,
+  setObjGeneralist: (numState: any) => void,
 }
 
 const initialValue: RecipesContext = {
-  user: '',
-  setUser: () => {},
   fixedList: [],
   setFixedList: () => {},
   buttonsNavigation: [],
@@ -51,12 +60,25 @@ const initialValue: RecipesContext = {
   setObjItem: () => {},
   type: '',
   setType: () => {},
+  fav: [],
+  setFav: () => {},
   reqApiCategory: () => {},
   reqApiFId: () => {},
   reqApiDId: () => {},
   initialRequest: () => {},
   listAllDrinks: () => {},
   listAllFoods: () => {},
+  isFav: () => { return false },
+  addFavorites: () => {},
+  clickLink: () => {},
+  link: '',
+  setLink: () => {},
+  getFavorites: () => {},
+  createElement: () => {},
+  objIngrMeas: {},
+  setObjIngrMeas: () => {},
+  objGeneralist: {},
+  setObjGeneralist: () => {},
 }
 
 const contexto = createContext(initialValue);

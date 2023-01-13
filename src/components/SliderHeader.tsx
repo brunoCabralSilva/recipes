@@ -39,7 +39,7 @@ export default function SliderHeader(props: SliderHeaderProps) {
               </p>
               <div  className="absolute bg-min-transp h-full w-full z-30" />
               <img
-                src={require(`../images/${image.image}`)}
+                src={require(`../images/wallpapers/${image.image}`)}
                 alt=""
                 className="relative w-full h-full object-cover"
               />

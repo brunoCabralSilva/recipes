@@ -38,8 +38,8 @@ export default function Recipes() {
       />
       {
         type === 'foods'
-          ? <SliderHeader list={ imageDrinks } />
-          : <SliderHeader list={ imageFoods } />
+          ? <SliderHeader list={ imageFoods } />
+          : <SliderHeader list={ imageDrinks } />
       }
       <section>
         <div className="flex flex-row justify-center my-2">

@@ -57,7 +57,7 @@ export default function SliderMenu() {
          }}
         className="border border-dark-brown hover:border-black bg-white transition duration-500 hover:text-dark-brown text-dark-brown mx-1 flex items-center justify-center rounded text-sm p-2 cursor-pointer">
           <img
-            src={require('../images/all.jpg')}
+            src={require('../images/wallpapers/all.jpg')}
             alt=""
             className="rounded-full w-14 h-14 object-cover"
           />
@@ -79,7 +79,7 @@ export default function SliderMenu() {
             }}
             className="border hover:border-black border-dark-brown bg-white transition duration-500 hover:text-dark-brown text-dark-brown mx-1 flex items-center justify-center rounded text-sm p-2 cursor-pointer">
               <img
-                src={require(`../images/${button.strCategory === "Other / Unknown" ? "Other-Unknown" : button.strCategory }.jpg`)}
+                src={require(`../images/wallpapers/${button.strCategory === "Other / Unknown" ? "Other-Unknown" : button.strCategory }.jpg`)}
                 alt=""
                 className="rounded-full w-14 h-14"
               />

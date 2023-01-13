@@ -81,7 +81,7 @@ export default function Item(props: ItemProps) {
 
   return(
     <Link
-      to={`recipes/${type}/${link}`}
+      to={`/${type}/${link}`}
       key={ index }
         data-testid={ `${index}-recipe-card` }
         className="sm:my-4 transition duration-1000 w-full mx-auto"

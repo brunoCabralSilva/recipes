@@ -42,7 +42,7 @@ export default function AlternateItems(props: AlternativeItemsType) {
         data-testid="drinks-bottom-btn"
         onClick={ drinkRedirect }
       >
-        <img src={ require('../images/drinkIcon.jpg') } alt="dreakIcon" className="w-full h-full rounded-full border-2 border-white sm:w-22" />
+        <img src={ require('../images/icons/drinkIcon.jpg') } alt="dreakIcon" className="w-full h-full rounded-full border-2 border-white sm:w-22" />
       </button>
       <button
         type="button"
@@ -52,7 +52,7 @@ export default function AlternateItems(props: AlternativeItemsType) {
         onClick={ foodRedirect }
       >
         <img
-          src={ require('../images/mealllicon.jpg')}
+          src={ require('../images/icons/mealllicon.jpg')}
           alt="mealIcon"
           className="w-full h-full rounded-full border border-white sm:w-22"
         />

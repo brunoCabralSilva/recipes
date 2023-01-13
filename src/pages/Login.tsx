@@ -8,36 +8,23 @@ const validateEmail = /\S+@\S+\.\S+/;
 
 export default function Login() {
   const context = useContext(contextRecipes);
-  const { setType, setUser } = context;
+  const { setType } = context;
   const history = useHistory();
-  const [userData, setUserData] = useState({
-    email: '',
-    password: '',
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(()=>{
     window.scrollTo(0, 0);
   },[]);
 
-  const handleChange = ({ target }: any) => {
-    const { value, name } = target;
-    setUser({
-      ...userData,
-      [name]: value,
-    });
-  };
-
   const handleClick = () => {
-    localStorage.setItem('mealsToken', '1');
-    localStorage.setItem('cocktailsToken', '1');
-    localStorage.setItem('user', JSON.stringify({ email: userData.email }));
-    setUser(userData.email);
+    localStorage.setItem('user', JSON.stringify({ email }));
     setType('foods');
     history.push('/recipes');
   };
 
   const disabledReturn = () => {
-    if (userData.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(userData.email)) {
+    if (password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(email)) {
       return true;
     } 
     return false;
@@ -67,7 +54,7 @@ export default function Login() {
         <div className="sm:w-7/12">
           <div className="flex flex-col text-2xl items-center justify-center gap-3">
             <img
-              src={require(`../images/play${(userData.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(userData.email)) ? '2.png' : '.png'}`)}
+              src={require(`../images/icons/play${(password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(email)) ? '2.png' : '.png'}`)}
               alt="logo"
               className="w-12"
             />
@@ -75,28 +62,28 @@ export default function Login() {
           </div>
           <label htmlFor="input-email" className="text-sm flex flex-col justify-center items-center w-full sm:mt-10">
             <span className="w-full text-black text-left pb-4 font-bold">Email</span>
-          <input
-            type="email"
-            name="email"
-            value={ userData.email }
-            data-testid="email-input"
-            onChange={ handleChange }
-            id="input-email"
-            className="text-left placeholder:text-black placeholder:text-sm mb-1 w-full bg-transp border-b border-black py-1"
-          />
+            <input
+              type="email"
+              name="email"
+              value={ email }
+              data-testid="email-input"
+              onChange={ (e) => setEmail(e.target.value) }
+              id="input-email"
+              className="text-left placeholder:text-black placeholder:text-sm mb-1 w-full bg-transp border-b border-black py-1"
+            />
           </label>
           <label htmlFor="input-email" className="text-sm flex flex-col justify-center items-center w-full  mt-5">
-          <span className="w-full text-black text-left text-sm pb-2 font-bold">
-            Senha
-          </span>
-          <input
-            type="password"
-            name="password"
-            value={ userData.password }
-            data-testid="password-input"
-            onChange={ handleChange }
-            className="text-left placeholder:text-black placeholder:text-sm mb-1 w-full bg-transp border-b border-black py-1"
-          />
+            <span className="w-full text-black text-left text-sm pb-2 font-bold">
+              Senha
+            </span>
+            <input
+              type="password"
+              name="password"
+              value={ password }
+              data-testid="password-input"
+              onChange={ (e) => setPassword(e.target.value) }
+              className="text-left placeholder:text-black placeholder:text-sm mb-1 w-full bg-transp border-b border-black py-1"
+            />
           </label>
           <button
             type="button"
@@ -105,7 +92,7 @@ export default function Login() {
             onClick={ handleClick }
             className={
               `text-center my-4 p-2 w-full font-bold transition duration-1000
-              ${(userData.password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(userData.email))
+              ${(password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(email))
               ? 'bg-gray-700 text-white hover:bg-gray-900 opacity-70'
               : 'bg-gradient-to-r from-orange-500 to-red-600 text-white border-2 border-white hover:from-yellow-500 hover:to-red-500 opacity-100'
               }`
@@ -116,7 +103,7 @@ export default function Login() {
         </div>
       </motion.section>
       <div className="w-full h-screen">
-        <img src={require("../images/8.jpg")} alt="" className="h-screen w-full object-cover " />
+        <img src={require("../images/wallpapers/8.jpg")} alt="" className="h-screen w-full object-cover " />
       </div>
     </motion.section>
   );
