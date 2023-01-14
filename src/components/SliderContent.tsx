@@ -1,41 +1,29 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Item from './Item';
 import contextRecipes from '../contextRecipes/context';
 
 export default function SliderContent() {
   const context = useContext(contextRecipes);
   const {
-    type,
     filterCat,
     setListApi,
     fixedList
   } = context;
 
   useEffect(() => {
-      setListApi(fixedList);
+    setListApi(fixedList);
   }, []);
 
   const handleCategoryFilter = (list: any) => {
-    if(type==="foods") {
-      const cat = list.slice(0, +'18').map((item: any, index: number) => (
-        <Item
-          item={item}
-          index={index}
-          alcoholicElement=""
-        />
-        ));
-      return cat;
-    } else {
-        const cat = list.slice(0, +'18').map((item: any, index: number) => (
-          <Item
-            item={item}
-            index={index}
-            alcoholicElement={item.strAlcoholic}
-          />
-        ));
-      return cat;
-    }
-  } 
+    const cat = list.slice(0, +'18').map((item: any, index: number) => (
+      <Item
+        item={item}
+        index={index}
+        buttons={false}
+      />
+    ));
+    return cat;
+  };
 
   return(
     <div className="flex flex-col justify-center">
@@ -44,8 +32,8 @@ export default function SliderContent() {
           (!filterCat || filterCat.length === 0) && (!fixedList || fixedList.length === 0)
           ? <div className="h-screen" />
           : filterCat && filterCat.length > 0
-              ? handleCategoryFilter(filterCat)
-              : handleCategoryFilter(fixedList)
+            ? handleCategoryFilter(filterCat)
+            : handleCategoryFilter(fixedList)
         }
       </div>
     </div>

@@ -5,101 +5,172 @@ import contextRecipes from '../contextRecipes/context';
 interface ItemProps {
   item:any,
   index: number,
-  alcoholicElement: string,
+  buttons: boolean,
 };
 
 export default function Item(props: ItemProps) {
-  const [link, setLink] = useState('');
-  const [image, setImage] = useState('');
-  const [text, setText] = useState('');
-  const [name, setName] = useState('');
-  const [tags, setTags] = useState('');
-  const [alcoholic, setAlcoholic] = useState('');
-
-  const { item, index, alcoholicElement } = props;
-
-  const context = useContext(contextRecipes);
-  const { type, reqApiFId, reqApiDId } = context;
-
-  useEffect(() => {
-    const completeObject = async () => {
-      setAlcoholic(alcoholicElement);
-      if (!item.strCategory) {
-        if (type === 'foods') {
-          const search = await reqApiFId(item.idMeal);
-          setLink(search.meals[0].idMeal);
-          setImage(search.meals[0].strMealThumb);
-          setText(search.meals[0].strArea);
-          setName(search.meals[0].strMeal);
-          setTags(search.meals[0].strTags);
-        } else {
-          const search = await reqApiDId(item.idDrink);
-          setLink(search.drinks[0].idDrink);
-          setImage(search.drinks[0].strDrinkThumb);
-          setText(search.drinks[0].strCategory);
-          setName(search.drinks[0].strDrink);
-          setTags('');
-        }
-      } else {
-        if (type === 'foods') {
-          setLink(item.idMeal);
-          setImage(item.strMealThumb);
-          setText(item.strArea);
-          setName(item.strMeal);
-          setTags(item.strTags);
-        } else {
-          setLink(item.idDrink);
-          setImage(item.strDrinkThumb);
-          setText(item.strCategory);
-          setName(item.strDrink);
-          setTags('');
-        }
-    }};
-    completeObject();
+  const { item, index, buttons } = props;
+  const {
+    type,
+    reqApiFId,
+    reqApiDId,
+    clickLink,
+    link,
+    addFavorites,
+    isFav,
+  } = useContext(contextRecipes);
+  const [list, setList] = useState({
+    id: '',
+    type: '',
+    name: '',
+    image: '',
+    category: '',
+    instructions: '',
+    youtube: '',
+    nationality: '',
+    alcoholicOrNot: '',
+    tags: '',
   });
 
-  const tagsItem = () => {
-    if (tags && tags!== '') {
-      const splitItem =  tags.split(',');
-      const filterItem = splitItem.filter((item: any, index: number) => index < 2);
-      const mapItem = filterItem.map((item: any, index: number) => {
-        if(index === filterItem.length -1) {
-          return (<p key={index}>{item}</p>);
-        } return (<p className="pt-1" key={index}>{item}{', '}</p>);
+  const populateItens = (obj: any) => {
+    console.log(obj)
+    if (type === 'foods') {
+      setList({
+        id: obj.idMeal,
+        type: 'food',
+        name: obj.strMeal,
+        image: obj.strMealThumb,
+        category: obj.strCategory,
+        instructions: '',
+        youtube: obj.strYoutube,
+        nationality: obj.strArea,
+        alcoholicOrNot: '',
+        tags: obj.strTags,
       });
+    } else {
+      setList({
+        id: obj.idDrink,
+        type: 'drink',
+        name: obj.strDrink,
+        image: obj.strDrinkThumb,
+        category: obj.strCategory,
+        instructions: '',
+        youtube: obj.strYoutube,
+        nationality: obj.strArea,
+        alcoholicOrNot: obj.strAlcoholic,
+        tags: obj.strTags,
+      });
+    }
+  };
+
+  const changeCategory = async () => {
+    if (item.name) {
+      setList({
+        id: item.id,
+        type: item.type,
+        name: item.name,
+        image: item.image,
+        category: item.category,
+        instructions: '',
+        youtube: item.youtube,
+        nationality: item.nationality,
+        alcoholicOrNot: item.alcoholicOrNot,
+        tags: '',
+      });
+    } else if (!item.strCategory) {
+      if (type === 'foods') {
+        const search = await reqApiFId(item.idMeal);
+        populateItens(search.meals[0]); 
+      } else {
+        const search = await reqApiDId(item.idDrink);
+        populateItens(search.drinks[0]); 
+      }
+    } 
+    else {
+      populateItens(item);
+    }
+  };
+
+  useEffect(() => {
+    changeCategory();
+  }, [item]);
+
+  const tagsItem = () => {
+    if (list.tags && list.tags!== '') {
+      const splitItem =  list.tags.split(',');
+      const filterItem = splitItem.filter((item: any, index: number) => index < 2);
+      const mapItem = filterItem.map((item: any, index: number) => (
+        <span
+          className="pt-1 pr-1"
+          key={index}
+        >
+          {item}
+          {index !== filterItem.length -1 && ', '}
+        </span>
+      ));
       return mapItem;
     }
-  }
-
-  const returnAlcoholic = () => {
-    if (type !== 'foods') {
-      if (alcoholic) {
-        return 'Alcoholic';
-      } return 'Not Alcoholic';
-    }
-  }
+  };
 
   return(
     <Link
-      to={`/${type}/${link}`}
-      key={ index }
+      to={`/${type}/${list.id}`}
         data-testid={ `${index}-recipe-card` }
         className="sm:my-4 transition duration-1000 w-full mx-auto"
       >
         <div className="flex items-center justify-start mx-auto hover:shadow-2xl py-4">
           <img
             data-testid={ `${index}-card-img` }
-            src={ image }
+            src={ list.image }
             alt=""
             className="object-contain rounded-full h-28 m-4"
           />
           <div className="p-2">
-            <p data-testid={ `${index}-card-name` } className="flex items-end z-30 font-bold leading-6 text-xl">{(name && name.length > 1) && name}</p>
-            <p><em>{text}</em></p>
-            {tagsItem()}
-            { returnAlcoholic() }
+            <p data-testid={ `${index}-card-name` } className="flex items-end z-30 font-bold leading-6 text-xl">{(list.name && list.name.length > 1) && list.name}</p>
+            <p><em>{list.nationality ? list.nationality : list.category}</em></p>
+            { tagsItem() }
+            { list.alcoholicOrNot !== '' && list.alcoholicOrNot }
+            { buttons &&
+              <div className="relative p-1 w-full z-40 flex items-center justify-start">
+                <button
+                  type="button"
+                  data-testid="favorite-btn"
+                  onClick={ () => addFavorites(props.item)}
+                  className="mr-3"
+                >
+                  <img
+                    src={ require(`../images/icons/${isFav(props.item.id) ? 'blackHeartIcon' : 'whiteHeartIcon'}.svg`) }
+                    alt="botão favoritar/desfavoritar"
+                    className=""
+                  />
+                </button>
+                <button
+                  type="button"
+                  onClick={ () => clickLink(props) }
+                  data-testid={ `${index}-horizontal-share-btn` }
+                  className="p-1 z-40 flex justify-end"
+                >
+                  <img
+                    src={ require(`../images/icons/${buttons && 'shareIcon'}.svg`) }
+                    alt="Botão Compartilhar"
+                    className=""
+                  />
+                </button>
+                {
+                  link &&
+                  <p className="absolute font-bold z-40 top-16 text-black">
+                    {link}
+                  </p>
+                }
+              </div>
+            }
           </div>
         </div>
     </Link>
   );
 }
+
+//     {/* <p data-testid={ `${index}-horizontal-done-date` }>
+  //       {item.doneDate}
+  //     </p> */}
+  //     {/* <p data-testid={ `${index}-horizontal-done-date` }>{item.startTime}</p> */}

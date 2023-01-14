@@ -21,6 +21,8 @@ interface RecipesProvidesProps {
 interface ItemFavoriteType {
   id: string,
   link: string,
+  type: string,
+  tags: string,
   name: string,
   image: string,
   youtube: string,
@@ -39,15 +41,16 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
   const [listApi, setListApi] = useState([]);
   const [fav, setFav] = useState([
     {
-      id: '',
-      link: '',
       name: '',
       image: '',
-      youtube: '',
       category: '',
-      nationality: '',
       instructions: '',
+      youtube: '',
+      id: '',
+      nationality: '',
       alcoholicOrNot: '',
+      type: '',
+      tags: '',
     }
   ]);
   const [link, setLink] = useState('');
@@ -64,6 +67,8 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     id: '',
     nationality: '',
     alcoholicOrNot: '',
+    type: '',
+    tags: '',
   });
 
   const initialRequest = async (): Promise<void> => {
@@ -127,18 +132,30 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
   };
 
   const addFavorites = (objectFavorite: ItemFavoriteType) => {
+    const objFav = {
+      name: objectFavorite.name,
+      image: objectFavorite.image,
+      category: objectFavorite.category,
+      instructions: '',
+      youtube: '',
+      id: objectFavorite.id,
+      nationality: objectFavorite.nationality,
+      alcoholicOrNot: objectFavorite.alcoholicOrNot,
+      type: objectFavorite.type,
+      tags: objectFavorite.tags,
+    };
     if (!localStorage.getItem('favoriteRecipes')) {
-      localStorage.setItem('favoriteRecipes', JSON.stringify([objectFavorite]));
-      setFav([objectFavorite]);
+      localStorage.setItem('favoriteRecipes', JSON.stringify([objFav]));
+      setFav([objFav]);
     } else {
-      const ids = fav.filter((f) => f.id === objectFavorite.id);
+      const ids = fav.filter((f) => f.id === objFav.id);
       if (ids.length > 0) {
-        const filtro = fav.filter((fil) => fil.id !== objectFavorite.id);
+        const filtro = fav.filter((fil) => fil.id !== objFav.id);
         localStorage.setItem('favoriteRecipes', JSON.stringify(filtro));
         setFav(filtro);
       } else {
-        localStorage.setItem('favoriteRecipes', JSON.stringify([...fav, objectFavorite]));
-        setFav([...fav, objectFavorite]);
+        localStorage.setItem('favoriteRecipes', JSON.stringify([...fav, objFav]));
+        setFav([...fav, objFav]);
       }
     }
   };
@@ -165,6 +182,8 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
         id: search.meals[0].idMeal,
         nationality: search.meals[0].strArea,
         alcoholicOrNot: '',
+        type: 'food',
+        tags: search.meals[0].strTags,
       });
       setObjIngrMeas(search.meals[0]);
     } else {
@@ -178,6 +197,8 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
         id: search.drinks[0].idDrink,
         nationality: '',
         alcoholicOrNot: search.drinks[0].strAlcoholic,
+        type: 'drink',
+        tags: '',
       });
       setObjIngrMeas(search.drinks[0]);
     }

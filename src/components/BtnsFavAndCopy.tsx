@@ -10,6 +10,7 @@ interface ItemSelected {
   id: string,
   nationality: string,
   alcoholicOrNot: string,
+  type: string,
 }
 
 interface BtnsType {
@@ -32,7 +33,7 @@ export default function BtnsFavAndCopy(props: BtnsType) {
       <img
         src={require('../images/icons/arrow-left-black.png')}
         alt="icon arrow"
-        className="ml-2 py-2 animate-pulse"
+        className="ml-1 py-2 animate-pulse"
         onClick={ () => props.history.push('/recipes') }
       />
       <div className="w-full flex justify-end p-4">

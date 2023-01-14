@@ -19,7 +19,7 @@ export default function Recipes() {
   } = context;
 
   useEffect(() => {
-    if (type === null) {
+    if (!type) {
       setType('foods');
     }
     window.scrollTo(0, 0);

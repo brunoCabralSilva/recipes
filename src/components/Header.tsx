@@ -22,21 +22,6 @@ export default function Header(props: HeaderProps) {
           </h1>
         </div>
         <SearchBar />
-        {/* <div>
-          {
-            searchIcon === 'visible'
-              ? showSearchButton()
-              : null
-          }
-          <button
-            type="button"
-            data-testid="profile-top-btn"
-            onClick={ ProfileRedirect }
-            className="p-2 ml-0 sm:mx-3"
-          >
-            <i className="fa-solid fa-user text-xl text-black"></i>
-          </button> 
-        </div> */}
       </div>
       <div className="flex items-center justify-center">
         <div className="flex flex-col w-11/12 sm:w-3/5 md:w-2/5 items-center justify-center">

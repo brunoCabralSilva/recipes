@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, ReactNode } from 'react';
+import React, { useEffect, useContext, ReactNode } from 'react';
 import contextRecipes from '../contextRecipes/context';
 import StartRecipe from '../components/StartRecipe';
 import BtnsFavAndCopy from '../components/BtnsFavAndCopy';
@@ -11,6 +11,7 @@ interface RecDetailsProps {
 
 export default function RecipesDetails(props: RecDetailsProps) {
   const {
+    initialRequest,
     getFavorites,
     createElement,
     objIngrMeas,
@@ -20,6 +21,7 @@ export default function RecipesDetails(props: RecDetailsProps) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    initialRequest();
     getFavorites();
     createElement(props);
   }, []);
