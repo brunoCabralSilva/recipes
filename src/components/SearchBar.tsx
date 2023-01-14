@@ -6,7 +6,7 @@ import AlternateItems from './AlternateItems';
 export default function SearchBar() {
   const context = useContext(contextRecipes);
   const history = useHistory();
-  const { type, setFilterCat} = context;
+  const { typeOfList, setListOfItemsFromCat: setFilterCat} = context;
   const [endPoint, setEndPoint] = useState({});
   const [inputSearch, setInputSearch] = useState('');
   const meal = 'www.themealdb';
@@ -39,7 +39,7 @@ export default function SearchBar() {
   };
 
   const fetchApiFunc = async (end: any) => {
-    const fetchApi = await fetch(`https://${type === 'drinks' ? cock : meal}.com/api/json/v1/1/${end}${inputSearch}`);
+    const fetchApi = await fetch(`https://${typeOfList === 'drinks' ? cock : meal}.com/api/json/v1/1/${end}${inputSearch}`);
     const fetchJson = await fetchApi.json();
     return fetchJson;
   }
@@ -51,7 +51,7 @@ export default function SearchBar() {
         global.alert('Your search must have only 1 (one) character');
       } else {
         const fetchDataFinal = await fetchApiFunc(end);
-        if (type === 'drinks') {
+        if (typeOfList === 'drinks') {
           drinksFetch(fetchDataFinal);
         } else {
           foodsFetch(fetchDataFinal);
@@ -59,7 +59,7 @@ export default function SearchBar() {
       }
     } else {
       const fetchApi = await fetchApiFunc(end);
-      if (type === 'drinks') {
+      if (typeOfList === 'drinks') {
         drinksFetch(fetchApi);
       } else {
         foodsFetch(fetchApi);

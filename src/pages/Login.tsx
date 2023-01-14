@@ -8,7 +8,7 @@ const validateEmail = /\S+@\S+\.\S+/;
 
 export default function Login() {
   const context = useContext(contextRecipes);
-  const { setType } = context;
+  const { setTypeOfList } = context;
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +19,7 @@ export default function Login() {
 
   const handleClick = () => {
     localStorage.setItem('user', JSON.stringify({ email }));
-    setType('foods');
+    setTypeOfList('foods');
     history.push('/recipes');
   };
 

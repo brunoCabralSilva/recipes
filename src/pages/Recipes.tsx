@@ -12,15 +12,15 @@ export default function Recipes() {
   const context = useContext(contextRecipes);
 
   const {
-    type,
-    setType,
+    typeOfList,
+    setTypeOfList,
     initialRequest,
     buttonsNavigation,
   } = context;
 
   useEffect(() => {
-    if (!type) {
-      setType('foods');
+    if (!typeOfList) {
+      setTypeOfList('foods');
     }
     window.scrollTo(0, 0);
     if (buttonsNavigation.length === 0) {
@@ -34,10 +34,10 @@ export default function Recipes() {
       <Header
         icon={false}
         searchIcon="visible"
-        title={type === 'foods' ? 'Foods' : 'Drinks' }
+        title={typeOfList === 'foods' ? 'Foods' : 'Drinks' }
       />
       {
-        type === 'foods'
+        typeOfList === 'foods'
           ? <SliderHeader list={ imageFoods } />
           : <SliderHeader list={ imageDrinks } />
       }

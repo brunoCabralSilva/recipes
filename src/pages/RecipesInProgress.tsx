@@ -12,29 +12,27 @@ export default function RecipesInProgress(props: RecipesProgressType) {
   const [ingredientList, setIngredientList] = useState(['']);
   const { type }: any = useParams();
   const {
-    initialRequest,
     getFavorites,
     createElement,
+    setTypeOfList,
     objIngrMeas,
-    objGeneralist,
-    setType,
+    objSelected,
   } = useContext(contextRecipes);
 
   const history: any = useHistory();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    initialRequest();
     const getItens = localStorage.getItem('inProgressRecipes');
     if (getItens) {
-      const listIngredients = JSON.parse(getItens).filter((item: any) => item.id === objGeneralist.id );
+      const listIngredients = JSON.parse(getItens).filter((item: any) => item.id === objSelected.id );
       if (listIngredients.length > 0) {
         const listIng = listIngredients[0].progress;
         setIngredientList(listIng);
       }
     }
-    if (objGeneralist.name === '') {
-      setType(type);
+    if (objSelected.name === '') {
+      setTypeOfList(type);
       createElement(props);
       getFavorites();
     }
@@ -59,15 +57,15 @@ export default function RecipesInProgress(props: RecipesProgressType) {
     const localFood = localStorage.getItem('doneRecipes');
     if (localFood) {
       const objDnRec = JSON.parse(localFood).map((done: any) => (returnObject(done)));
-      const verifyIfIsDone = objDnRec.filter((element: any) => element.id === objGeneralist.id);
+      const verifyIfIsDone = objDnRec.filter((element: any) => element.id === objSelected.id);
       if (verifyIfIsDone.length === 0) {
         localStorage.setItem('doneRecipes', JSON.stringify([...objDnRec,
-        returnObject(objGeneralist),
+        returnObject(objSelected),
         ]));
       }
     }
     else {
-      localStorage.setItem('doneRecipes', JSON.stringify([returnObject(objGeneralist)]));
+      localStorage.setItem('doneRecipes', JSON.stringify([returnObject(objSelected)]));
     }
     history.push('/done-recipes');
   };
@@ -82,7 +80,7 @@ export default function RecipesInProgress(props: RecipesProgressType) {
       return false;
     } else {
       const verifyIfRecipeExists = JSON.parse(getItens)
-      .filter((item: any) => item.id === objGeneralist.id);
+      .filter((item: any) => item.id === objSelected.id);
       if (verifyIfRecipeExists.length === 0) {
         return false;
       }
@@ -115,19 +113,19 @@ export default function RecipesInProgress(props: RecipesProgressType) {
     if (!getItens || JSON.parse(getItens).length === 0) {
       localStorage.setItem('inProgressRecipes', JSON.stringify([
         { 
-          id: objGeneralist.id,
+          id: objSelected.id,
           progress: [`${ingredient} (${meas})`],
         },
       ]));
     } else {
       const verifyIfRecipeExists = JSON.parse(getItens)
-      .filter((item: any) => item.id === objGeneralist.id);
+      .filter((item: any) => item.id === objSelected.id);
 
       if (verifyIfRecipeExists.length === 0) {
         localStorage.setItem('inProgressRecipes', JSON.stringify([
           ...JSON.parse(getItens),
           { 
-            id: objGeneralist.id,
+            id: objSelected.id,
             progress: [`${ingredient} (${meas})`],
           },
         ]));
@@ -136,7 +134,7 @@ export default function RecipesInProgress(props: RecipesProgressType) {
 
         if (verifyIfIngredientExists.length === 0) {
           const arrayWithoutItem = JSON.parse(getItens)
-            .filter((item: any) => item.id !== objGeneralist.id);
+            .filter((item: any) => item.id !== objSelected.id);
 
           const addNewIngredient = {
             id: verifyIfRecipeExists[0].id,
@@ -145,13 +143,13 @@ export default function RecipesInProgress(props: RecipesProgressType) {
           localStorage.setItem('inProgressRecipes', JSON.stringify([...arrayWithoutItem, addNewIngredient]));
         } else {
           const arrayWithoutItem = JSON.parse(getItens)
-          .filter((item: any) => item.id === !objGeneralist.id);
+          .filter((item: any) => item.id === !objSelected.id);
           
           const removeIngredient = verifyIfRecipeExists[0].progress.filter((ing: any) => ing !== `${ingredient} (${meas})`);
           localStorage.setItem('inProgressRecipes', JSON.stringify([
             ...arrayWithoutItem,
             { 
-              id: objGeneralist.id,
+              id: objSelected.id,
               progress: removeIngredient,
             },
           ]));    
@@ -197,7 +195,7 @@ export default function RecipesInProgress(props: RecipesProgressType) {
   const returnDisabled = () => {
     const getItem = localStorage.getItem('inProgressRecipes');
     if (getItem && getItem.length > 0) {
-      const search = JSON.parse(getItem).filter((fil: any) => fil.id === objGeneralist.id);
+      const search = JSON.parse(getItem).filter((fil: any) => fil.id === objSelected.id);
       if (search.length === 0) {
         return true;
       } else {
@@ -213,17 +211,17 @@ export default function RecipesInProgress(props: RecipesProgressType) {
       <BtnsFavAndCopy
         match={props.match}
         history={props.history}
-        item={objGeneralist}
+        item={objSelected}
       />
         <div className="h-full bg-black/20 flex flex-col items-center justify-center relative md:hidden mt-10">
           <img
-            src={ objGeneralist.image }
+            src={ objSelected.image }
             alt=""
             data-testid="recipe-photo"
             className="object-cover w-full h-full absolute border-white opacity-20"
           />
           <img
-            src={ objGeneralist.image }
+            src={ objSelected.image }
             alt=""
             data-testid="recipe-photo"
             className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"
@@ -236,16 +234,16 @@ export default function RecipesInProgress(props: RecipesProgressType) {
             data-testid="recipe-title"
             className="text-4xl pt-3 mt-5 md:mt-0 w-full sm:text-5xl px-10"
           >
-            { objGeneralist.name }
+            { objSelected.name }
           </p>
           <div
             data-testid="recipe-category"
             className="mb-5 w-full text-2xl bg-white italic gap-3 px-10"
           >
-            { objGeneralist.category }
+            { objSelected.category }
           </div>
           <p data-testid="recipe-title" className="w-full pb-3 px-10">
-            { objGeneralist.instructions }
+            { objSelected.instructions }
           </p>
           <div data-testid="recipe-title" className="w-full pt-5 pb-5 px-9 gap-3 grid grid-cols-1 md:flex items-center justify-center md:justify-start flex-wrap">
             {Object.values(objIngrMeas).length > 0 && handleIng(objIngrMeas)}
@@ -262,13 +260,13 @@ export default function RecipesInProgress(props: RecipesProgressType) {
         </div>
         <div className="h-full bg-black/20 flex-col items-center justify-center relative hidden sm:flex">
           <img
-            src={ objGeneralist.image }
+            src={ objSelected.image }
             alt=""
             data-testid="recipe-photo"
             className="object-cover w-full h-full absolute border-white opacity-20"
           />
           <img
-            src={ objGeneralist.image }
+            src={ objSelected.image }
             alt=""
             data-testid="recipe-photo"
             className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"

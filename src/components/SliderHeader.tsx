@@ -19,7 +19,6 @@ interface SliderHeaderProps {
 export default function SliderHeader(props: SliderHeaderProps) {
   const { list } = props;
   return(
-
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         pagination={{clickable: true}}

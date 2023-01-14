@@ -11,13 +11,13 @@ interface ItemProps {
 export default function Item(props: ItemProps) {
   const { item, index, buttons } = props;
   const {
-    type,
-    reqApiFId,
-    reqApiDId,
-    clickLink,
-    link,
-    addFavorites,
-    isFav,
+    typeOfList,
+    requestFoodById: reqApiFId,
+    requestDrinkById: reqApiDId,
+    sharedLink,
+    messageShared,
+    alterFavorites,
+    verifyIfIsFavorite,
   } = useContext(contextRecipes);
   const [list, setList] = useState({
     id: '',
@@ -34,7 +34,7 @@ export default function Item(props: ItemProps) {
 
   const populateItens = (obj: any) => {
     console.log(obj)
-    if (type === 'foods') {
+    if (typeOfList === 'foods') {
       setList({
         id: obj.idMeal,
         type: 'food',
@@ -78,7 +78,7 @@ export default function Item(props: ItemProps) {
         tags: '',
       });
     } else if (!item.strCategory) {
-      if (type === 'foods') {
+      if (typeOfList === 'foods') {
         const search = await reqApiFId(item.idMeal);
         populateItens(search.meals[0]); 
       } else {
@@ -114,7 +114,7 @@ export default function Item(props: ItemProps) {
 
   return(
     <Link
-      to={`/${type}/${list.id}`}
+      to={`/${list.type}/${list.id}`}
         data-testid={ `${index}-recipe-card` }
         className="sm:my-4 transition duration-1000 w-full mx-auto"
       >
@@ -135,18 +135,18 @@ export default function Item(props: ItemProps) {
                 <button
                   type="button"
                   data-testid="favorite-btn"
-                  onClick={ () => addFavorites(props.item)}
+                  onClick={ () => alterFavorites(props.item)}
                   className="mr-3"
                 >
                   <img
-                    src={ require(`../images/icons/${isFav(props.item.id) ? 'blackHeartIcon' : 'whiteHeartIcon'}.svg`) }
+                    src={ require(`../images/icons/${verifyIfIsFavorite(props.item.id) ? 'blackHeartIcon' : 'whiteHeartIcon'}.svg`) }
                     alt="botão favoritar/desfavoritar"
                     className=""
                   />
                 </button>
                 <button
                   type="button"
-                  onClick={ () => clickLink(props) }
+                  onClick={ () => sharedLink(props) }
                   data-testid={ `${index}-horizontal-share-btn` }
                   className="p-1 z-40 flex justify-end"
                 >
@@ -157,9 +157,9 @@ export default function Item(props: ItemProps) {
                   />
                 </button>
                 {
-                  link &&
+                  messageShared &&
                   <p className="absolute font-bold z-40 top-16 text-black">
-                    {link}
+                    {messageShared}
                   </p>
                 }
               </div>

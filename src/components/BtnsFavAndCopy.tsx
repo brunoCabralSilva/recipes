@@ -21,11 +21,11 @@ interface BtnsType {
 
 export default function BtnsFavAndCopy(props: BtnsType) {
   const {
-    link,
-    addFavorites,
-    clickLink,
-    fav,
-    isFav,
+    messageShared,
+    alterFavorites,
+    sharedLink,
+    listFavorites,
+    verifyIfIsFavorite,
   } = useContext(contextRecipes);
 
   return(
@@ -37,26 +37,26 @@ export default function BtnsFavAndCopy(props: BtnsType) {
         onClick={ () => props.history.push('/recipes') }
       />
       <div className="w-full flex justify-end p-4">
-        {link && <p className="w-full text-base sm:text-2xl text-right">{link}</p>}
+        {messageShared && <p className="w-full text-base sm:text-2xl text-right">{messageShared}</p>}
         <button
           type="button"
           data-testid="share-btn"
-          onClick={ () => clickLink(props) }
+          onClick={ () => sharedLink(props) }
           className="mx-3"
         >
           <img
-            src={ require(`../images/icons/${fav[0] ? 'shareIcon' : 'shareIcon'}.svg`) }
+            src={ require(`../images/icons/${listFavorites[0] ? 'shareIcon' : 'shareIcon'}.svg`) }
             alt="Botão Compartilhar"
           />
         </button>
         <button
           type="button"
           data-testid="favorite-btn"
-          onClick={ () => addFavorites(props.item)}
+          onClick={ () => alterFavorites(props.item)}
           className="mx-3"
         >
           <img
-            src={ require(`../images/icons/${isFav(props.item.id) ? 'blackHeartIcon' : 'whiteHeartIcon'}.svg`) }
+            src={ require(`../images/icons/${verifyIfIsFavorite(props.item.id) ? 'blackHeartIcon' : 'whiteHeartIcon'}.svg`) }
             alt="botão favoritar/desfavoritar"
           />
         </button>

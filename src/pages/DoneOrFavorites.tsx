@@ -14,7 +14,6 @@ interface DoneRecProps {
 
 export default function DoneOrFavorites(props: DoneRecProps) {
   const {
-    initialRequest,
     getFavorites,
   } = useContext(contextRecipes);
   const match = useRouteMatch();
@@ -41,7 +40,6 @@ export default function DoneOrFavorites(props: DoneRecProps) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    initialRequest();
     getFavorites();
     generateElements();
   }, []);

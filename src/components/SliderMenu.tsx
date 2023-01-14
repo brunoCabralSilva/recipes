@@ -7,19 +7,19 @@ import 'swiper/css/navigation';
 export default function SliderMenu() {
   const context = useContext(contextRecipes);
   const {
-    type,
-    buttons,
+    typeOfList,
+    favAndSharedInItem,
     buttonsNavigation,
     listAllFoods,
     listAllDrinks,
     reqApiCategory,
-    setFilterCat,
+    setListOfItemsFromCat,
     setFixedList,
   } = context;
   let btn = [];
 
-  if(buttons.length > 0) {
-    btn = buttons
+  if(favAndSharedInItem.length > 0) {
+    btn = favAndSharedInItem
   } else {
     btn = buttonsNavigation;
   }
@@ -48,8 +48,8 @@ export default function SliderMenu() {
       <SwiperSlide
         data-testid="All-category-filter"
         onClick={ () => {
-          setFilterCat([]);
-          if (type === 'foods') {
+          setListOfItemsFromCat([]);
+          if (typeOfList === 'foods') {
             listAllFoods();
           } else {
             listAllDrinks();
@@ -73,9 +73,9 @@ export default function SliderMenu() {
             key={ index }
             data-testid={ `${button.strCategory}-category-filter` }
             onClick={ () => { 
-              setFilterCat([]);
+              setListOfItemsFromCat([]);
               setFixedList([]);
-              reqApiCategory(button.strCategory, type);
+              reqApiCategory(button.strCategory);
             }}
             className="border hover:border-black border-dark-brown bg-white transition duration-500 hover:text-dark-brown text-dark-brown mx-1 flex items-center justify-center rounded text-sm p-2 cursor-pointer">
               <img

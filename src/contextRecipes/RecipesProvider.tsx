@@ -1,8 +1,7 @@
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import contexto from './context';
 import fetchs from '../fetchs';
 const copy = require('clipboard-copy');
-
 const {
   fetchFoods,
   fetchBtnFoods,
@@ -14,32 +13,13 @@ const {
   reqApiDrinksID,
 } = fetchs;
 
-interface RecipesProvidesProps {
-  children: ReactNode,
-}
-
-interface ItemFavoriteType {
-  id: string,
-  link: string,
-  type: string,
-  tags: string,
-  name: string,
-  image: string,
-  youtube: string,
-  category: string,
-  nationality: string,
-  instructions: string,
-  alcoholicOrNot: string,
-};
+interface RecipesProvidesProps { children: ReactNode }
 
 export default function RecipesProvider({children }: RecipesProvidesProps) {
   const [fixedList, setFixedList] = useState([]);
   const [buttonsNavigation, setButtonsNavigation] = useState([]);
-  const [foodId, setFoodId] = useState([]);
-  const [drinkId, setDrinkId] = useState([]);
-  const [buttons, setButtons] = useState([]);
-  const [listApi, setListApi] = useState([]);
-  const [fav, setFav] = useState([
+  const [favAndSharedInItem, setFavAndSharedInItem] = useState([]);
+  const [listFavorites, setListFavorites] = useState([
     {
       name: '',
       image: '',
@@ -53,23 +33,11 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
       tags: '',
     }
   ]);
-  const [link, setLink] = useState('');
-  const [filterCat, setFilterCat] = useState([]);
-  const [objItem, setObjItem] = useState({});
-  const [type, setType] = useState('foods');
-  const [objIngrMeas, setObjIngrMeas] = useState({});
-  const [objGeneralist, setObjGeneralist] = useState({
-    name: '',
-    image: '',
-    category: '',
-    instructions: '',
-    youtube: '',
-    id: '',
-    nationality: '',
-    alcoholicOrNot: '',
-    type: '',
-    tags: '',
-  });
+  const [messageShared, setMessageShared] = useState('');
+  const [listOfItemsFromCat, setListOfItemsFromCat] = useState([]);
+  const [typeOfList, setTypeOfList] = useState('foods');
+  const [objIngrMeas, setObjIngrMeas] = useState({}); //
+  const [objSelected, setObjSelected] = useState({});
 
   const initialRequest = async (): Promise<void> => {
     const foodList = await fetchFoods();
@@ -92,22 +60,22 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     setButtonsNavigation(btnFoods.meals);
   };
 
-  const reqApiCategory = async (category: string, theType: string): Promise<void> => {
-    if(theType === 'foods') {
+  const reqApiCategory = async (category: string): Promise<void> => {
+    if(typeOfList === 'foods') {
       const req = await reqCategoryFood(category);
-      setFilterCat(req.meals);
+      setListOfItemsFromCat(req.meals);
     } else {
       const req = await reqCategoryDrink(category);
-      setFilterCat(req.drinks);
+      setListOfItemsFromCat(req.drinks);
     }
   };
 
-  const reqApiFId = async (id: string): Promise<any> => {
+  const requestFoodById = async (id: string): Promise<any> => {
     const reqId = await reqApiFoodsID(id);
     return reqId;
   };
 
-  const reqApiDId = async (id: string): Promise<any> => {
+  const requestDrinkById = async (id: string): Promise<any> => {
     const reqId = await reqApiDrinksID(id);
     return reqId;
   };
@@ -116,11 +84,11 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     const favorite = localStorage.getItem('favoriteRecipes');
     if (favorite !== null) {
       const favorites = JSON.parse(favorite);
-      setFav(favorites);
+      setListFavorites(favorites);
     }
   };
 
-  const isFav = (id: string) => {
+  const verifyIfIsFavorite = (id: string) => {
     const listFavorites = localStorage.getItem('favoriteRecipes');
     if (listFavorites) {
       const fil = JSON.parse(listFavorites).filter((f: any) => id === f.id);
@@ -131,7 +99,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     return false;
   };
 
-  const addFavorites = (objectFavorite: ItemFavoriteType) => {
+  const alterFavorites = (objectFavorite: any) => {
     const objFav = {
       name: objectFavorite.name,
       image: objectFavorite.image,
@@ -146,34 +114,34 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     };
     if (!localStorage.getItem('favoriteRecipes')) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([objFav]));
-      setFav([objFav]);
+      setListFavorites([objFav]);
     } else {
-      const ids = fav.filter((f) => f.id === objFav.id);
+      const ids = listFavorites.filter((f) => f.id === objFav.id);
       if (ids.length > 0) {
-        const filtro = fav.filter((fil) => fil.id !== objFav.id);
+        const filtro = listFavorites.filter((fil) => fil.id !== objFav.id);
         localStorage.setItem('favoriteRecipes', JSON.stringify(filtro));
-        setFav(filtro);
+        setListFavorites(filtro);
       } else {
-        localStorage.setItem('favoriteRecipes', JSON.stringify([...fav, objFav]));
-        setFav([...fav, objFav]);
+        localStorage.setItem('favoriteRecipes', JSON.stringify([...listFavorites, objFav]));
+        setListFavorites([...listFavorites, objFav]);
       }
     }
   };
 
-  const clickLink = (props: any) => {
+  const sharedLink = (props: any) => {
     const { match: { params: { type, id }} } = props;
     setTimeout(() => {
-      setLink('');
+      setMessageShared('');
     }, +'3000');
-    setLink('Link copied!');
+    setMessageShared('Link copied!');
     copy(`http://localhost:3000/recipes/${type}/${id}`);
   };
 
   const createElement = async (props: any): Promise<void> => {
-    const { match: { params: { id }} } = props;
-    if (type === 'foods') {
-      const search = await reqApiFId(id);
-      setObjGeneralist({
+    const { match: { params: { type, id }} } = props;
+    if (type === 'food') {
+      const search = await requestFoodById(id);
+      setObjSelected({
         name: search.meals[0].strMeal,
         image: search.meals[0].strMealThumb,
         category: search.meals[0].strCategory,
@@ -187,8 +155,8 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
       });
       setObjIngrMeas(search.meals[0]);
     } else {
-      const search = await reqApiDId(id);
-      setObjGeneralist({
+      const search = await requestDrinkById(id);
+      setObjSelected({
         name: search.drinks[0].strDrink,
         image: search.drinks[0].strDrinkThumb,
         category: search.drinks[0].strCategory,
@@ -209,28 +177,20 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
       value={{
         fixedList, setFixedList,
         buttonsNavigation, setButtonsNavigation,
-        foodId, setFoodId,
-        drinkId, setDrinkId,
-        buttons, setButtons,
-        listApi, setListApi,
-        filterCat, setFilterCat,
-        objItem, setObjItem,
-        type, setType,
-        fav, setFav,
+        favAndSharedInItem, setFavAndSharedInItem,
+        listOfItemsFromCat, setListOfItemsFromCat,
+        typeOfList, setTypeOfList,
+        listFavorites, setListFavorites,
+        messageShared, setMessageShared,
+        objIngrMeas, setObjIngrMeas,
+        objSelected, setObjSelected,
         initialRequest, reqApiCategory, 
-        reqApiFId, reqApiDId,
+        requestFoodById, requestDrinkById,
         listAllDrinks, listAllFoods,
-        isFav,
-        addFavorites,
-        clickLink,
-        link,
-        setLink,
-        getFavorites,
-        createElement,
-        objIngrMeas,
-        setObjIngrMeas,
-        objGeneralist,
-        setObjGeneralist,
+        verifyIfIsFavorite,
+        getFavorites, alterFavorites,
+        sharedLink,
+        createElement, 
       }}
     >
       {children}

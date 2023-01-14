@@ -10,10 +10,10 @@ export default function SliderLogin() {
  
   return(
     <Swiper 
-        modules={[Autoplay]}
-        loop={true}
-        autoplay={{delay: 5000 }}
-        className=""
+      modules={[Autoplay]}
+      loop={true}
+      autoplay={{delay: 5000 }}
+      className=""
     >
       <SwiperSlide className="h-screen w-full sm:w-1/2 ">
         <img src={require("../images/8.jpg")} alt="" className="h-screen w-full object-cover " />

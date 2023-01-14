@@ -10,8 +10,8 @@ export default function AlternateItems(props: AlternativeItemsType) {
   const context = useContext(contextoRecipes);
   const { setShowMenu, showMenu } = props;
   const {
-    setType,
-    setFilterCat,
+    setTypeOfList,
+    setListOfItemsFromCat,
     listAllDrinks,
     listAllFoods,
     reqApiCategory,
@@ -19,16 +19,16 @@ export default function AlternateItems(props: AlternativeItemsType) {
 
   const drinkRedirect = () => {
     listAllDrinks();
-    setFilterCat([]);
-    setType('drinks');
-    reqApiCategory('Ordinary Drink', 'drinks');
+    setListOfItemsFromCat([]);
+    setTypeOfList('drinks');
+    reqApiCategory('Ordinary Drink');
     setShowMenu(!showMenu);
   };
 
   const foodRedirect = () => {
     listAllFoods();
-    setFilterCat([]);
-    setType('foods');
+    setListOfItemsFromCat([]);
+    setTypeOfList('foods');
     setShowMenu(!showMenu);
   };
 
