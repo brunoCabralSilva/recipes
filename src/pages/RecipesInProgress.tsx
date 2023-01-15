@@ -217,7 +217,7 @@ export default function RecipesInProgress() {
 
   return (
     <div className="flex flex-col">
-      <div className=" sm:mt-0 grid grid-cols-1 md:grid-cols-2">
+      <div className={`${objSelected.instructions.length < 500 && 'sm:h-screen' } sm:mt-0 grid grid-cols-1 md:grid-cols-2`}>
         <BtnsFavAndCopy />
         <div className="h-full bg-black/20 flex flex-col items-center justify-center relative md:hidden mt-10">
           <img

@@ -92,7 +92,7 @@ export default function DoneOrFavorites() {
           Drinks
         </button>
       </div>
-      <p className="mt-16 p-4 md:ml-10 sm:p-0 text-4xl text-center md:text-left" id="text">
+      <p className="mt-16 p-4 md:ml-10 sm:p-0 text-4xl text-center" id="text">
           <span className="pr-1">{match.path === '/done-recipes' ? 'Done Recipes -' : 'Favorite Recipes -'}</span>
           <span>{button}</span>
         </p>

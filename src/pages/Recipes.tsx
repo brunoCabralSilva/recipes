@@ -35,7 +35,7 @@ export default function Recipes() {
           <SliderMenu />
         </div>
         <p className="mt-5 sm:mt-16 mb-0 sm:mb-5 p-4 sm:p-0 text-4xl w-full text-center mx-auto" id="text">
-          Welcome! The best recipes for your day are here!
+          {`Welcome! The best ${ typeOfList === "foods" ? 'Foods' : 'Drinks'} for your day are here!`}
         </p>
         <motion.div
           initial={{ y: 20, opacity: 0 }}
