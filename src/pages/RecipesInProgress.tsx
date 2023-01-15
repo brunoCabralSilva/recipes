@@ -38,6 +38,10 @@ export default function RecipesInProgress() {
   }, []);
 
   const returnObject = (object: any) => {
+    const newDate = new Date(Date.now());
+    const date = `${newDate.getDate()}/${newDate
+    .getMonth() + 1 < 10 && 0}${newDate
+    .getMonth() + 1}/${newDate.getFullYear()}`;
     return {
       name: object.name,
       image: object.image,
@@ -49,6 +53,7 @@ export default function RecipesInProgress() {
       alcoholicOrNot: object.alcoholicOrNot,
       type: object.type,
       tags: object.tags,
+      date: date,
     };
   }
 

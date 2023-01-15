@@ -18,6 +18,7 @@ export default function Item(props: ItemProps) {
     requestDrinkById: reqApiDId,
     alterFavorites,
     verifyIfIsFavorite,
+    nameOfPage,
   } = useContext(contextRecipes);
   const [messageShared, setMessageShared] = useState('');
   const [list, setList] = useState({
@@ -31,6 +32,7 @@ export default function Item(props: ItemProps) {
     nationality: '',
     alcoholicOrNot: '',
     tags: '',
+    date : '',
   });
 
   const populateItens = (obj: any) => {
@@ -47,6 +49,7 @@ export default function Item(props: ItemProps) {
         nationality: obj.strArea,
         alcoholicOrNot: '',
         tags: obj.strTags,
+        date: obj.date,
       });
     } else {
       setList({
@@ -60,6 +63,7 @@ export default function Item(props: ItemProps) {
         nationality: obj.strArea,
         alcoholicOrNot: obj.strAlcoholic,
         tags: obj.strTags,
+        date: obj.date,
       });
     }
   };
@@ -77,6 +81,7 @@ export default function Item(props: ItemProps) {
         nationality: item.nationality,
         alcoholicOrNot: item.alcoholicOrNot,
         tags: '',
+        date: item.date,
       });
     } else if (!item.strCategory) {
       if (typeOfList === 'foods') {
@@ -138,8 +143,9 @@ export default function Item(props: ItemProps) {
         <div className="pr-2 py-2">
           <p data-testid={ `${index}-card-name` } className="flex items-end z-30 font-bold leading-6 text-xl">{(list.name && list.name.length > 1) && list.name}</p>
           <p><em>{list.nationality ? list.nationality : list.category}</em></p>
-          { tagsItem() }
-          { list.alcoholicOrNot !== '' && list.alcoholicOrNot }
+          <p>{ tagsItem() }</p>
+          <p>{ list.alcoholicOrNot !== '' && list.alcoholicOrNot }</p>
+          <p>{ buttons && nameOfPage === 'Done Recipes' && `Finished in: ${list.date}` }</p>
           { 
             buttons &&
             <div className="p-1 z-40 flex items-center">
@@ -186,8 +192,3 @@ export default function Item(props: ItemProps) {
     </div>
   );
 }
-
-//     {/* <p data-testid={ `${index}-horizontal-done-date` }>
-  //       {item.doneDate}
-  //     </p> */}
-  //     {/* <p data-testid={ `${index}-horizontal-done-date` }>{item.startTime}</p> */}
