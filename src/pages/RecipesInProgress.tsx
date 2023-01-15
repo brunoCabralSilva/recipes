@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import contextRecipes from '../contextRecipes/context';
 import BtnsFavAndCopy from "../components/BtnsFavAndCopy";
 import Footer from '../components/Footer';
+import { VscError } from "react-icons/vsc";
 
 export default function RecipesInProgress() {
   const [ingredientList, setIngredientList] = useState(['']);
@@ -13,6 +14,8 @@ export default function RecipesInProgress() {
     objIngrMeas,
     objSelected,
   } = useContext(contextRecipes);
+
+  const [messageNotComplete, setMessageNotComplete] = useState(false);
 
   const history: any = useHistory();
   const { type, id }: { type: string, id: string } = useParams();
@@ -50,20 +53,25 @@ export default function RecipesInProgress() {
   }
 
   const directClick = () => {
-    const localFood = localStorage.getItem('doneRecipes');
-    if (localFood) {
-      const objDnRec = JSON.parse(localFood).map((done: any) => (returnObject(done)));
-      const verifyIfIsDone = objDnRec.filter((element: any) => element.id === objSelected.id);
-      if (verifyIfIsDone.length === 0) {
-        localStorage.setItem('doneRecipes', JSON.stringify([...objDnRec,
-        returnObject(objSelected),
-        ]));
+    if (returnDisabled()) {
+      setMessageNotComplete(true);
+      setTimeout(() => setMessageNotComplete(false), 4000);
+    } else {
+      const localFood = localStorage.getItem('doneRecipes');
+      if (localFood) {
+        const objDnRec = JSON.parse(localFood).map((done: any) => (returnObject(done)));
+        const verifyIfIsDone = objDnRec.filter((element: any) => element.id === objSelected.id);
+        if (verifyIfIsDone.length === 0) {
+          localStorage.setItem('doneRecipes', JSON.stringify([...objDnRec,
+          returnObject(objSelected),
+          ]));
+        }
       }
+      else {
+        localStorage.setItem('doneRecipes', JSON.stringify([returnObject(objSelected)]));
+      }
+      history.push('/done-recipes');
     }
-    else {
-      localStorage.setItem('doneRecipes', JSON.stringify([returnObject(objSelected)]));
-    }
-    history.push('/done-recipes');
   };
 
   const verifyIfIsConcluded = (ingredients: any, measure: any) => {
@@ -169,7 +177,7 @@ export default function RecipesInProgress() {
         <button
           type="button"
           onClick={ () => saveProgress(ingredients[i][1], measure[i]) }
-          className={`border border-black ${verifyIfIsConcluded(ingredients[i][1], measure[i]) ? 'bg-black text-white' : ''} rounded-full px-5 py-3`}
+          className={`border border-black ${verifyIfIsConcluded(ingredients[i][1], measure[i]) ? 'bg-gradient-to-r from-orange-500 to-red-600 bg-white border font-bold border-white text-white ' : ''} rounded-full px-5 py-3`}
         >
           <span>
             {`${ingredients[i] && ingredients[i][1] } ${ measure[i] ? `(${measure[i][1]})` : '' }`}
@@ -204,7 +212,7 @@ export default function RecipesInProgress() {
 
   return (
     <div className="flex flex-col">
-      <div className="h-screen sm:mt-0 grid grid-cols-1 md:grid-cols-2">
+      <div className=" sm:mt-0 grid grid-cols-1 md:grid-cols-2">
         <BtnsFavAndCopy />
         <div className="h-full bg-black/20 flex flex-col items-center justify-center relative md:hidden mt-10">
           <img
@@ -238,18 +246,27 @@ export default function RecipesInProgress() {
           <p data-testid="recipe-title" className="w-full pb-3 px-10">
             { objSelected.instructions }
           </p>
-          <div data-testid="recipe-title" className="w-full pt-5 pb-5 px-9 gap-3 grid grid-cols-1 md:flex items-center justify-center md:justify-start flex-wrap">
+          <div data-testid="recipe-title" className="w-full pt-5 pb-5 px-9 gap-3 grid grid-cols-1 md:flex items-center justify-center md:justify-start flex-wrap ">
             {Object.values(objIngrMeas).length > 0 && handleIng(objIngrMeas)}
             <button
               type="button"
               data-testid="finish-recipe-btn"
               onClick={ directClick }
-              disabled={ returnDisabled() }
-              className="border border-black rounded-full px-5 py-3"
+              className="border hover:bg-black hover:text-white hover:font-bold border-black rounded-full px-5 py-3"
             >
               Finalizar
             </button>
           </div>
+            <div className="px-9 font-bold text-red-500 w-full mb-5">
+              { messageNotComplete &&
+              <div className="flex flex-col sm:flex-row justify-center sm:justify-start items-center w-full">
+                <VscError className="mr-2 text-2xl mb-2 sm:mb-0" />
+                <span>
+                  Nem todos os ingredientes foram marcados!
+                </span>
+              </div>
+              }
+            </div>
         </div>
         <div className="h-full bg-black/20 flex-col items-center justify-center relative hidden sm:flex">
           <img

@@ -49,7 +49,7 @@ export default function StartRecipe(props: StartRecipeType) {
       <button
         type="button"
         data-testid="start-recipe-btn"
-        className="border border-black rounded-full px-5 py-3 sm:mt-10 mt-5"
+        className="hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-600 bg-white border border-black hover:border-white hover:text-white rounded-full px-5 py-3 sm:mt-10 mt-5"
         onClick={ redirectToInProgress }
       >
         { phrase }

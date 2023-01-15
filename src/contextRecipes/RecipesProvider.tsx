@@ -39,6 +39,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
   const [objIngrMeas, setObjIngrMeas] = useState({}); //
   const [objSelected, setObjSelected] = useState({});
   const [nameOfPage, setNameOfPage] = useState('Home');
+  const [category, setCategory] = useState('All');
 
   const initialRequest = async (): Promise<void> => {
     const foodList = await fetchFoods();
@@ -184,13 +185,14 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
         objIngrMeas, setObjIngrMeas,
         objSelected, setObjSelected,
         nameOfPage, setNameOfPage,
+        category, setCategory,
         initialRequest, reqApiCategory, 
         requestFoodById, requestDrinkById,
         listAllDrinks, listAllFoods,
         verifyIfIsFavorite,
         getFavorites, alterFavorites,
         sharedLink,
-        createElement, 
+        createElement,
       }}
     >
       {children}

@@ -33,6 +33,8 @@ interface RecipesContext {
   setObjSelected: (numState: any) => void,
   nameOfPage: string,
   setNameOfPage: (numState: string) => void,
+  category: string,
+  setCategory: (state: string) => void,
 }
 
 const initialValue: RecipesContext = {
@@ -67,6 +69,8 @@ const initialValue: RecipesContext = {
   setObjSelected: () => {},
   nameOfPage: '',
   setNameOfPage: () => {},
+  category: '',
+  setCategory: () => {},
 }
 
 const contexto = createContext(initialValue);

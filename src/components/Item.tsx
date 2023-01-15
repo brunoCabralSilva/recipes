@@ -128,7 +128,7 @@ export default function Item(props: ItemProps) {
       className="cursor-pointer sm:my-4 relative transition duration-1000 w-full"
     >
       <div
-        className="flex items-center justify-start mx-auto transition-shadow duration-500 shadow hover:shadow-2xl py-4 w-full">
+        className="flex items-center justify-start mx-auto transition-shadow duration-500 shadow hover:shadow-2xl py-4 w-full h-48">
         <img
           data-testid={ `${index}-card-img` }
           src={ list.image }

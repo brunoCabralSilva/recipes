@@ -16,6 +16,8 @@ export default function SliderMenu() {
     reqApiCategory,
     setListOfItemsFromCat,
     setFixedList,
+    category,
+    setCategory,
   } = context;
   
   let btn = [];
@@ -53,6 +55,7 @@ export default function SliderMenu() {
         <SwiperSlide
           data-testid="All-category-filter"
           onClick={ () => {
+            setCategory('All');
             setListOfItemsFromCat([]);
             if (typeOfList === 'foods') {
               listAllFoods();
@@ -61,7 +64,7 @@ export default function SliderMenu() {
             }
           }}
           className="flex flex-col">
-            <div className="bg-white mx-1 flex items-center justify-center rounded text-sm p-2 cursor-pointer border hover:border-black transition-colors duration-500 w-full"> 
+            <div className={`bg-white mx-1 flex items-center justify-center rounded text-sm p-2 cursor-pointer border hover:border-black transition-colors duration-500 w-full ${category === 'All' ? 'bg-gradient-to-r from-orange-300 to-red-300 text-black border-2 border-white': 'bg-white'}`}> 
               <img
                 src={require('../images/wallpapers/all.jpg')}
                 alt=""
@@ -80,13 +83,14 @@ export default function SliderMenu() {
             <SwiperSlide
               key={ index }
               data-testid={ `${button.strCategory}-category-filter` }
-              onClick={ () => { 
+              onClick={ () => {
+                setCategory(button.strCategory);
                 setListOfItemsFromCat([]);
                 setFixedList([]);
                 reqApiCategory(button.strCategory);
               }}
               className="flex flex-col">
-                <div className="bg-white mx-1 flex items-center justify-center rounded text-sm p-2 cursor-pointer border hover:border-black transition-colors duration-500 w-full">
+                <div className={`bg-white mx-1 flex items-center justify-center rounded text-sm p-2 cursor-pointer border hover:border-black transition-colors duration-500 w-full ${category === button.strCategory ? 'bg-gradient-to-r from-orange-300 to-red-300 text-black border-2 border-white': 'bg-white'}`}>
                   <img
                     src={require(`../images/wallpapers/${button.strCategory === "Other / Unknown" ? "Other-Unknown" : button.strCategory }.jpg`)}
                     alt=""

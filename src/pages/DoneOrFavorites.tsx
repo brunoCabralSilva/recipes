@@ -96,7 +96,7 @@ export default function DoneOrFavorites() {
           <span className="pr-1">{match.path === '/done-recipes' ? 'Done Recipes -' : 'Favorite Recipes -'}</span>
           <span>{button}</span>
         </p>
-      <div className={`grid gap-6 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-center w-full p-6  ${options.length < 6 && 'md:h-screen' }`}>
+      <div className={`grid gap-6 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-center w-full p-6  ${options.length < 3 && 'md:h-screen' }`}>
         {
           options && options.length > 0
           ? 
