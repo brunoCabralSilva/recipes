@@ -80,7 +80,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     return reqId;
   };
 
-  const getFavorites = () => {
+  const getFavorites = (): void => {
     const favorite = localStorage.getItem('favoriteRecipes');
     if (favorite !== null) {
       const favorites = JSON.parse(favorite);
@@ -88,7 +88,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     }
   };
 
-  const verifyIfIsFavorite = (id: string) => {
+  const verifyIfIsFavorite = (id: string): boolean => {
     const listFavorites = localStorage.getItem('favoriteRecipes');
     if (listFavorites) {
       const fil = JSON.parse(listFavorites).filter((f: any) => id === f.id);
@@ -99,7 +99,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     return false;
   };
 
-  const alterFavorites = (objectFavorite: any) => {
+  const alterFavorites = (objectFavorite: any): void => {
     const objFav = {
       name: objectFavorite.name,
       image: objectFavorite.image,
@@ -128,8 +128,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     }
   };
 
-  const sharedLink = (props: any) => {
-    const { match: { params: { type, id }} } = props;
+  const sharedLink = (type: string, id: string) => {
     setTimeout(() => {
       setMessageShared('');
     }, +'3000');
@@ -137,8 +136,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
     copy(`http://localhost:3000/recipes/${type}/${id}`);
   };
 
-  const createElement = async (props: any): Promise<void> => {
-    const { match: { params: { type, id }} } = props;
+  const createElement = async (type: string, id: string): Promise<void> => {
     if (type === 'food') {
       const search = await requestFoodById(id);
       setObjSelected({

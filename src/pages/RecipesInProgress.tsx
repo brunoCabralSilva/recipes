@@ -2,15 +2,10 @@ import { useEffect, useContext, useState, ReactNode } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import contextRecipes from '../contextRecipes/context';
 import BtnsFavAndCopy from "../components/BtnsFavAndCopy";
+import Footer from '../components/Footer';
 
-interface RecipesProgressType {
-  history: any,
-  match: any,
-};
-
-export default function RecipesInProgress(props: RecipesProgressType) {
+export default function RecipesInProgress() {
   const [ingredientList, setIngredientList] = useState(['']);
-  const { type }: any = useParams();
   const {
     getFavorites,
     createElement,
@@ -20,6 +15,7 @@ export default function RecipesInProgress(props: RecipesProgressType) {
   } = useContext(contextRecipes);
 
   const history: any = useHistory();
+  const { type, id }: { type: string, id: string } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,7 +29,7 @@ export default function RecipesInProgress(props: RecipesProgressType) {
     }
     if (objSelected.name === '') {
       setTypeOfList(type);
-      createElement(props);
+      createElement(type, id);
       getFavorites();
     }
   }, []);
@@ -208,70 +204,67 @@ export default function RecipesInProgress(props: RecipesProgressType) {
 
   return (
     <div className="h-screen sm:mt-0 grid grid-cols-1 md:grid-cols-2">
-      <BtnsFavAndCopy
-        match={props.match}
-        history={props.history}
-        item={objSelected}
-      />
-        <div className="h-full bg-black/20 flex flex-col items-center justify-center relative md:hidden mt-10">
-          <img
-            src={ objSelected.image }
-            alt=""
-            data-testid="recipe-photo"
-            className="object-cover w-full h-full absolute border-white opacity-20"
-          />
-          <img
-            src={ objSelected.image }
-            alt=""
-            data-testid="recipe-photo"
-            className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"
-          />
-        </div>
-        <div
-          className="w-full flex flex-col items-center justify-center h-full pt-10 text-center md:text-left"
+      <BtnsFavAndCopy />
+      <div className="h-full bg-black/20 flex flex-col items-center justify-center relative md:hidden mt-10">
+        <img
+          src={ objSelected.image }
+          alt=""
+          data-testid="recipe-photo"
+          className="object-cover w-full h-full absolute border-white opacity-20"
+        />
+        <img
+          src={ objSelected.image }
+          alt=""
+          data-testid="recipe-photo"
+          className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"
+        />
+      </div>
+      <div
+        className="w-full flex flex-col items-center justify-center h-full pt-10 text-center md:text-left"
+      >
+        <p
+          data-testid="recipe-title"
+          className="text-4xl pt-3 mt-5 md:mt-0 w-full sm:text-5xl px-10"
         >
-          <p
-            data-testid="recipe-title"
-            className="text-4xl pt-3 mt-5 md:mt-0 w-full sm:text-5xl px-10"
-          >
-            { objSelected.name }
-          </p>
-          <div
-            data-testid="recipe-category"
-            className="mb-5 w-full text-2xl bg-white italic gap-3 px-10"
-          >
-            { objSelected.category }
-          </div>
-          <p data-testid="recipe-title" className="w-full pb-3 px-10">
-            { objSelected.instructions }
-          </p>
-          <div data-testid="recipe-title" className="w-full pt-5 pb-5 px-9 gap-3 grid grid-cols-1 md:flex items-center justify-center md:justify-start flex-wrap">
-            {Object.values(objIngrMeas).length > 0 && handleIng(objIngrMeas)}
-            <button
-              type="button"
-              data-testid="finish-recipe-btn"
-              onClick={ directClick }
-              disabled={ returnDisabled() }
-              className="border border-black rounded-full px-5 py-3"
-            >
-              Finalizar
-            </button>
-          </div>
+          { objSelected.name }
+        </p>
+        <div
+          data-testid="recipe-category"
+          className="mb-5 w-full text-2xl bg-white italic gap-3 px-10"
+        >
+          { objSelected.category }
         </div>
-        <div className="h-full bg-black/20 flex-col items-center justify-center relative hidden sm:flex">
-          <img
-            src={ objSelected.image }
-            alt=""
-            data-testid="recipe-photo"
-            className="object-cover w-full h-full absolute border-white opacity-20"
-          />
-          <img
-            src={ objSelected.image }
-            alt=""
-            data-testid="recipe-photo"
-            className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"
-          />
+        <p data-testid="recipe-title" className="w-full pb-3 px-10">
+          { objSelected.instructions }
+        </p>
+        <div data-testid="recipe-title" className="w-full pt-5 pb-5 px-9 gap-3 grid grid-cols-1 md:flex items-center justify-center md:justify-start flex-wrap">
+          {Object.values(objIngrMeas).length > 0 && handleIng(objIngrMeas)}
+          <button
+            type="button"
+            data-testid="finish-recipe-btn"
+            onClick={ directClick }
+            disabled={ returnDisabled() }
+            className="border border-black rounded-full px-5 py-3"
+          >
+            Finalizar
+          </button>
         </div>
+      </div>
+      <div className="h-full bg-black/20 flex-col items-center justify-center relative hidden sm:flex">
+        <img
+          src={ objSelected.image }
+          alt=""
+          data-testid="recipe-photo"
+          className="object-cover w-full h-full absolute border-white opacity-20"
+        />
+        <img
+          src={ objSelected.image }
+          alt=""
+          data-testid="recipe-photo"
+          className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"
+        />
+      </div>
+      <Footer />
     </div>
   );
 }

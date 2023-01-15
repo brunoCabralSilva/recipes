@@ -3,13 +3,10 @@ import contextRecipes from '../contextRecipes/context';
 import StartRecipe from '../components/StartRecipe';
 import BtnsFavAndCopy from '../components/BtnsFavAndCopy';
 import { motion } from 'framer-motion';
+import { useParams } from 'react-router-dom';
+import Footer from '../components/Footer';
 
-interface RecDetailsProps {
-  match: any,
-  history: any,
-}
-
-export default function RecipesDetails(props: RecDetailsProps) {
+export default function RecipesDetails() {
   const {
     getFavorites,
     createElement,
@@ -17,10 +14,12 @@ export default function RecipesDetails(props: RecDetailsProps) {
     objSelected,
   } = useContext(contextRecipes);
 
+  const { type, id }: { type: string, id: string } = useParams();
+
   useEffect(() => {
     window.scrollTo(0, 0);
     getFavorites();
-    createElement(props);
+    createElement(type, id);
   }, []);
 
   const handleIng = (x: any): ReactNode[] => {
@@ -49,11 +48,7 @@ export default function RecipesDetails(props: RecDetailsProps) {
       className="h-screen mt-14 sm:mt-0"
       exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
       >
-        <BtnsFavAndCopy
-          match={props.match}
-          history={props.history}
-          item={objSelected}
-        />
+        <BtnsFavAndCopy />
         <div className="flex justify-center items-center w-ful sm:mt-0 mb-10 text-left z-40">
           <div className="w-full h-screen grid grid-cols-1 sm:grid-cols-2">
             <div className="h-full bg-black/20 flex flex-col items-center justify-center relative">
@@ -96,6 +91,7 @@ export default function RecipesDetails(props: RecDetailsProps) {
             </div>
           </div>
       </div>
+      <Footer />
     </motion.div>
   );
 }

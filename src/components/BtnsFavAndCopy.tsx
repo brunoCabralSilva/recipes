@@ -1,32 +1,19 @@
 import { useContext } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import contextRecipes from '../contextRecipes/context';
 
-interface ItemSelected {
-  name: string,
-  image: string,
-  category: string,
-  instructions: string,
-  youtube: string,
-  id: string,
-  nationality: string,
-  alcoholicOrNot: string,
-  type: string,
-}
-
-interface BtnsType {
-  match: any
-  history: any,
-  item: ItemSelected,
-}
-
-export default function BtnsFavAndCopy(props: BtnsType) {
+export default function BtnsFavAndCopy() {
   const {
-    messageShared,
     alterFavorites,
+    messageShared,
     sharedLink,
     listFavorites,
     verifyIfIsFavorite,
+    objSelected,
   } = useContext(contextRecipes);
+
+  const history = useHistory();
+  const params: { type: string, id: string } = useParams();
 
   return(
     <div className="fixed top-0 flex justify-between h-14 bg-white sm:bg-transparent w-full z-50">
@@ -34,14 +21,14 @@ export default function BtnsFavAndCopy(props: BtnsType) {
         src={require('../images/icons/arrow-left-black.png')}
         alt="icon arrow"
         className="ml-1 py-2 animate-pulse"
-        onClick={ () => props.history.push('/recipes') }
+        onClick={ () => history.goBack() }
       />
       <div className="w-full flex justify-end p-4">
         {messageShared && <p className="w-full text-base sm:text-2xl text-right">{messageShared}</p>}
         <button
           type="button"
           data-testid="share-btn"
-          onClick={ () => sharedLink(props) }
+          onClick={ () => sharedLink(params.type, params.id) }
           className="mx-3"
         >
           <img
@@ -52,11 +39,11 @@ export default function BtnsFavAndCopy(props: BtnsType) {
         <button
           type="button"
           data-testid="favorite-btn"
-          onClick={ () => alterFavorites(props.item)}
+          onClick={ () => alterFavorites(objSelected)}
           className="mx-3"
         >
           <img
-            src={ require(`../images/icons/${verifyIfIsFavorite(props.item.id) ? 'blackHeartIcon' : 'whiteHeartIcon'}.svg`) }
+            src={ require(`../images/icons/${verifyIfIsFavorite(objSelected.id) ? 'blackHeartIcon' : 'whiteHeartIcon'}.svg`) }
             alt="botão favoritar/desfavoritar"
           />
         </button>

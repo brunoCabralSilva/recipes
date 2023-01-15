@@ -16,6 +16,7 @@ export default function SliderMenu() {
     setListOfItemsFromCat,
     setFixedList,
   } = context;
+  
   let btn = [];
 
   if(favAndSharedInItem.length > 0) {

@@ -4,18 +4,17 @@ import contextoRecipes from '../contextRecipes/context';
 interface AlternativeItemsType {
   setShowMenu: (newState: boolean) => void;
   showMenu: boolean
-}
+};
 
 export default function AlternateItems(props: AlternativeItemsType) {
-  const context = useContext(contextoRecipes);
-  const { setShowMenu, showMenu } = props;
   const {
     setTypeOfList,
     setListOfItemsFromCat,
     listAllDrinks,
     listAllFoods,
     reqApiCategory,
-  } = context;
+  } = useContext(contextoRecipes);
+  const { setShowMenu, showMenu } = props;
 
   const drinkRedirect = () => {
     listAllDrinks();

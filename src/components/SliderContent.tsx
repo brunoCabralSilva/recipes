@@ -3,11 +3,10 @@ import Item from './Item';
 import contextRecipes from '../contextRecipes/context';
 
 export default function SliderContent() {
-  const context = useContext(contextRecipes);
   const {
     listOfItemsFromCat,
     fixedList,
-  } = context;
+  } = useContext(contextRecipes);
 
   const handleCategoryFilter = (list: any) => {
     const cat = list.slice(0, +'18').map((item: any, index: number) => (

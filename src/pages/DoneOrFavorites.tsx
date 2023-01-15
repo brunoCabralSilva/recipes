@@ -1,18 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams, useRouteMatch, useHistory } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import imageFoods from '../data/foods.json';
 import Item from '../components/Item';
 import contextRecipes from '../contextRecipes/context';
 import Header from '../components/Header';
 import SliderHeader from '../components/SliderHeader';
+import Footer from '../components/Footer';
 
-interface DoneRecProps {
-  match: any,
-  history: any,
-}
-
-export default function DoneOrFavorites(props: DoneRecProps) {
+export default function DoneOrFavorites() {
   const {
     getFavorites,
   } = useContext(contextRecipes);
@@ -122,6 +118,7 @@ export default function DoneOrFavorites(props: DoneRecProps) {
             </p>
         }
       </div>
+      <Footer />
     </motion.div>
   );
 }

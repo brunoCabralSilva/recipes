@@ -7,16 +7,15 @@ import SliderMenu from "../components/SliderMenu";
 import SliderContent from "../components/SliderContent";
 import imageFoods from '../data/foods.json';
 import imageDrinks from '../data/drinks.json';
+import Footer from "../components/Footer";
 
 export default function Recipes() {
-  const context = useContext(contextRecipes);
-
   const {
     typeOfList,
     setTypeOfList,
-    initialRequest,
     buttonsNavigation,
-  } = context;
+    initialRequest,
+  } = useContext(contextRecipes);
 
   useEffect(() => {
     if (!typeOfList) {
@@ -60,6 +59,7 @@ export default function Recipes() {
         <SliderContent />
         </motion.div>
      </section>
+     <Footer />
     </motion.div>
   );
 }

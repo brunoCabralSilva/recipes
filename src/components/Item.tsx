@@ -146,7 +146,7 @@ export default function Item(props: ItemProps) {
                 </button>
                 <button
                   type="button"
-                  onClick={ () => sharedLink(props) }
+                  onClick={ () => sharedLink(item.type, item.id) }
                   data-testid={ `${index}-horizontal-share-btn` }
                   className="p-1 z-40 flex justify-end"
                 >
