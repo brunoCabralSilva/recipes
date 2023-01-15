@@ -29,11 +29,7 @@ export default function Recipes() {
   return (
     <motion.div
     className="flex flex-col justify-start">
-      <Header
-        icon={false}
-        searchIcon="visible"
-        title={typeOfList === 'foods' ? 'Foods' : 'Drinks' }
-      />
+      <Header toggleRecipe={true} />
       <section>
         <div className="flex flex-row justify-center my-2">
           <SliderMenu />

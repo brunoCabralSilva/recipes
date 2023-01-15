@@ -4,15 +4,15 @@ export default class Footer extends React.Component {
   render() {
     return(
       <footer className="bg-black text-white p-0 flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center my-2 mt-4 sm:mt-2">
           <img
-            src={require('../images/icons/foods.white.png')}
+            src={require('../images/icons/food-white.png')}
             className="ml-0 sm:ml-3 h-10 w-10"
             alt="food"
           />
           <img
-            src={require('../images/icons/drink.white.png')}
-            className="ml-3 h-8 w-8"
+            src={require('../images/icons/drink-white.png')}
+            className="ml-3 sm:ml-3 h-10 w-10"
             alt="drink"
           />
         </div>

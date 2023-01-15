@@ -62,11 +62,7 @@ export default function DoneOrFavorites() {
       }}
       exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
     >
-      <Header
-        searchIcon="hidden"
-        title={match.path === '/done-recipes' ? 'Done Recipes' : 'Favorite Recipes'}
-        icon={ true }
-      />
+      <Header toggleRecipe={false} />
       <div className="">
         <button
           type="button"

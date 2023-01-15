@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import contextRecipes from '../contextRecipes/context';
+const copy = require('clipboard-copy');
 
 interface ItemProps {
   item:any,
@@ -15,11 +16,10 @@ export default function Item(props: ItemProps) {
     typeOfList,
     requestFoodById: reqApiFId,
     requestDrinkById: reqApiDId,
-    sharedLink,
-    messageShared,
     alterFavorites,
     verifyIfIsFavorite,
   } = useContext(contextRecipes);
+  const [messageShared, setMessageShared] = useState('');
   const [list, setList] = useState({
     id: '',
     type: '',
@@ -113,14 +113,22 @@ export default function Item(props: ItemProps) {
     }
   };
 
+  const sharedLink = (type: string, id: string) => {
+    setTimeout(() => {
+      setMessageShared('');
+    }, +'3000');
+    setMessageShared('Link copied!');
+    copy(`http://localhost:3000/recipes/${type}/${id}`);
+  };
+
   return(
     <div
       data-testid={ `${index}-recipe-card` }
       onClick={() => history.push(`/${list.type}/${list.id}`)}
-      className="sm:my-4 relative transition duration-1000 w-full"
+      className="cursor-pointer sm:my-4 relative transition duration-1000 w-full"
     >
       <div
-        className="flex items-center justify-start mx-auto shadow hover:shadow-2xl py-4 w-full">
+        className="flex items-center justify-start mx-auto transition-shadow duration-500 shadow hover:shadow-2xl py-4 w-full">
         <img
           data-testid={ `${index}-card-img` }
           src={ list.image }

@@ -20,7 +20,11 @@ textarea:focus, input:focus {
 }
 
 .swiper-slide {
-    height: 100vh;
+  height: 100vh;
+}
+
+.swiperSlide {
+    
 }
 
 .swiper-pagination > .swiper-pagination-bullet {
@@ -29,6 +33,7 @@ textarea:focus, input:focus {
     color: white;
     padding: 8px;
     border-radius: 0;
+    border: 2px solid black;
 }
 .swiper-pagination > .swiper-pagination-bullet-active {
     background-color: white;
@@ -38,10 +43,7 @@ textarea:focus, input:focus {
 }
 
 .swiper-button-prev::after, .swiper-button-next::after  {
-    color: white;
-}
-
-.contorno {
-    -webkit-text-stroke-width: 1px; /* largura da borda */
-    -webkit-text-stroke-color: white; /* cor da borda */
+    color: black;
+    padding: 10px;
+    background-color: white;
 }
