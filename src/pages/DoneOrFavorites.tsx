@@ -1,16 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import imageFoods from '../data/foods.json';
 import Item from '../components/Item';
 import contextRecipes from '../contextRecipes/context';
 import Header from '../components/Header';
-import SliderHeader from '../components/SliderHeader';
 import Footer from '../components/Footer';
 
 export default function DoneOrFavorites() {
   const {
     getFavorites,
+    setNameOfPage,
   } = useContext(contextRecipes);
   const match = useRouteMatch();
 
@@ -36,6 +35,7 @@ export default function DoneOrFavorites() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setNameOfPage(match.path === '/done-recipes' ? 'Done Recipes' : 'Favorite Recipes');
     getFavorites();
     generateElements();
   }, []);
@@ -67,7 +67,6 @@ export default function DoneOrFavorites() {
         title={match.path === '/done-recipes' ? 'Done Recipes' : 'Favorite Recipes'}
         icon={ true }
       />
-      <SliderHeader list={ imageFoods } />
       <div className="">
         <button
           type="button"

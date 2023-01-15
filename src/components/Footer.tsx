@@ -4,7 +4,7 @@ export default class Footer extends React.Component {
   render() {
     return(
       <footer className="bg-black text-white p-0 flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex items-center my-4 sm:my-0">
+        <div className="flex items-center">
           <img
             src={require('../images/icons/foods.white.png')}
             className="ml-0 sm:ml-3 h-10 w-10"

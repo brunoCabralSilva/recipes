@@ -38,6 +38,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
   const [typeOfList, setTypeOfList] = useState('foods');
   const [objIngrMeas, setObjIngrMeas] = useState({}); //
   const [objSelected, setObjSelected] = useState({});
+  const [nameOfPage, setNameOfPage] = useState('Home');
 
   const initialRequest = async (): Promise<void> => {
     const foodList = await fetchFoods();
@@ -182,6 +183,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
         messageShared, setMessageShared,
         objIngrMeas, setObjIngrMeas,
         objSelected, setObjSelected,
+        nameOfPage, setNameOfPage,
         initialRequest, reqApiCategory, 
         requestFoodById, requestDrinkById,
         listAllDrinks, listAllFoods,

@@ -203,66 +203,68 @@ export default function RecipesInProgress() {
   };
 
   return (
-    <div className="h-screen sm:mt-0 grid grid-cols-1 md:grid-cols-2">
-      <BtnsFavAndCopy />
-      <div className="h-full bg-black/20 flex flex-col items-center justify-center relative md:hidden mt-10">
-        <img
-          src={ objSelected.image }
-          alt=""
-          data-testid="recipe-photo"
-          className="object-cover w-full h-full absolute border-white opacity-20"
-        />
-        <img
-          src={ objSelected.image }
-          alt=""
-          data-testid="recipe-photo"
-          className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"
-        />
-      </div>
-      <div
-        className="w-full flex flex-col items-center justify-center h-full pt-10 text-center md:text-left"
-      >
-        <p
-          data-testid="recipe-title"
-          className="text-4xl pt-3 mt-5 md:mt-0 w-full sm:text-5xl px-10"
-        >
-          { objSelected.name }
-        </p>
+    <div className="flex flex-col">
+      <div className="h-screen sm:mt-0 grid grid-cols-1 md:grid-cols-2">
+        <BtnsFavAndCopy />
+        <div className="h-full bg-black/20 flex flex-col items-center justify-center relative md:hidden mt-10">
+          <img
+            src={ objSelected.image }
+            alt=""
+            data-testid="recipe-photo"
+            className="object-cover w-full h-full absolute border-white opacity-20"
+          />
+          <img
+            src={ objSelected.image }
+            alt=""
+            data-testid="recipe-photo"
+            className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"
+          />
+        </div>
         <div
-          data-testid="recipe-category"
-          className="mb-5 w-full text-2xl bg-white italic gap-3 px-10"
+          className="w-full flex flex-col items-center justify-center h-full pt-10 text-center md:text-left"
         >
-          { objSelected.category }
-        </div>
-        <p data-testid="recipe-title" className="w-full pb-3 px-10">
-          { objSelected.instructions }
-        </p>
-        <div data-testid="recipe-title" className="w-full pt-5 pb-5 px-9 gap-3 grid grid-cols-1 md:flex items-center justify-center md:justify-start flex-wrap">
-          {Object.values(objIngrMeas).length > 0 && handleIng(objIngrMeas)}
-          <button
-            type="button"
-            data-testid="finish-recipe-btn"
-            onClick={ directClick }
-            disabled={ returnDisabled() }
-            className="border border-black rounded-full px-5 py-3"
+          <p
+            data-testid="recipe-title"
+            className="text-4xl pt-3 mt-5 md:mt-0 w-full sm:text-5xl px-10"
           >
-            Finalizar
-          </button>
+            { objSelected.name }
+          </p>
+          <div
+            data-testid="recipe-category"
+            className="mb-5 w-full text-2xl bg-white italic gap-3 px-10"
+          >
+            { objSelected.category }
+          </div>
+          <p data-testid="recipe-title" className="w-full pb-3 px-10">
+            { objSelected.instructions }
+          </p>
+          <div data-testid="recipe-title" className="w-full pt-5 pb-5 px-9 gap-3 grid grid-cols-1 md:flex items-center justify-center md:justify-start flex-wrap">
+            {Object.values(objIngrMeas).length > 0 && handleIng(objIngrMeas)}
+            <button
+              type="button"
+              data-testid="finish-recipe-btn"
+              onClick={ directClick }
+              disabled={ returnDisabled() }
+              className="border border-black rounded-full px-5 py-3"
+            >
+              Finalizar
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="h-full bg-black/20 flex-col items-center justify-center relative hidden sm:flex">
-        <img
-          src={ objSelected.image }
-          alt=""
-          data-testid="recipe-photo"
-          className="object-cover w-full h-full absolute border-white opacity-20"
-        />
-        <img
-          src={ objSelected.image }
-          alt=""
-          data-testid="recipe-photo"
-          className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"
-        />
+        <div className="h-full bg-black/20 flex-col items-center justify-center relative hidden sm:flex">
+          <img
+            src={ objSelected.image }
+            alt=""
+            data-testid="recipe-photo"
+            className="object-cover w-full h-full absolute border-white opacity-20"
+          />
+          <img
+            src={ objSelected.image }
+            alt=""
+            data-testid="recipe-photo"
+            className="object-cover w-60 sm:h-60 md:w-96 md:h-96 rounded-full border-2 border-white z-30"
+          />
+        </div>
       </div>
       <Footer />
     </div>

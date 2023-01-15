@@ -2,11 +2,8 @@ import { useEffect, useContext } from "react";
 import { motion } from 'framer-motion';
 import contextRecipes from '../contextRecipes/context';
 import Header from '../components/Header';
-import SliderHeader from '../components/SliderHeader';
 import SliderMenu from "../components/SliderMenu";
 import SliderContent from "../components/SliderContent";
-import imageFoods from '../data/foods.json';
-import imageDrinks from '../data/drinks.json';
 import Footer from "../components/Footer";
 
 export default function Recipes() {
@@ -15,13 +12,15 @@ export default function Recipes() {
     setTypeOfList,
     buttonsNavigation,
     initialRequest,
+    setNameOfPage,
   } = useContext(contextRecipes);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    setNameOfPage('Home');
     if (!typeOfList) {
       setTypeOfList('foods');
     }
-    window.scrollTo(0, 0);
     if (buttonsNavigation.length === 0) {
       initialRequest();
     }
@@ -35,11 +34,6 @@ export default function Recipes() {
         searchIcon="visible"
         title={typeOfList === 'foods' ? 'Foods' : 'Drinks' }
       />
-      {
-        typeOfList === 'foods'
-          ? <SliderHeader list={ imageFoods } />
-          : <SliderHeader list={ imageDrinks } />
-      }
       <section>
         <div className="flex flex-row justify-center my-2">
           <SliderMenu />

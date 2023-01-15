@@ -1,5 +1,9 @@
-import React from 'react';
-import SearchBar from './SearchBar';
+import { useContext } from 'react';
+import Nav from './Nav';
+import SliderHeader from './SliderHeader';
+import imageFoods from '../data/foods.json';
+import imageDrinks from '../data/drinks.json';
+import contextRecipes from '../contextRecipes/context';
 
 interface HeaderProps {
   title: string,
@@ -8,25 +12,22 @@ interface HeaderProps {
 };
 
 export default function Header(props: HeaderProps) {
-  const { title } = props;
-
+  const { typeOfList } = useContext(contextRecipes);
   return (
-    <header className="flex flex-col w-full h-14 z-40">
-      <div className="flex flex-row justify-between items-center p-2 w-full">
-        <div className="flex items-center">
-          {
-            <img src={require(`../images/icons/${title === "Foods" ? "icon_food.jpg" : "img-drinks.png"}`)} className="h-10" alt="icon food" /> 
-          }
-          <h1 data-testid="page-title" className="ml-5 text-black text-xl font-bold">
-            { title }
-          </h1>
-        </div>
-        <SearchBar />
+    <header className="flex flex-col w-full z-50">
+      <div className="flex flex-row justify-between items-center p-2 w-full h-14">
+        <img
+          src={require(`../images/icons/play.png`)}   
+          className="pl-2 h-10 z-50"
+          alt="icon food"
+        /> 
+        <Nav />
       </div>
-      <div className="flex items-center justify-center">
-        <div className="flex flex-col w-11/12 sm:w-3/5 md:w-2/5 items-center justify-center">
-        </div>
-      </div>
+      {
+        typeOfList === 'foods'
+          ? <SliderHeader list={ imageFoods } />
+          : <SliderHeader list={ imageDrinks } />
+      }
     </header>
   );
 }

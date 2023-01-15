@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import contextRecipes from '../contextRecipes/context';
 
 interface ItemProps {
@@ -10,6 +10,7 @@ interface ItemProps {
 
 export default function Item(props: ItemProps) {
   const { item, index, buttons } = props;
+  const history = useHistory();
   const {
     typeOfList,
     requestFoodById: reqApiFId,
@@ -113,60 +114,68 @@ export default function Item(props: ItemProps) {
   };
 
   return(
-    <Link
-      to={`/${list.type}/${list.id}`}
-        data-testid={ `${index}-recipe-card` }
-        className="sm:my-4 transition duration-1000 w-full mx-auto"
-      >
-        <div className="flex items-center justify-start mx-auto hover:shadow-2xl py-4">
-          <img
-            data-testid={ `${index}-card-img` }
-            src={ list.image }
-            alt=""
-            className="object-contain rounded-full h-28 m-4"
-          />
-          <div className="p-2">
-            <p data-testid={ `${index}-card-name` } className="flex items-end z-30 font-bold leading-6 text-xl">{(list.name && list.name.length > 1) && list.name}</p>
-            <p><em>{list.nationality ? list.nationality : list.category}</em></p>
-            { tagsItem() }
-            { list.alcoholicOrNot !== '' && list.alcoholicOrNot }
-            { buttons &&
-              <div className="relative p-1 w-full z-40 flex items-center justify-start">
-                <button
-                  type="button"
-                  data-testid="favorite-btn"
-                  onClick={ () => alterFavorites(props.item)}
-                  className="mr-3"
-                >
-                  <img
-                    src={ require(`../images/icons/${verifyIfIsFavorite(props.item.id) ? 'blackHeartIcon' : 'whiteHeartIcon'}.svg`) }
-                    alt="botão favoritar/desfavoritar"
-                    className=""
-                  />
-                </button>
-                <button
-                  type="button"
-                  onClick={ () => sharedLink(item.type, item.id) }
-                  data-testid={ `${index}-horizontal-share-btn` }
-                  className="p-1 z-40 flex justify-end"
-                >
-                  <img
-                    src={ require(`../images/icons/${buttons && 'shareIcon'}.svg`) }
-                    alt="Botão Compartilhar"
-                    className=""
-                  />
-                </button>
-                {
-                  messageShared &&
-                  <p className="absolute font-bold z-40 top-16 text-black">
-                    {messageShared}
-                  </p>
-                }
-              </div>
-            }
-          </div>
+    <div
+      data-testid={ `${index}-recipe-card` }
+      onClick={() => history.push(`/${list.type}/${list.id}`)}
+      className="sm:my-4 relative transition duration-1000 w-full"
+    >
+      <div
+        className="flex items-center justify-start mx-auto shadow hover:shadow-2xl py-4 w-full">
+        <img
+          data-testid={ `${index}-card-img` }
+          src={ list.image }
+          alt=""
+          className="object-contain rounded-full h-28 m-4"
+        />
+        <div className="pr-2 py-2">
+          <p data-testid={ `${index}-card-name` } className="flex items-end z-30 font-bold leading-6 text-xl">{(list.name && list.name.length > 1) && list.name}</p>
+          <p><em>{list.nationality ? list.nationality : list.category}</em></p>
+          { tagsItem() }
+          { list.alcoholicOrNot !== '' && list.alcoholicOrNot }
+          { 
+            buttons &&
+            <div className="p-1 z-40 flex items-center">
+              <button
+                type="button"
+                data-testid="favorite-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  alterFavorites(props.item);
+                }}
+                className="mr-3"
+              >
+                <img
+                  src={ require(`../images/icons/${verifyIfIsFavorite(props.item.id) ? 'blackHeartIcon' : 'whiteHeartIcon'}.svg`) }
+                  alt="botão favoritar/desfavoritar"
+                  className=""
+                />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  sharedLink(item.type, item.id)
+                }}
+                data-testid={ `${index}-horizontal-share-btn` }
+                className="p-1 z-40 flex justify-end"
+              >
+                <img
+                  src={ require(`../images/icons/${buttons && 'shareIcon'}.svg`) }
+                  alt="Botão Compartilhar"
+                  className=""
+                />
+              </button>
+              {
+                messageShared &&
+                <p className="font-bold pl-5 z-40 top-16 text-black">
+                  {messageShared}
+                </p>
+              }
+            </div>
+          }
         </div>
-    </Link>
+      </div>
+    </div>
   );
 }
 

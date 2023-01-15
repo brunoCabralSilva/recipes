@@ -49,7 +49,7 @@ export default function RecipesDetails() {
       exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
       >
         <BtnsFavAndCopy />
-        <div className="flex justify-center items-center w-ful sm:mt-0 mb-10 text-left z-40">
+        <div className="flex justify-center items-center w-ful sm:mt-0 text-left z-40">
           <div className="w-full h-screen grid grid-cols-1 sm:grid-cols-2">
             <div className="h-full bg-black/20 flex flex-col items-center justify-center relative">
               <img
