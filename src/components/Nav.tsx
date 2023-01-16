@@ -113,12 +113,6 @@ export default function SearchBar() {
           >
             Done Recipes
           </button>
-          <button
-            className={returnStyleOfEachLink('Profile')}
-            onClick={ () => history.push('/profile') }
-          >
-            Profile
-        </button>
         <button
           className="fixed bottom-0 right-0 text-4xl my-1 text-center duration-500 transition-colors text-red-800 hover:text-black py-4 px-3"
           type="button"

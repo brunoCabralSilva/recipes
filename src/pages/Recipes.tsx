@@ -28,7 +28,15 @@ export default function Recipes() {
 
   return (
     <motion.div
-    className="flex flex-col justify-start">
+      initial={{ opacity: 0.5 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        delay: 0.5,
+        duration: 1,
+      }}
+      exit={{ opacity: 0.5, transition: { duration: 0.3 } }}
+      className="flex flex-col justify-start"
+    >
       <Header toggleRecipe={true} />
       <section>
         <div className="flex flex-row justify-center my-2">

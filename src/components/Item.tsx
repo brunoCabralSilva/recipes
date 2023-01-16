@@ -37,7 +37,7 @@ export default function Item(props: ItemProps) {
 
   const populateItens = (obj: any) => {
     console.log(obj)
-    if (typeOfList === 'foods') {
+    if (item.idMeal) {
       setList({
         id: obj.idMeal,
         type: 'food',
@@ -84,7 +84,7 @@ export default function Item(props: ItemProps) {
         date: item.date,
       });
     } else if (!item.strCategory) {
-      if (typeOfList === 'foods') {
+      if (item.idMeal) {
         const search = await reqApiFId(item.idMeal);
         populateItens(search.meals[0]); 
       } else {

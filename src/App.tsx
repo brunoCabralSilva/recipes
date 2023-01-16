@@ -8,7 +8,7 @@ import Recipes from './pages/Recipes';
 import RecipesDetails from './pages/RecipesDetails';
 import RecipesInProgress from './pages/RecipesInProgress';
 import DoneOrFavorites from './pages/DoneOrFavorites';
-// import Profile from './pages/Profile';
+import Search from './components/Search';
 
 function App() {
   const location = useLocation();
@@ -26,7 +26,7 @@ function App() {
             <Route exact path="/:type/:id" component={ RecipesDetails } />
             <Route exact path="/done-recipes" component={ DoneOrFavorites } />
             <Route exact path="/favorite-recipes" component={ DoneOrFavorites } />
-            {/* <Route exact path="/profile" component={ Profile } /> */}
+            <Route exact path="/search" component={ Search } />
           </Switch>
         </AnimatePresence>
       </AnimateSharedLayout>

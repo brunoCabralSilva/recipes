@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import contextRecipes from '../contextRecipes/context';
+import SliderLogin from '../components/SliderLogin';
 
 const MIN_LENGTH_PASSWORD = 7;
 const validateEmail = /\S+@\S+\.\S+/;
@@ -32,13 +33,13 @@ export default function Login() {
 
   return (
     <motion.section
-      initial={{ y: 20, opacity: 0.5 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0.5 }}
+      animate={{ opacity: 1 }}
       transition={{
         delay: 0.5,
         duration: 1,
       }}
-      exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
+      exit={{ opacity: 0.5, transition: { duration: 0.3 } }}
       className="grid grid-cols-2 bg-white w-full relative"
     >
       <motion.section
@@ -49,9 +50,14 @@ export default function Login() {
           duration: 1,
         }}
         exit={{ x: -20, opacity: 0, transition: { duration: 0.3 } }}
-        className="py-4 flex flex-col items-center justify-center z-20"
+        className="py-4 col-span-2 md:col-span-1 flex flex-col items-center justify-center z-20 relative h-screen"
       >
-        <div className="sm:w-7/12">
+        <img
+          src={require("../images/wallpapers/8.jpg")}
+          alt=""
+          className="md:hidden h-screen w-full object-cover absolute"
+        />
+        <div className="w-9/12 sm:w-2/3 md:w-9/12 lg:w-7/12 bg-white z-30 px-8 py-10">
           <div className="flex flex-col text-2xl items-center justify-center gap-3">
             <img
               src={require(`../images/icons/play${(password.length < MIN_LENGTH_PASSWORD || !validateEmail.test(email)) ? '2.png' : '.png'}`)}
@@ -102,8 +108,8 @@ export default function Login() {
           </button>
         </div>
       </motion.section>
-      <div className="w-full h-screen">
-        <img src={require("../images/wallpapers/8.jpg")} alt="" className="h-screen w-full object-cover " />
+      <div className="w-full h-screen hidden md:flex">
+        <SliderLogin />
       </div>
     </motion.section>
   );

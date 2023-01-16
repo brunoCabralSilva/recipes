@@ -39,14 +39,14 @@ export default function RecipesDetails() {
 
   return(
     <motion.div
-      initial={{ y: 20, opacity: 0.5 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0.5 }}
+      animate={{ opacity: 1 }}
       transition={{
-          delay: 0.5,
-          duration: 1,
+        delay: 0.5,
+        duration: 1,
       }}
+      exit={{ opacity: 0.5, transition: { duration: 0.3 } }}
       className="h-screen mt-14 sm:mt-0"
-      exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
       >
         <BtnsFavAndCopy />
         <div className="flex justify-center items-center w-ful sm:mt-0 text-left z-40">

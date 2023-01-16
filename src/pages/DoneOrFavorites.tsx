@@ -54,13 +54,13 @@ export default function DoneOrFavorites() {
 
   return (
     <motion.div
-      initial={{ y: 20, opacity: 0.5 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0.5 }}
+      animate={{ opacity: 1 }}
       transition={{
         delay: 0.5,
         duration: 1,
       }}
-      exit={{ y: -20, opacity: 0.5, transition: { duration: 0.3 } }}
+      exit={{ opacity: 0.5, transition: { duration: 0.3 } }}
     >
       <Header toggleRecipe={false} />
       <div className="">

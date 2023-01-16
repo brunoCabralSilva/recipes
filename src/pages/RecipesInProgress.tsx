@@ -2,6 +2,7 @@ import { useEffect, useContext, useState, ReactNode } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import contextRecipes from '../contextRecipes/context';
 import BtnsFavAndCopy from "../components/BtnsFavAndCopy";
+import { motion } from 'framer-motion';
 import Footer from '../components/Footer';
 import { VscError } from "react-icons/vsc";
 
@@ -216,7 +217,16 @@ export default function RecipesInProgress() {
   };
 
   return (
-    <div className="flex flex-col">
+    <motion.div
+      initial={{ opacity: 0.5 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        delay: 0.5,
+        duration: 1,
+      }}
+      exit={{ opacity: 0.5, transition: { duration: 0.3 } }}
+      className="flex flex-col"
+    >
       <div className={`${objSelected.instructions.length < 500 && 'sm:h-screen' } sm:mt-0 grid grid-cols-1 md:grid-cols-2`}>
         <BtnsFavAndCopy />
         <div className="h-full bg-black/20 flex flex-col items-center justify-center relative md:hidden mt-10">
@@ -289,6 +299,6 @@ export default function RecipesInProgress() {
         </div>
       </div>
       <Footer />
-    </div>
+    </motion.div>
   );
 }
