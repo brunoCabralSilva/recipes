@@ -88,7 +88,7 @@ export default function SearchBar() {
           <button
             className={returnStyleOfEachLink('Home')}
             type="button"
-            onClick={ () => history.push('/recipes') }
+            onClick={ () => history.push('/home') }
           >
             Home
           </button>

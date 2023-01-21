@@ -21,7 +21,7 @@ export default function Login() {
   const handleClick = () => {
     localStorage.setItem('user', JSON.stringify({ email }));
     setTypeOfList('foods');
-    history.push('/recipes');
+    history.push('/home');
   };
 
   const disabledReturn = () => {

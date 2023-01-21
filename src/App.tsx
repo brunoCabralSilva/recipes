@@ -21,7 +21,7 @@ function App() {
             key={location.key}
           >
             <Route exact path="/" component={ Login } />
-            <Route exact path="/recipes" component={ Recipes } />
+            <Route exact path="/home" component={ Recipes } />
             <Route exact path="/in-progress/:type/:id/" component={ RecipesInProgress } />
             <Route exact path="/:type/:id" component={ RecipesDetails } />
             <Route exact path="/done-recipes" component={ DoneOrFavorites } />
