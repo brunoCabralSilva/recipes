@@ -135,7 +135,7 @@ export default function RecipesProvider({children }: RecipesProvidesProps) {
       setMessageShared('');
     }, +'3000');
     setMessageShared('Link copied!');
-    copy(`http://localhost:3000/recipes/${type}/${id}`);
+    copy(`https://brunocabralsilva.github.io/recipes/#/${type}/${id}`);
   };
 
   const createElement = async (type: string, id: string): Promise<void> => {

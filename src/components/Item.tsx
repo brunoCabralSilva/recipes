@@ -123,7 +123,7 @@ export default function Item(props: ItemProps) {
       setMessageShared('');
     }, +'3000');
     setMessageShared('Link copied!');
-    copy(`http://localhost:3000/recipes/${type}/${id}`);
+    copy(`https://brunocabralsilva.github.io/recipes/#/${type}/${id}`);
   };
 
   return(
