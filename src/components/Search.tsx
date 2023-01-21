@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Footer from "./Footer";
 import Header from "./Header";
 import { motion } from "framer-motion";
@@ -15,7 +14,6 @@ export default function Search() {
   const [listFoodsFounded, setFoodsListFounded] = useState([{}]);
   const [inputSearch, setInputSearch] = useState('');
   const [message, setMessage] = useState(false);
-  const history = useHistory();
 
 const search = async () => {
   setDrinksListFounded([{}]);

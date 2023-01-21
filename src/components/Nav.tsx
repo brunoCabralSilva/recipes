@@ -62,7 +62,7 @@ export default function SearchBar() {
                 className="bg-red-500 px-5 py-2 rounded"
                 onClick={() => {
                   localStorage.removeItem('user');
-                  history.push('/trybe-20-recipes');
+                  history.push('/');
                 }}
               >
                 Sim

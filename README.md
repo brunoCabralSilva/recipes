@@ -4,7 +4,7 @@
 Aplicação de receitas que utiliza o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
 </p>
 
-<h3 align="center">https://brunocabralsilva.github.io/trybe-20-recipes/</h3>
+<h3 align="center">https://brunocabralsilva.github.io/recipes/</h3>
 
 ![Tela Inicial da Aplicação](src/images/Login.png)
 
