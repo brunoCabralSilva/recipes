@@ -20,7 +20,7 @@ function App() {
             location={location}
             key={location.key}
           >
-            <Route exact path="/" component={ Login } />
+            <Route exact path="/" component={ Recipes } />
             <Route exact path="/home" component={ Recipes } />
             <Route exact path="/in-progress/:type/:id/" component={ RecipesInProgress } />
             <Route exact path="/:type/:id" component={ RecipesDetails } />
